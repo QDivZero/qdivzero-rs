@@ -56,8 +56,8 @@ global and process-wide; set it once at startup:
 - `auth::retry_after_refresh(&client, || client.get_auth_me())` runs the
   closure; on a `401` error response it refreshes the token once and retries.
 - For proactive refresh, check `auth::token_near_expiry()` (true when the
-  access token has less than 30 seconds of life left) and consult
-  `auth::access_token_expiry`.
+  access token has less than 30 seconds of life left); the stored expiry is
+  available as `auth::STATE.lock().unwrap().access_token_expiry`.
 
 A pre-hook injects `Authorization` automatically on every request — there is
 nothing to pass per call.
