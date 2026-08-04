@@ -25,6 +25,25 @@ pub static STATE: Mutex<AuthInner> = Mutex::new(AuthInner {
     access_token_expiry: AtomicU64::new(0),
 });
 
+impl Default for AuthInner {
+    fn default() -> Self {
+        Self {
+            api_key: String::new(),
+            access_token: String::new(),
+            refresh_token: String::new(),
+            email: String::new(),
+            password: String::new(),
+            access_token_expiry: AtomicU64::new(0),
+        }
+    }
+}
+
+/// Resets all authentication state (used by tests).
+#[doc(hidden)]
+pub fn reset() {
+    *STATE.lock().unwrap() = AuthInner::default();
+}
+
 /// Pre-hook injected by the generated client before every request.
 pub async fn inject(request: &mut reqwest::Request) -> Result<(), String> {
     let inner = STATE.lock().unwrap();

@@ -16,7 +16,7 @@ use qdivzero::auth;
 static TEST_LOCK: Mutex<()> = Mutex::new(());
 
 fn lock() -> MutexGuard<'static, ()> {
-    TEST_LOCK.lock().unwrap()
+    TEST_LOCK.lock().unwrap_or_else(|p| p.into_inner())
 }
 
 async fn me_handler(headers: HeaderMap) -> Response {
@@ -38,6 +38,7 @@ async fn me_handler(headers: HeaderMap) -> Response {
 #[tokio::test]
 async fn injects_api_key_bearer() {
     let _guard = lock();
+    auth::reset();
     let app = Router::new().route("/auth/me", get(me_handler));
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -52,6 +53,7 @@ async fn injects_api_key_bearer() {
 #[tokio::test]
 async fn refreshes_once_on_401_and_retries() {
     let _guard = lock();
+    auth::reset();
     let refresh_calls = Arc::new(AtomicU32::new(0));
     let calls = refresh_calls.clone();
     let app = Router::new().route("/auth/me", get(me_handler)).route(
@@ -82,6 +84,7 @@ async fn refreshes_once_on_401_and_retries() {
 #[tokio::test]
 async fn loads_credentials_file() {
     let _guard = lock();
+    auth::reset();
     let dir = std::env::temp_dir().join(format!("qdivzero-rs-test-{}", std::process::id()));
     std::fs::create_dir_all(dir.join(".qdivzero")).unwrap();
     std::fs::write(
