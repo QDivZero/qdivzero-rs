@@ -36,6 +36,7 @@ async fn me_handler(headers: HeaderMap) -> Response {
 }
 
 #[tokio::test]
+#[allow(clippy::await_holding_lock)] // serialization lock held across await
 async fn injects_api_key_bearer() {
     let _guard = lock();
     auth::reset();
@@ -51,6 +52,7 @@ async fn injects_api_key_bearer() {
 }
 
 #[tokio::test]
+#[allow(clippy::await_holding_lock)] // serialization lock held across await
 async fn refreshes_once_on_401_and_retries() {
     let _guard = lock();
     auth::reset();
@@ -82,6 +84,7 @@ async fn refreshes_once_on_401_and_retries() {
 }
 
 #[tokio::test]
+#[allow(clippy::await_holding_lock)] // serialization lock held across await
 async fn loads_credentials_file() {
     let _guard = lock();
     auth::reset();
