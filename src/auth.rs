@@ -58,6 +58,8 @@ pub async fn inject(request: &mut reqwest::Request) -> Result<(), String> {
         request
             .headers_mut()
             .insert(reqwest::header::AUTHORIZATION, header);
+    } else {
+        return Err("invalid Authorization header value".to_string());
     }
     Ok(())
 }
@@ -130,9 +132,10 @@ pub async fn refresh(client: &crate::Client) -> Result<(), Error<crate::types::E
         let access = tokens
             .access_token
             .ok_or_else(|| Error::Custom("refresh: empty access token".to_string()))?;
+        let expiry = tokens.access_token_expiry.unwrap_or(0).max(0) as u64;
         let mut inner = STATE.lock().unwrap();
         inner.access_token = access;
-        inner.access_token_expiry.store(0, Ordering::SeqCst);
+        inner.access_token_expiry.store(expiry, Ordering::SeqCst);
         return Ok(());
     }
     if !email.is_empty() && !password.is_empty() {
