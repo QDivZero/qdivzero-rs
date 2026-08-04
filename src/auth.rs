@@ -88,6 +88,11 @@ pub fn access_token() -> String {
     STATE.lock().unwrap().access_token.clone()
 }
 
+/// Returns the current API key.
+pub fn api_key() -> String {
+    STATE.lock().unwrap().api_key.clone()
+}
+
 /// Authenticates with email/password and stores the returned tokens.
 pub async fn login(
     client: &crate::Client,
@@ -210,5 +215,8 @@ pub fn load_credentials() {
     }
     if let Some(v) = parsed.get("refresh_token").and_then(|v| v.as_str()) {
         inner.refresh_token = v.to_string();
+    }
+    if let Some(v) = parsed.get("api_key").and_then(|v| v.as_str()) {
+        inner.api_key = v.to_string();
     }
 }
