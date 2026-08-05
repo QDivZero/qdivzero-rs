@@ -16133,6 +16133,165 @@ Arguments:
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
+    /**List API keys for the authenticated user
+
+Returns the API keys issued for the authenticated user identity.
+
+Sends a `GET` request to `/users/me/api-keys`
+
+*/
+    pub async fn get_user_api_keys<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::ApiKeyListResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/users/me/api-keys", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_user_api_keys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create an API key for the authenticated user
+
+Issues a new API key for the authenticated user identity and returns the plaintext key once.
+
+Sends a `POST` request to `/users/me/api-keys`
+
+*/
+    pub async fn post_user_api_keys<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::ApiKeyResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/users/me/api-keys", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_user_api_keys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Revoke a user API key
+
+Revokes an API key issued for the authenticated user identity.
+
+Sends a `POST` request to `/users/me/api-keys/{keyID}/revoke`
+
+Arguments:
+- `key_id`: API key ID
+*/
+    pub async fn post_user_api_keys_key_id_revoke<'a>(
+        &'a self,
+        key_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/users/me/api-keys/{}/revoke", self.baseurl, encode_path(& key_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_user_api_keys_key_id_revoke",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
     /**OpenAI-compatible audio speech (TTS)
 
 Generates audio from text. Accepts Bearer access tokens or API keys.
