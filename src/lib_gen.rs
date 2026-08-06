@@ -285,43 +285,7 @@ pub mod types {
     ///    "description": {
     ///      "type": "string"
     ///    },
-    ///    "fiscal_address": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_city": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_company_name": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_country": {
-    ///      "type": "string"
-    ///    },
     ///    "fiscal_customer_type": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_invoice_email": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_legal_name": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_postcode": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_profile_completed": {
-    ///      "type": "boolean"
-    ///    },
-    ///    "fiscal_region": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_tax_id": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_vat_validated": {
-    ///      "type": "boolean"
-    ///    },
-    ///    "holded_contact_id": {
     ///      "type": "string"
     ///    },
     ///    "id": {
@@ -342,31 +306,7 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_address: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_city: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_company_name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_country: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub fiscal_customer_type: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_invoice_email: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_legal_name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_postcode: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_profile_completed: ::std::option::Option<bool>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_region: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_tax_id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_vat_validated: ::std::option::Option<bool>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub holded_contact_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -377,19 +317,7 @@ pub mod types {
             Self {
                 created_at_unix: Default::default(),
                 description: Default::default(),
-                fiscal_address: Default::default(),
-                fiscal_city: Default::default(),
-                fiscal_company_name: Default::default(),
-                fiscal_country: Default::default(),
                 fiscal_customer_type: Default::default(),
-                fiscal_invoice_email: Default::default(),
-                fiscal_legal_name: Default::default(),
-                fiscal_postcode: Default::default(),
-                fiscal_profile_completed: Default::default(),
-                fiscal_region: Default::default(),
-                fiscal_tax_id: Default::default(),
-                fiscal_vat_validated: Default::default(),
-                holded_contact_id: Default::default(),
                 id: Default::default(),
                 name: Default::default(),
             }
@@ -1188,146 +1116,6 @@ pub mod types {
             Self {
                 arguments: Default::default(),
                 name: Default::default(),
-            }
-        }
-    }
-    ///`CheckoutQuoteRequest`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "properties": {
-    ///    "amount_cents": {
-    ///      "type": "number"
-    ///    },
-    ///    "currency": {
-    ///      "type": "string"
-    ///    },
-    ///    "discount_code": {
-    ///      "type": "string"
-    ///    }
-    ///  },
-    ///  "x-go-name": "CheckoutQuoteRequest"
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct CheckoutQuoteRequest {
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub amount_cents: ::std::option::Option<f64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub currency: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub discount_code: ::std::option::Option<::std::string::String>,
-    }
-    impl ::std::default::Default for CheckoutQuoteRequest {
-        fn default() -> Self {
-            Self {
-                amount_cents: Default::default(),
-                currency: Default::default(),
-                discount_code: Default::default(),
-            }
-        }
-    }
-    ///`CheckoutQuoteResponse`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "properties": {
-    ///    "currency": {
-    ///      "type": "string"
-    ///    },
-    ///    "discount_amount_minor": {
-    ///      "type": "integer"
-    ///    },
-    ///    "gross_total_minor": {
-    ///      "type": "integer"
-    ///    },
-    ///    "original_amount_minor": {
-    ///      "type": "integer"
-    ///    },
-    ///    "policy_version": {
-    ///      "type": "string"
-    ///    },
-    ///    "quote_hash": {
-    ///      "type": "string"
-    ///    },
-    ///    "quote_id": {
-    ///      "type": "string"
-    ///    },
-    ///    "reason": {
-    ///      "type": "string"
-    ///    },
-    ///    "reverse_charge": {
-    ///      "type": "boolean"
-    ///    },
-    ///    "tax_included": {
-    ///      "type": "boolean"
-    ///    },
-    ///    "tax_minor": {
-    ///      "type": "integer"
-    ///    },
-    ///    "tax_rate_basis_points": {
-    ///      "type": "integer"
-    ///    },
-    ///    "taxable_base_minor": {
-    ///      "type": "integer"
-    ///    }
-    ///  },
-    ///  "x-go-name": "CheckoutQuoteResponse"
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct CheckoutQuoteResponse {
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub currency: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub discount_amount_minor: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub gross_total_minor: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub original_amount_minor: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub policy_version: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub quote_hash: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub quote_id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub reason: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub reverse_charge: ::std::option::Option<bool>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub tax_included: ::std::option::Option<bool>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub tax_minor: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub tax_rate_basis_points: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub taxable_base_minor: ::std::option::Option<i64>,
-    }
-    impl ::std::default::Default for CheckoutQuoteResponse {
-        fn default() -> Self {
-            Self {
-                currency: Default::default(),
-                discount_amount_minor: Default::default(),
-                gross_total_minor: Default::default(),
-                original_amount_minor: Default::default(),
-                policy_version: Default::default(),
-                quote_hash: Default::default(),
-                quote_id: Default::default(),
-                reason: Default::default(),
-                reverse_charge: Default::default(),
-                tax_included: Default::default(),
-                tax_minor: Default::default(),
-                tax_rate_basis_points: Default::default(),
-                taxable_base_minor: Default::default(),
             }
         }
     }
@@ -4470,25 +4258,10 @@ pub mod types {
     ///    "discount_ticket_id": {
     ///      "type": "string"
     ///    },
-    ///    "holded_contact_id": {
-    ///      "type": "string"
-    ///    },
-    ///    "holded_invoice_id": {
-    ///      "type": "string"
-    ///    },
-    ///    "holded_invoice_number": {
-    ///      "type": "string"
-    ///    },
-    ///    "holded_invoice_status": {
-    ///      "type": "string"
-    ///    },
-    ///    "holded_invoice_url": {
+    ///    "document_status": {
     ///      "type": "string"
     ///    },
     ///    "id": {
-    ///      "type": "string"
-    ///    },
-    ///    "invoice_state": {
     ///      "type": "string"
     ///    },
     ///    "ledger_entry_id": {
@@ -4510,6 +4283,9 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "stripe_event_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "stripe_invoice_id": {
     ///      "type": "string"
     ///    },
     ///    "stripe_payment_intent_id": {
@@ -4553,19 +4329,9 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub discount_ticket_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub holded_contact_id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub holded_invoice_id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub holded_invoice_number: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub holded_invoice_status: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub holded_invoice_url: ::std::option::Option<::std::string::String>,
+        pub document_status: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub invoice_state: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub ledger_entry_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -4580,6 +4346,8 @@ pub mod types {
         pub stripe_customer_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub stripe_event_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub stripe_invoice_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub stripe_payment_intent_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -4602,13 +4370,8 @@ pub mod types {
                 currency: Default::default(),
                 discount_code_snapshot: Default::default(),
                 discount_ticket_id: Default::default(),
-                holded_contact_id: Default::default(),
-                holded_invoice_id: Default::default(),
-                holded_invoice_number: Default::default(),
-                holded_invoice_status: Default::default(),
-                holded_invoice_url: Default::default(),
+                document_status: Default::default(),
                 id: Default::default(),
-                invoice_state: Default::default(),
                 ledger_entry_id: Default::default(),
                 paid_at: Default::default(),
                 provider: Default::default(),
@@ -4616,6 +4379,7 @@ pub mod types {
                 status: Default::default(),
                 stripe_customer_id: Default::default(),
                 stripe_event_id: Default::default(),
+                stripe_invoice_id: Default::default(),
                 stripe_payment_intent_id: Default::default(),
                 stripe_session_id: Default::default(),
                 updated_at: Default::default(),
@@ -6042,29 +5806,35 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "cpu_utilization_percent": {
+    ///    "e2e_request_latency_p95_seconds": {
     ///      "type": "number"
     ///    },
-    ///    "disk_utilization_percent": {
+    ///    "generation_tokens_per_second": {
     ///      "type": "number"
     ///    },
-    ///    "gpu_memory_utilization_percent": {
+    ///    "kv_cache_usage_percent": {
     ///      "type": "number"
     ///    },
-    ///    "gpu_power_watts": {
+    ///    "prompt_tokens_per_second": {
     ///      "type": "number"
     ///    },
-    ///    "gpu_temperature_celsius": {
+    ///    "requests_running": {
     ///      "type": "number"
     ///    },
-    ///    "gpu_utilization_percent": {
+    ///    "requests_waiting": {
     ///      "type": "number"
     ///    },
-    ///    "memory_utilization_percent": {
+    ///    "runtime_cpu_seconds_per_second": {
+    ///      "type": "number"
+    ///    },
+    ///    "runtime_memory_bytes": {
     ///      "type": "number"
     ///    },
     ///    "sampled_at": {
     ///      "type": "string"
+    ///    },
+    ///    "time_to_first_token_p95_seconds": {
+    ///      "type": "number"
     ///    }
     ///  },
     ///  "x-go-name": "ResourceMetricSnapshot"
@@ -6074,33 +5844,39 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct ResourceMetricSnapshot {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub cpu_utilization_percent: ::std::option::Option<f64>,
+        pub e2e_request_latency_p95_seconds: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub disk_utilization_percent: ::std::option::Option<f64>,
+        pub generation_tokens_per_second: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub gpu_memory_utilization_percent: ::std::option::Option<f64>,
+        pub kv_cache_usage_percent: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub gpu_power_watts: ::std::option::Option<f64>,
+        pub prompt_tokens_per_second: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub gpu_temperature_celsius: ::std::option::Option<f64>,
+        pub requests_running: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub gpu_utilization_percent: ::std::option::Option<f64>,
+        pub requests_waiting: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub memory_utilization_percent: ::std::option::Option<f64>,
+        pub runtime_cpu_seconds_per_second: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub runtime_memory_bytes: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub sampled_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub time_to_first_token_p95_seconds: ::std::option::Option<f64>,
     }
     impl ::std::default::Default for ResourceMetricSnapshot {
         fn default() -> Self {
             Self {
-                cpu_utilization_percent: Default::default(),
-                disk_utilization_percent: Default::default(),
-                gpu_memory_utilization_percent: Default::default(),
-                gpu_power_watts: Default::default(),
-                gpu_temperature_celsius: Default::default(),
-                gpu_utilization_percent: Default::default(),
-                memory_utilization_percent: Default::default(),
+                e2e_request_latency_p95_seconds: Default::default(),
+                generation_tokens_per_second: Default::default(),
+                kv_cache_usage_percent: Default::default(),
+                prompt_tokens_per_second: Default::default(),
+                requests_running: Default::default(),
+                requests_waiting: Default::default(),
+                runtime_cpu_seconds_per_second: Default::default(),
+                runtime_memory_bytes: Default::default(),
                 sampled_at: Default::default(),
+                time_to_first_token_p95_seconds: Default::default(),
             }
         }
     }
@@ -8333,41 +8109,8 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///    "description": {
     ///      "type": "string"
     ///    },
-    ///    "fiscal_address": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_city": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_company_name": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_country": {
-    ///      "type": "string"
-    ///    },
     ///    "fiscal_customer_type": {
     ///      "type": "string"
-    ///    },
-    ///    "fiscal_invoice_email": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_legal_name": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_postcode": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_profile_completed": {
-    ///      "type": "boolean"
-    ///    },
-    ///    "fiscal_region": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_tax_id": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_vat_validated": {
-    ///      "type": "boolean"
     ///    },
     ///    "name": {
     ///      "type": "string"
@@ -8382,29 +8125,7 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_address: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_city: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_company_name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_country: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub fiscal_customer_type: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_invoice_email: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_legal_name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_postcode: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_profile_completed: ::std::option::Option<bool>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_region: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_tax_id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_vat_validated: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
     }
@@ -8412,18 +8133,7 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         fn default() -> Self {
             Self {
                 description: Default::default(),
-                fiscal_address: Default::default(),
-                fiscal_city: Default::default(),
-                fiscal_company_name: Default::default(),
-                fiscal_country: Default::default(),
                 fiscal_customer_type: Default::default(),
-                fiscal_invoice_email: Default::default(),
-                fiscal_legal_name: Default::default(),
-                fiscal_postcode: Default::default(),
-                fiscal_profile_completed: Default::default(),
-                fiscal_region: Default::default(),
-                fiscal_tax_id: Default::default(),
-                fiscal_vat_validated: Default::default(),
                 name: Default::default(),
             }
         }
@@ -8555,41 +8265,8 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "fiscal_address": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_city": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_company_name": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_country": {
-    ///      "type": "string"
-    ///    },
     ///    "fiscal_customer_type": {
     ///      "type": "string"
-    ///    },
-    ///    "fiscal_invoice_email": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_legal_name": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_postcode": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_profile_completed": {
-    ///      "type": "boolean"
-    ///    },
-    ///    "fiscal_region": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_tax_id": {
-    ///      "type": "string"
-    ///    },
-    ///    "fiscal_vat_validated": {
-    ///      "type": "boolean"
     ///    }
     ///  },
     ///  "x-go-name": "UpdateFiscalProfileRequest"
@@ -8599,45 +8276,12 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct UpdateFiscalProfileRequest {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_address: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_city: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_company_name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_country: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub fiscal_customer_type: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_invoice_email: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_legal_name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_postcode: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_profile_completed: ::std::option::Option<bool>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_region: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_tax_id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_vat_validated: ::std::option::Option<bool>,
     }
     impl ::std::default::Default for UpdateFiscalProfileRequest {
         fn default() -> Self {
             Self {
-                fiscal_address: Default::default(),
-                fiscal_city: Default::default(),
-                fiscal_company_name: Default::default(),
-                fiscal_country: Default::default(),
                 fiscal_customer_type: Default::default(),
-                fiscal_invoice_email: Default::default(),
-                fiscal_legal_name: Default::default(),
-                fiscal_postcode: Default::default(),
-                fiscal_profile_completed: Default::default(),
-                fiscal_region: Default::default(),
-                fiscal_tax_id: Default::default(),
-                fiscal_vat_validated: Default::default(),
             }
         }
     }
@@ -11892,66 +11536,6 @@ Arguments:
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Quote a checkout total
-
-Resolves the authenticated account's application-side tax quote without creating Stripe or checkout state.
-
-Sends a `POST` request to `/billing/quote`
-
-*/
-    pub async fn post_billing_quote<'a>(
-        &'a self,
-        body: &'a types::CheckoutQuoteRequest,
-    ) -> Result<
-        ResponseValue<types::CheckoutQuoteResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/billing/quote", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_billing_quote",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            409u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            503u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             _ => Err(Error::UnexpectedResponse(response)),
