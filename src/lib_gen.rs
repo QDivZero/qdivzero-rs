@@ -5809,13 +5809,13 @@ pub mod types {
     ///    "e2e_request_latency_p95_seconds": {
     ///      "type": "number"
     ///    },
-    ///    "generation_tokens_per_second": {
+    ///    "generation_tokens_total": {
     ///      "type": "number"
     ///    },
     ///    "kv_cache_usage_percent": {
     ///      "type": "number"
     ///    },
-    ///    "prompt_tokens_per_second": {
+    ///    "prompt_tokens_total": {
     ///      "type": "number"
     ///    },
     ///    "requests_running": {
@@ -5846,11 +5846,11 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub e2e_request_latency_p95_seconds: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub generation_tokens_per_second: ::std::option::Option<f64>,
+        pub generation_tokens_total: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub kv_cache_usage_percent: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub prompt_tokens_per_second: ::std::option::Option<f64>,
+        pub prompt_tokens_total: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub requests_running: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -5868,9 +5868,9 @@ pub mod types {
         fn default() -> Self {
             Self {
                 e2e_request_latency_p95_seconds: Default::default(),
-                generation_tokens_per_second: Default::default(),
+                generation_tokens_total: Default::default(),
                 kv_cache_usage_percent: Default::default(),
-                prompt_tokens_per_second: Default::default(),
+                prompt_tokens_total: Default::default(),
                 requests_running: Default::default(),
                 requests_waiting: Default::default(),
                 runtime_cpu_seconds_per_second: Default::default(),
