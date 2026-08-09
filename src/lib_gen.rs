@@ -1461,6 +1461,12 @@ pub mod types {
     ///    "smart_selection_label": {
     ///      "type": "string"
     ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "workload_kind": {
     ///      "type": "string"
     ///    }
@@ -1517,6 +1523,8 @@ pub mod types {
         pub smart_regions: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub smart_selection_label: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub workload_kind: ::std::option::Option<::std::string::String>,
     }
@@ -1546,6 +1554,7 @@ pub mod types {
                 smart_region: Default::default(),
                 smart_regions: Default::default(),
                 smart_selection_label: Default::default(),
+                supported_protocols: Default::default(),
                 workload_kind: Default::default(),
             }
         }
@@ -3262,6 +3271,12 @@ pub mod types {
     ///    "stopped_at": {
     ///      "type": "string"
     ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "workload_kind": {
     ///      "type": "string"
     ///    }
@@ -3340,6 +3355,8 @@ pub mod types {
         pub state: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub stopped_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub workload_kind: ::std::option::Option<::std::string::String>,
     }
@@ -3380,6 +3397,7 @@ pub mod types {
                 started_at: Default::default(),
                 state: Default::default(),
                 stopped_at: Default::default(),
+                supported_protocols: Default::default(),
                 workload_kind: Default::default(),
             }
         }
@@ -5539,6 +5557,12 @@ pub mod types {
     ///    "status": {
     ///      "type": "string"
     ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "target_group_id": {
     ///      "type": "string"
     ///    },
@@ -5599,6 +5623,8 @@ pub mod types {
         pub smart_selection_label: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub status: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub target_group_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -5631,6 +5657,7 @@ pub mod types {
                 smart_regions: Default::default(),
                 smart_selection_label: Default::default(),
                 status: Default::default(),
+                supported_protocols: Default::default(),
                 target_group_id: Default::default(),
                 updated_at: Default::default(),
                 workload_kind: Default::default(),
@@ -5943,6 +5970,15 @@ pub mod types {
     ///        "type": "integer"
     ///      }
     ///    },
+    ///    "instructions": {
+    ///      "type": "string"
+    ///    },
+    ///    "metadata": {
+    ///      "type": "object",
+    ///      "additionalProperties": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "model": {
     ///      "type": "string"
     ///    },
@@ -5982,6 +6018,16 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub input: ::std::vec::Vec<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instructions: ::std::option::Option<::std::string::String>,
+        #[serde(
+            default,
+            skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
+        )]
+        pub metadata: ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::string::String,
+        >,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub model: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub previous_response_id: ::std::option::Option<::std::string::String>,
@@ -6006,6 +6052,8 @@ pub mod types {
         fn default() -> Self {
             Self {
                 input: Default::default(),
+                instructions: Default::default(),
+                metadata: Default::default(),
                 model: Default::default(),
                 previous_response_id: Default::default(),
                 reasoning: Default::default(),
@@ -6920,6 +6968,15 @@ pub mod types {
     ///    },
     ///    "region": {
     ///      "type": "string"
+    ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "supports_tools": {
+    ///      "type": "boolean"
     ///    }
     ///  },
     ///  "x-go-name": "ServingProviderResponse"
@@ -6934,6 +6991,10 @@ pub mod types {
         pub name: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub region: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub supports_tools: ::std::option::Option<bool>,
     }
     impl ::std::default::Default for ServingProviderResponse {
         fn default() -> Self {
@@ -6941,6 +7002,8 @@ pub mod types {
                 model_id: Default::default(),
                 name: Default::default(),
                 region: Default::default(),
+                supported_protocols: Default::default(),
+                supports_tools: Default::default(),
             }
         }
     }
@@ -8355,6 +8418,12 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///    },
     ///    "smart_selection_label": {
     ///      "type": "string"
+    ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
     ///    }
     ///  },
     ///  "x-go-name": "UpdateInstanceRequest"
@@ -8401,6 +8470,8 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         pub smart_regions: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub smart_selection_label: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
     }
     impl ::std::default::Default for UpdateInstanceRequest {
         fn default() -> Self {
@@ -8424,6 +8495,7 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
                 smart_region: Default::default(),
                 smart_regions: Default::default(),
                 smart_selection_label: Default::default(),
+                supported_protocols: Default::default(),
             }
         }
     }
