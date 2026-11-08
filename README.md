@@ -20,7 +20,7 @@ cargo add qdivzero-rs --git https://github.com/QDivZero/qdivzero-rs.git --tag v1
 
 ## Quick start
 
-Token-first: set an API key (or load credentials), then call the client.
+Set an API key (or load credentials), then call the client.
 
 ````rust
 use qdivzero::auth;
@@ -42,25 +42,26 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ## Authentication
 
-Token-based authentication is the primary way to use the client. State is
+API keys are recommended for programmatic access. Authentication state is
 global and process-wide; set it once at startup:
 
 - `auth::set_api_key(key)` authenticates with a QDivZero API key
   (`Authorization: Bearer <key>`).
 - `auth::set_access_token(token, expiry_unix)` / `auth::set_refresh_token(token)`
-  pre-configure bearer tokens without calling login.
+  pre-configure the session-cookie values without calling login.
 - `auth::login(&client, email, password)` authenticates with credentials and
-  stores the access and refresh tokens.
-- `auth::refresh(&client)` forces a token refresh (refresh token first, then
+  stores the access and refresh cookies. It returns an error when additional
+  verification is required.
+- `auth::refresh(&client)` forces a session refresh (refresh cookie first, then
   stored credentials).
 - `auth::retry_after_refresh(&client, || client.get_auth_me())` runs the
-  closure; on a `401` error response it refreshes the token once and retries.
+  closure; on a `401` error response it refreshes the session once and retries.
 - For proactive refresh, check `auth::token_near_expiry()` (true when the
   access token has less than 30 seconds of life left); the stored expiry is
   available as `auth::STATE.lock().unwrap().access_token_expiry`.
 
-A pre-hook injects `Authorization` automatically on every request — there is
-nothing to pass per call.
+A pre-hook sends API keys as bearer credentials and session access values as
+`qdiv0_access` cookies. The refresh cookie is sent only to the refresh endpoint.
 
 ## Credentials file
 
@@ -78,7 +79,7 @@ the auth state. All fields are optional:
 ````
 
 `email`/`password` enable on-demand login and fallback refresh;
-`access_token`/`refresh_token` authenticate directly. Keep the file private
+`access_token`/`refresh_token` provide session-cookie values. Keep the file private
 (`chmod 600 ~/.qdivzero/credentials`) and never commit it.
 
 ## Error handling
@@ -106,9 +107,10 @@ and commits the result at `api/openapi.rs.json`.
 **`src/lib_gen.rs` is generated — do not edit it by hand.** A new release tag
 (`v1.0.<n>`) is published on every change.
 
-Known limitation: the two multipart endpoints (`/v1/audio/transcriptions`,
-`/v1/images/edits`) are not generated, because progenitor has no multipart
-support.
+Known limitations: multipart operations are not generated because progenitor
+has no multipart support. Operations with different successful response types
+are exposed as raw byte streams so every documented success status remains
+available.
 
 ## Development
 
@@ -119,4 +121,4 @@ scripts/preprocess-rs.sh && cargo build
 ````
 
 Checks: `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`,
-`cargo test`.
+`cargo test`, `python3 -m unittest discover -s tests -p 'test_preprocess.py'`.

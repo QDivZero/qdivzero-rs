@@ -47,19 +47,53 @@ pub fn reset() {
 /// Pre-hook injected by the generated client before every request.
 pub async fn inject(request: &mut reqwest::Request) -> Result<(), String> {
     let inner = STATE.lock().unwrap();
-    let value = if !inner.access_token.is_empty() {
-        format!("Bearer {}", inner.access_token)
-    } else if !inner.api_key.is_empty() {
-        format!("Bearer {}", inner.api_key)
-    } else {
-        return Ok(());
-    };
-    if let Ok(header) = reqwest::header::HeaderValue::from_str(&value) {
+    let mut cookies = Vec::new();
+    if !inner.access_token.is_empty() {
+        cookies.push(format!("qdiv0_access={}", inner.access_token));
+    } else if !inner.api_key.is_empty()
+        && !request
+            .headers()
+            .contains_key(reqwest::header::AUTHORIZATION)
+    {
+        let value = format!("Bearer {}", inner.api_key);
+        let header = reqwest::header::HeaderValue::from_str(&value)
+            .map_err(|_| "invalid Authorization header value".to_string())?;
         request
             .headers_mut()
             .insert(reqwest::header::AUTHORIZATION, header);
-    } else {
-        return Err("invalid Authorization header value".to_string());
+    }
+    if request.url().path().ends_with("/auth/refresh") && !inner.refresh_token.is_empty() {
+        cookies.push(format!("qdiv0_refresh={}", inner.refresh_token));
+    }
+    if !cookies.is_empty() {
+        if let Some(existing) = request.headers().get(reqwest::header::COOKIE) {
+            let existing = existing
+                .to_str()
+                .map_err(|_| "invalid Cookie header".to_string())?;
+            for part in existing
+                .split(';')
+                .map(str::trim)
+                .filter(|part| !part.is_empty())
+            {
+                let name = part
+                    .split_once('=')
+                    .map(|(name, _)| name.trim())
+                    .unwrap_or("");
+                if (name == "qdiv0_access" && !inner.access_token.is_empty())
+                    || (name == "qdiv0_refresh"
+                        && request.url().path().ends_with("/auth/refresh")
+                        && !inner.refresh_token.is_empty())
+                {
+                    continue;
+                }
+                cookies.push(part.to_string());
+            }
+        }
+        let header = reqwest::header::HeaderValue::from_str(&cookies.join("; "))
+            .map_err(|_| "invalid session cookie".to_string())?;
+        request
+            .headers_mut()
+            .insert(reqwest::header::COOKIE, header);
     }
     Ok(())
 }
@@ -94,6 +128,7 @@ pub fn api_key() -> String {
 }
 
 /// Authenticates with email/password and stores the returned tokens.
+#[allow(clippy::result_large_err)] // Keep the generated client's public error type.
 pub async fn login(
     client: &crate::Client,
     email: &str,
@@ -106,21 +141,19 @@ pub async fn login(
         totp_code: None,
     };
     let resp = client.post_auth_login(&body).await?;
-    let tokens = resp.into_inner();
-    let access = tokens
-        .access_token
-        .ok_or_else(|| Error::Custom("login: empty access token".to_string()))?;
-    let expiry = tokens.access_token_expiry.unwrap_or(0).max(0) as u64;
-    let mut inner = STATE.lock().unwrap();
-    inner.access_token = access;
-    inner.access_token_expiry.store(expiry, Ordering::SeqCst);
-    if let Some(rt) = tokens.refresh_token {
-        inner.refresh_token = rt;
+    if let Err(err) = store_session(resp.headers()) {
+        if let Some(step) = resp.into_inner().next_step.filter(|step| !step.is_empty()) {
+            return Err(Error::Custom(format!(
+                "login: verification required: {step}"
+            )));
+        }
+        return Err(Error::Custom(format!("login: {err}")));
     }
     Ok(())
 }
 
 /// Refreshes the access token (refresh token first, then credentials).
+#[allow(clippy::result_large_err)] // Keep the generated client's public error type.
 pub async fn refresh(client: &crate::Client) -> Result<(), Error<crate::types::ErrorResponse>> {
     let (refresh_token, email, password) = {
         let inner = STATE.lock().unwrap();
@@ -131,16 +164,8 @@ pub async fn refresh(client: &crate::Client) -> Result<(), Error<crate::types::E
         )
     };
     if !refresh_token.is_empty() {
-        let body = crate::types::RefreshRequest { refresh_token };
-        let resp = client.post_auth_refresh(&body).await?;
-        let tokens = resp.into_inner();
-        let access = tokens
-            .access_token
-            .ok_or_else(|| Error::Custom("refresh: empty access token".to_string()))?;
-        let expiry = tokens.access_token_expiry.unwrap_or(0).max(0) as u64;
-        let mut inner = STATE.lock().unwrap();
-        inner.access_token = access;
-        inner.access_token_expiry.store(expiry, Ordering::SeqCst);
+        let resp = client.post_auth_refresh().await?;
+        store_session(resp.headers()).map_err(|err| Error::Custom(format!("refresh: {err}")))?;
         return Ok(());
     }
     if !email.is_empty() && !password.is_empty() {
@@ -149,6 +174,50 @@ pub async fn refresh(client: &crate::Client) -> Result<(), Error<crate::types::E
     Err(Error::Custom(
         "no refresh token or credentials available".to_string(),
     ))
+}
+
+fn store_session(headers: &reqwest::header::HeaderMap) -> Result<(), String> {
+    let mut access = None;
+    let mut refresh = None;
+    let mut expiry = 0;
+    for value in headers.get_all(reqwest::header::SET_COOKIE) {
+        let Ok(value) = value.to_str() else { continue };
+        let mut parts = value.split(';');
+        let Some((name, token)) = parts.next().and_then(|part| part.trim().split_once('=')) else {
+            continue;
+        };
+        let mut max_age = None;
+        for part in parts {
+            if let Some((key, value)) = part.trim().split_once('=') {
+                if key.eq_ignore_ascii_case("max-age") {
+                    max_age = value.parse::<i64>().ok();
+                }
+            }
+        }
+        if token.is_empty() || max_age.is_some_and(|age| age <= 0) {
+            continue;
+        }
+        match name {
+            "qdiv0_access" => {
+                access = Some(token.to_string());
+                if let Some(age) = max_age {
+                    expiry = SystemTime::now()
+                        .duration_since(UNIX_EPOCH)
+                        .map(|now| now.as_secs().saturating_add(age as u64))
+                        .unwrap_or(0);
+                }
+            }
+            "qdiv0_refresh" => refresh = Some(token.to_string()),
+            _ => {}
+        }
+    }
+    let access = access.ok_or_else(|| "missing access session cookie".to_string())?;
+    let refresh = refresh.ok_or_else(|| "missing refresh session cookie".to_string())?;
+    let mut inner = STATE.lock().unwrap();
+    inner.access_token = access;
+    inner.refresh_token = refresh;
+    inner.access_token_expiry.store(expiry, Ordering::SeqCst);
+    Ok(())
 }
 
 /// Returns true when the access token has less than 30 seconds of life left.
@@ -166,6 +235,7 @@ pub fn token_near_expiry() -> bool {
 }
 
 /// Runs the closure; on a 401 error response, refreshes once and re-runs it.
+#[allow(clippy::result_large_err)] // Keep the generated client's public error type.
 pub async fn retry_after_refresh<T, F, Fut>(
     client: &crate::Client,
     f: F,
