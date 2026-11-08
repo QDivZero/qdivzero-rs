@@ -25,6 +25,7 @@ echo "==> regenerating client"
 cargo build
 
 echo "==> verifying"
+python3 -m unittest discover -s tests -p 'test_preprocess.py'
 cargo fmt --check
 cargo clippy --all-targets -- -D warnings
 cargo test

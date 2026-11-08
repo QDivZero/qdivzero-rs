@@ -285,9 +285,6 @@ pub mod types {
     ///    "description": {
     ///      "type": "string"
     ///    },
-    ///    "fiscal_customer_type": {
-    ///      "type": "string"
-    ///    },
     ///    "id": {
     ///      "type": "string"
     ///    },
@@ -306,8 +303,6 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_customer_type: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
@@ -317,7 +312,6 @@ pub mod types {
             Self {
                 created_at_unix: Default::default(),
                 description: Default::default(),
-                fiscal_customer_type: Default::default(),
                 id: Default::default(),
                 name: Default::default(),
             }
@@ -457,11 +451,23 @@ pub mod types {
     ///    "language": {
     ///      "type": "string"
     ///    },
+    ///    "max_new_tokens": {
+    ///      "type": "integer"
+    ///    },
     ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "ref_audio": {
+    ///      "type": "string"
+    ///    },
+    ///    "ref_text": {
     ///      "type": "string"
     ///    },
     ///    "response_format": {
     ///      "type": "string"
+    ///    },
+    ///    "seed": {
+    ///      "type": "integer"
     ///    },
     ///    "speed": {
     ///      "type": "number"
@@ -471,6 +477,9 @@ pub mod types {
     ///    },
     ///    "voice": {
     ///      "type": "string"
+    ///    },
+    ///    "x_vector_only_mode": {
+    ///      "type": "boolean"
     ///    }
     ///  },
     ///  "x-go-name": "AudioSpeechRequest"
@@ -486,15 +495,25 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub language: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_new_tokens: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub model: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub ref_audio: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub ref_text: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub response_format: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub seed: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub speed: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub task_type: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub voice: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub x_vector_only_mode: ::std::option::Option<bool>,
     }
     impl ::std::default::Default for AudioSpeechRequest {
         fn default() -> Self {
@@ -502,11 +521,16 @@ pub mod types {
                 input: Default::default(),
                 instructions: Default::default(),
                 language: Default::default(),
+                max_new_tokens: Default::default(),
                 model: Default::default(),
+                ref_audio: Default::default(),
+                ref_text: Default::default(),
                 response_format: Default::default(),
+                seed: Default::default(),
                 speed: Default::default(),
                 task_type: Default::default(),
                 voice: Default::default(),
+                x_vector_only_mode: Default::default(),
             }
         }
     }
@@ -646,6 +670,40 @@ pub mod types {
             }
         }
     }
+    ///`BiomolecularCapabilities`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "checked_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "msa_status": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "BiomolecularCapabilities"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct BiomolecularCapabilities {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub checked_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub msa_status: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for BiomolecularCapabilities {
+        fn default() -> Self {
+            Self {
+                checked_at: Default::default(),
+                msa_status: Default::default(),
+            }
+        }
+    }
     ///`CatalogGpuResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -693,8 +751,20 @@ pub mod types {
     ///    "display_name": {
     ///      "type": "string"
     ///    },
+    ///    "download_size_bytes": {
+    ///      "type": "integer"
+    ///    },
     ///    "enabled": {
     ///      "type": "boolean"
+    ///    },
+    ///    "estimated_download_cost_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "estimated_one_hour_cost_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "estimated_spot_reserve_eur": {
+    ///      "type": "number"
     ///    },
     ///    "gpu_count": {
     ///      "type": "integer"
@@ -707,6 +777,18 @@ pub mod types {
     ///    },
     ///    "market_type": {
     ///      "type": "string"
+    ///    },
+    ///    "network_download_price_per_gb_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "network_estimate_available": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "network_pricing_known": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "network_upload_price_per_gb_eur": {
+    ///      "type": "number"
     ///    },
     ///    "price_per_hour_eur": {
     ///      "type": "number"
@@ -760,7 +842,15 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub display_name: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub download_size_bytes: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub enabled: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_download_cost_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_one_hour_cost_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_spot_reserve_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub gpu_count: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -769,6 +859,14 @@ pub mod types {
         pub internet_up_mbps: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub market_type: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_download_price_per_gb_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_estimate_available: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_pricing_known: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_upload_price_per_gb_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub price_per_hour_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -798,11 +896,19 @@ pub mod types {
                 cuda_max_good: Default::default(),
                 disk_bandwidth_mbps: Default::default(),
                 display_name: Default::default(),
+                download_size_bytes: Default::default(),
                 enabled: Default::default(),
+                estimated_download_cost_eur: Default::default(),
+                estimated_one_hour_cost_eur: Default::default(),
+                estimated_spot_reserve_eur: Default::default(),
                 gpu_count: Default::default(),
                 internet_down_mbps: Default::default(),
                 internet_up_mbps: Default::default(),
                 market_type: Default::default(),
+                network_download_price_per_gb_eur: Default::default(),
+                network_estimate_available: Default::default(),
+                network_pricing_known: Default::default(),
+                network_upload_price_per_gb_eur: Default::default(),
                 price_per_hour_eur: Default::default(),
                 provider_codename: Default::default(),
                 public_gpu_id: Default::default(),
@@ -930,6 +1036,12 @@ pub mod types {
     ///        "type": "integer"
     ///      }
     ///    },
+    ///    "reasoning": {
+    ///      "type": "string"
+    ///    },
+    ///    "reasoning_content": {
+    ///      "type": "string"
+    ///    },
     ///    "role": {
     ///      "type": "string"
     ///    },
@@ -952,6 +1064,10 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub content: ::std::vec::Vec<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub reasoning: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub reasoning_content: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub role: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub tool_call_id: ::std::option::Option<::std::string::String>,
@@ -962,6 +1078,8 @@ pub mod types {
         fn default() -> Self {
             Self {
                 content: Default::default(),
+                reasoning: Default::default(),
+                reasoning_content: Default::default(),
                 role: Default::default(),
                 tool_call_id: Default::default(),
                 tool_calls: Default::default(),
@@ -988,7 +1106,16 @@ pub mod types {
     ///        "$ref": "#/components/schemas/ChatMessageEnvelope"
     ///      }
     ///    },
+    ///    "modalities": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "speaker": {
     ///      "type": "string"
     ///    },
     ///    "stream": {
@@ -1013,8 +1140,12 @@ pub mod types {
         pub max_tokens: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub messages: ::std::vec::Vec<ChatMessageEnvelope>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub modalities: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub model: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub speaker: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub stream: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -1028,7 +1159,9 @@ pub mod types {
                 firewall: Default::default(),
                 max_tokens: Default::default(),
                 messages: Default::default(),
+                modalities: Default::default(),
                 model: Default::default(),
+                speaker: Default::default(),
                 stream: Default::default(),
                 temperature: Default::default(),
                 top_p: Default::default(),
@@ -1386,6 +1519,14 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
+    ///    "cost_optimization_enabled": {
+    ///      "description": "Opt into automatic replacement with cheaper compatible Smart capacity. Defaults to false; requires smart scheduling.",
+    ///      "type": "boolean"
+    ///    },
+    ///    "cost_optimization_min_savings_percent": {
+    ///      "description": "Minimum percentage saving required for replacement. Defaults to 20; must be finite, greater than 0 and less than 100. Decimals are accepted.",
+    ///      "type": "number"
+    ///    },
     ///    "description": {
     ///      "type": "string"
     ///    },
@@ -1468,7 +1609,10 @@ pub mod types {
     ///      }
     ///    },
     ///    "workload_kind": {
-    ///      "type": "string"
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "decision"
+    ///      ]
     ///    }
     ///  },
     ///  "x-go-name": "CreateInstanceRequest"
@@ -1477,6 +1621,12 @@ pub mod types {
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct CreateInstanceRequest {
+        ///Opt into automatic replacement with cheaper compatible Smart capacity. Defaults to false; requires smart scheduling.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cost_optimization_enabled: ::std::option::Option<bool>,
+        ///Minimum percentage saving required for replacement. Defaults to 20; must be finite, greater than 0 and less than 100. Decimals are accepted.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cost_optimization_min_savings_percent: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -1526,11 +1676,13 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub supported_protocols: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub workload_kind: ::std::option::Option<::std::string::String>,
+        pub workload_kind: ::std::option::Option<CreateInstanceRequestWorkloadKind>,
     }
     impl ::std::default::Default for CreateInstanceRequest {
         fn default() -> Self {
             Self {
+                cost_optimization_enabled: Default::default(),
+                cost_optimization_min_savings_percent: Default::default(),
                 description: Default::default(),
                 download_size_bytes: Default::default(),
                 gguf_model_path: Default::default(),
@@ -1557,6 +1709,79 @@ pub mod types {
                 supported_protocols: Default::default(),
                 workload_kind: Default::default(),
             }
+        }
+    }
+    ///`CreateInstanceRequestWorkloadKind`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "decision"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum CreateInstanceRequestWorkloadKind {
+        #[serde(rename = "decision")]
+        Decision,
+    }
+    impl ::std::fmt::Display for CreateInstanceRequestWorkloadKind {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Decision => f.write_str("decision"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for CreateInstanceRequestWorkloadKind {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "decision" => Ok(Self::Decision),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for CreateInstanceRequestWorkloadKind {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for CreateInstanceRequestWorkloadKind {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for CreateInstanceRequestWorkloadKind {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
         }
     }
     ///`CreateInvitationRequest`
@@ -1662,6 +1887,20 @@ pub mod types {
     ///    "routing_mode": {
     ///      "type": "string"
     ///    },
+    ///    "serverless_start_requests": {
+    ///      "description": "Requests in the rolling window required before starting stopped serverless destinations.",
+    ///      "default": 1,
+    ///      "type": "integer",
+    ///      "maximum": 10000.0,
+    ///      "minimum": 1.0
+    ///    },
+    ///    "serverless_start_window_seconds": {
+    ///      "description": "Rolling request window in seconds.",
+    ///      "default": 60,
+    ///      "type": "integer",
+    ///      "maximum": 86400.0,
+    ///      "minimum": 1.0
+    ///    },
     ///    "workload_kind": {
     ///      "type": "string"
     ///    }
@@ -1684,6 +1923,12 @@ pub mod types {
         pub routes: ::std::vec::Vec<SmartBalancerRouteRequest>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub routing_mode: ::std::option::Option<::std::string::String>,
+        ///Requests in the rolling window required before starting stopped serverless destinations.
+        #[serde(default = "defaults::default_nzu64::<::std::num::NonZeroU64, 1>")]
+        pub serverless_start_requests: ::std::num::NonZeroU64,
+        ///Rolling request window in seconds.
+        #[serde(default = "defaults::default_nzu64::<::std::num::NonZeroU64, 60>")]
+        pub serverless_start_window_seconds: ::std::num::NonZeroU64,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub workload_kind: ::std::option::Option<::std::string::String>,
     }
@@ -1696,41 +1941,15 @@ pub mod types {
                 router_model: Default::default(),
                 routes: Default::default(),
                 routing_mode: Default::default(),
+                serverless_start_requests: defaults::default_nzu64::<
+                    ::std::num::NonZeroU64,
+                    1,
+                >(),
+                serverless_start_window_seconds: defaults::default_nzu64::<
+                    ::std::num::NonZeroU64,
+                    60,
+                >(),
                 workload_kind: Default::default(),
-            }
-        }
-    }
-    ///`CreateStorageVolumeRequest`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "properties": {
-    ///    "description": {
-    ///      "type": "string"
-    ///    },
-    ///    "name": {
-    ///      "type": "string"
-    ///    }
-    ///  },
-    ///  "x-go-name": "CreateStorageVolumeRequest"
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct CreateStorageVolumeRequest {
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub description: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub name: ::std::option::Option<::std::string::String>,
-    }
-    impl ::std::default::Default for CreateStorageVolumeRequest {
-        fn default() -> Self {
-            Self {
-                description: Default::default(),
-                name: Default::default(),
             }
         }
     }
@@ -1915,6 +2134,302 @@ pub mod types {
             }
         }
     }
+    ///`DebitOperationResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "created_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "operation_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "outcome": {
+    ///      "type": "string"
+    ///    },
+    ///    "reference": {
+    ///      "type": "string"
+    ///    },
+    ///    "source": {
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "type": "string"
+    ///    },
+    ///    "updated_at": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "DebitOperationResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct DebitOperationResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub operation_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub outcome: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub reference: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub source: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub status: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub updated_at: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for DebitOperationResponse {
+        fn default() -> Self {
+            Self {
+                created_at: Default::default(),
+                operation_id: Default::default(),
+                outcome: Default::default(),
+                reference: Default::default(),
+                source: Default::default(),
+                status: Default::default(),
+                updated_at: Default::default(),
+            }
+        }
+    }
+    ///`DetectionStreamError`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "code": {
+    ///      "type": "string"
+    ///    },
+    ///    "message": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "DetectionStreamError"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct DetectionStreamError {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub code: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub message: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for DetectionStreamError {
+        fn default() -> Self {
+            Self {
+                code: Default::default(),
+                message: Default::default(),
+            }
+        }
+    }
+    ///`DetectionStreamEvent`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "error": {
+    ///      "$ref": "#/components/schemas/DetectionStreamError"
+    ///    },
+    ///    "frame_id": {
+    ///      "type": "integer"
+    ///    },
+    ///    "max_frame_bytes": {
+    ///      "type": "integer"
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "options": {
+    ///      "$ref": "#/components/schemas/DetectionStreamOptions"
+    ///    },
+    ///    "processing_ms": {
+    ///      "type": "number"
+    ///    },
+    ///    "result": {
+    ///      "$ref": "#/components/schemas/ImageDetectionOutput"
+    ///    },
+    ///    "status": {
+    ///      "type": "integer"
+    ///    },
+    ///    "type": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "DetectionStreamEvent"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct DetectionStreamEvent {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub error: ::std::option::Option<DetectionStreamError>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub frame_id: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_frame_bytes: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub options: ::std::option::Option<DetectionStreamOptions>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub processing_ms: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub result: ::std::option::Option<ImageDetectionOutput>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub status: ::std::option::Option<i64>,
+        #[serde(
+            rename = "type",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub type_: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for DetectionStreamEvent {
+        fn default() -> Self {
+            Self {
+                error: Default::default(),
+                frame_id: Default::default(),
+                max_frame_bytes: Default::default(),
+                model: Default::default(),
+                options: Default::default(),
+                processing_ms: Default::default(),
+                result: Default::default(),
+                status: Default::default(),
+                type_: Default::default(),
+            }
+        }
+    }
+    ///`DetectionStreamOptions`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "classes": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "integer"
+    ///      }
+    ///    },
+    ///    "confidence": {
+    ///      "type": "number"
+    ///    },
+    ///    "image_size": {
+    ///      "type": "integer"
+    ///    },
+    ///    "iou": {
+    ///      "type": "number"
+    ///    },
+    ///    "max_detections": {
+    ///      "type": "integer"
+    ///    },
+    ///    "tracking": {
+    ///      "type": "boolean"
+    ///    }
+    ///  },
+    ///  "x-go-name": "DetectionStreamOptions"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct DetectionStreamOptions {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub classes: ::std::vec::Vec<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub confidence: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub image_size: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub iou: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_detections: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub tracking: ::std::option::Option<bool>,
+    }
+    impl ::std::default::Default for DetectionStreamOptions {
+        fn default() -> Self {
+            Self {
+                classes: Default::default(),
+                confidence: Default::default(),
+                image_size: Default::default(),
+                iou: Default::default(),
+                max_detections: Default::default(),
+                tracking: Default::default(),
+            }
+        }
+    }
+    ///`DismissRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "ids": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "DismissRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct DismissRequest {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub ids: ::std::vec::Vec<::std::string::String>,
+    }
+    impl ::std::default::Default for DismissRequest {
+        fn default() -> Self {
+            Self { ids: Default::default() }
+        }
+    }
+    ///`DismissResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "dismissed": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "DismissResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct DismissResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub dismissed: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for DismissResponse {
+        fn default() -> Self {
+            Self {
+                dismissed: Default::default(),
+            }
+        }
+    }
     ///`EmbeddingsRequestEnvelope`
     ///
     /// <details><summary>JSON schema</summary>
@@ -1952,6 +2467,46 @@ pub mod types {
             }
         }
     }
+    ///`EnableSharedCapacityRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "terms_hash": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_version": {
+    ///      "type": "string"
+    ///    },
+    ///    "visibility": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "EnableSharedCapacityRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct EnableSharedCapacityRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_hash: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_version: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub visibility: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for EnableSharedCapacityRequest {
+        fn default() -> Self {
+            Self {
+                terms_hash: Default::default(),
+                terms_version: Default::default(),
+                visibility: Default::default(),
+            }
+        }
+    }
     ///`ErrorResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -1977,6 +2532,2439 @@ pub mod types {
         fn default() -> Self {
             Self { error: Default::default() }
         }
+    }
+    ///`ExecutionDecisionAnswer`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "oneOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/Execution.DecisionChoiceAnswer"
+    ///    },
+    ///    {
+    ///      "$ref": "#/components/schemas/Execution.DecisionNoulAnswer"
+    ///    },
+    ///    {
+    ///      "$ref": "#/components/schemas/Execution.DecisionScoreAnswer"
+    ///    }
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(untagged)]
+    pub enum ExecutionDecisionAnswer {
+        ChoiceAnswer(ExecutionDecisionChoiceAnswer),
+        NoulAnswer(ExecutionDecisionNoulAnswer),
+        ScoreAnswer(ExecutionDecisionScoreAnswer),
+    }
+    impl ::std::convert::From<ExecutionDecisionChoiceAnswer>
+    for ExecutionDecisionAnswer {
+        fn from(value: ExecutionDecisionChoiceAnswer) -> Self {
+            Self::ChoiceAnswer(value)
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionNoulAnswer> for ExecutionDecisionAnswer {
+        fn from(value: ExecutionDecisionNoulAnswer) -> Self {
+            Self::NoulAnswer(value)
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionScoreAnswer> for ExecutionDecisionAnswer {
+        fn from(value: ExecutionDecisionScoreAnswer) -> Self {
+            Self::ScoreAnswer(value)
+        }
+    }
+    ///`ExecutionDecisionChoiceAnswer`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "choice",
+    ///    "confidence",
+    ///    "probabilities",
+    ///    "type"
+    ///  ],
+    ///  "properties": {
+    ///    "choice": {
+    ///      "description": "A declared option with maximal normalized probability.",
+    ///      "type": "string",
+    ///      "maxLength": 256,
+    ///      "minLength": 1
+    ///    },
+    ///    "confidence": {
+    ///      "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///    },
+    ///    "probabilities": {
+    ///      "description": "Complete distribution over declared options; probabilities sum to one within rounding tolerance.",
+    ///      "type": "object",
+    ///      "maxProperties": 26,
+    ///      "minProperties": 1,
+    ///      "additionalProperties": {
+    ///        "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///      }
+    ///    },
+    ///    "type": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "choice"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionChoiceAnswer {
+        ///A declared option with maximal normalized probability.
+        pub choice: ExecutionDecisionChoiceAnswerChoice,
+        pub confidence: ExecutionDecisionProbability,
+        ///Complete distribution over declared options; probabilities sum to one within rounding tolerance.
+        pub probabilities: ::std::collections::HashMap<
+            ::std::string::String,
+            ExecutionDecisionProbability,
+        >,
+        #[serde(rename = "type")]
+        pub type_: ExecutionDecisionChoiceAnswerType,
+    }
+    ///A declared option with maximal normalized probability.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "A declared option with maximal normalized probability.",
+    ///  "type": "string",
+    ///  "maxLength": 256,
+    ///  "minLength": 1
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionChoiceAnswerChoice(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionChoiceAnswerChoice {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionChoiceAnswerChoice>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionChoiceAnswerChoice) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionChoiceAnswerChoice {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 256usize {
+                return Err("longer than 256 characters".into());
+            }
+            if value.chars().count() < 1usize {
+                return Err("shorter than 1 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionChoiceAnswerChoice {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionChoiceAnswerChoice {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionChoiceAnswerChoice {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionChoiceAnswerChoice {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionDecisionChoiceAnswerType`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "choice"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ExecutionDecisionChoiceAnswerType {
+        #[serde(rename = "choice")]
+        Choice,
+    }
+    impl ::std::fmt::Display for ExecutionDecisionChoiceAnswerType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Choice => f.write_str("choice"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionChoiceAnswerType {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "choice" => Ok(Self::Choice),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionChoiceAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionChoiceAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionChoiceAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`ExecutionDecisionChoiceQuestion`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "criteria",
+    ///    "type"
+    ///  ],
+    ///  "properties": {
+    ///    "criteria": {
+    ///      "description": "Nonblank option IDs (up to 256 UTF-8 bytes) map to text or null descriptions.",
+    ///      "type": "object",
+    ///      "maxProperties": 26,
+    ///      "minProperties": 1,
+    ///      "additionalProperties": {
+    ///        "type": [
+    ///          "string",
+    ///          "null"
+    ///        ],
+    ///        "maxLength": 65536
+    ///      }
+    ///    },
+    ///    "instructions": {
+    ///      "description": "Question instructions as text or null.",
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "maxLength": 65536
+    ///    },
+    ///    "type": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "choice"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionChoiceQuestion {
+        ///Nonblank option IDs (up to 256 UTF-8 bytes) map to text or null descriptions.
+        pub criteria: ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::option::Option<ExecutionDecisionChoiceQuestionCriteriaValue>,
+        >,
+        ///Question instructions as text or null.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instructions: ::std::option::Option<
+            ExecutionDecisionChoiceQuestionInstructions,
+        >,
+        #[serde(rename = "type")]
+        pub type_: ExecutionDecisionChoiceQuestionType,
+    }
+    ///`ExecutionDecisionChoiceQuestionCriteriaValue`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionChoiceQuestionCriteriaValue(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionChoiceQuestionCriteriaValue {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionChoiceQuestionCriteriaValue>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionChoiceQuestionCriteriaValue) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionChoiceQuestionCriteriaValue {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionChoiceQuestionCriteriaValue {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionChoiceQuestionCriteriaValue {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionChoiceQuestionCriteriaValue {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de>
+    for ExecutionDecisionChoiceQuestionCriteriaValue {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///Question instructions as text or null.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Question instructions as text or null.",
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionChoiceQuestionInstructions(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionChoiceQuestionInstructions {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionChoiceQuestionInstructions>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionChoiceQuestionInstructions) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionChoiceQuestionInstructions {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionChoiceQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionChoiceQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionChoiceQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionChoiceQuestionInstructions {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionDecisionChoiceQuestionType`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "choice"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ExecutionDecisionChoiceQuestionType {
+        #[serde(rename = "choice")]
+        Choice,
+    }
+    impl ::std::fmt::Display for ExecutionDecisionChoiceQuestionType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Choice => f.write_str("choice"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionChoiceQuestionType {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "choice" => Ok(Self::Choice),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionChoiceQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionChoiceQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionChoiceQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`ExecutionDecisionDiagnostics`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "argmax_is_label",
+    ///    "label_mass"
+    ///  ],
+    ///  "properties": {
+    ///    "argmax_is_label": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "label_mass": {
+    ///      "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionDiagnostics {
+        pub argmax_is_label: bool,
+        pub label_mass: ExecutionDecisionProbability,
+    }
+    ///`ExecutionDecisionNoulAnswer`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "noul",
+    ///    "type"
+    ///  ],
+    ///  "properties": {
+    ///    "confidence": {
+    ///      "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///    },
+    ///    "noul": {
+    ///      "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///    },
+    ///    "probabilities": {
+    ///      "description": "Complete distribution over declared options; probabilities sum to one within rounding tolerance.",
+    ///      "oneOf": [
+    ///        {
+    ///          "type": "object",
+    ///          "required": [
+    ///            "no",
+    ///            "yes"
+    ///          ],
+    ///          "properties": {
+    ///            "no": {
+    ///              "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///            },
+    ///            "yes": {
+    ///              "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///            }
+    ///          },
+    ///          "additionalProperties": false
+    ///        },
+    ///        {
+    ///          "type": "object",
+    ///          "required": [
+    ///            "false",
+    ///            "true"
+    ///          ],
+    ///          "properties": {
+    ///            "false": {
+    ///              "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///            },
+    ///            "true": {
+    ///              "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///            }
+    ///          },
+    ///          "additionalProperties": false
+    ///        }
+    ///      ]
+    ///    },
+    ///    "type": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "noul"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionNoulAnswer {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub confidence: ::std::option::Option<ExecutionDecisionProbability>,
+        pub noul: ExecutionDecisionProbability,
+        ///Complete distribution over declared options; probabilities sum to one within rounding tolerance.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub probabilities: ::std::option::Option<
+            ExecutionDecisionNoulAnswerProbabilities,
+        >,
+        #[serde(rename = "type")]
+        pub type_: ExecutionDecisionNoulAnswerType,
+    }
+    ///Complete distribution over declared options; probabilities sum to one within rounding tolerance.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Complete distribution over declared options; probabilities sum to one within rounding tolerance.",
+    ///  "oneOf": [
+    ///    {
+    ///      "type": "object",
+    ///      "required": [
+    ///        "no",
+    ///        "yes"
+    ///      ],
+    ///      "properties": {
+    ///        "no": {
+    ///          "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///        },
+    ///        "yes": {
+    ///          "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///        }
+    ///      },
+    ///      "additionalProperties": false
+    ///    },
+    ///    {
+    ///      "type": "object",
+    ///      "required": [
+    ///        "false",
+    ///        "true"
+    ///      ],
+    ///      "properties": {
+    ///        "false": {
+    ///          "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///        },
+    ///        "true": {
+    ///          "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///        }
+    ///      },
+    ///      "additionalProperties": false
+    ///    }
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(untagged, deny_unknown_fields)]
+    pub enum ExecutionDecisionNoulAnswerProbabilities {
+        Variant0 { no: ExecutionDecisionProbability, yes: ExecutionDecisionProbability },
+        Variant1 {
+            #[serde(rename = "false")]
+            false_: ExecutionDecisionProbability,
+            #[serde(rename = "true")]
+            true_: ExecutionDecisionProbability,
+        },
+    }
+    ///`ExecutionDecisionNoulAnswerType`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "noul"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ExecutionDecisionNoulAnswerType {
+        #[serde(rename = "noul")]
+        Noul,
+    }
+    impl ::std::fmt::Display for ExecutionDecisionNoulAnswerType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Noul => f.write_str("noul"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionNoulAnswerType {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "noul" => Ok(Self::Noul),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionNoulAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionNoulAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionNoulAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`ExecutionDecisionNoulQuestion`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "type"
+    ///  ],
+    ///  "properties": {
+    ///    "criteria": {
+    ///      "type": [
+    ///        "object",
+    ///        "null"
+    ///      ],
+    ///      "properties": {
+    ///        "false": {
+    ///          "type": [
+    ///            "string",
+    ///            "null"
+    ///          ],
+    ///          "maxLength": 65536
+    ///        },
+    ///        "true": {
+    ///          "type": [
+    ///            "string",
+    ///            "null"
+    ///          ],
+    ///          "maxLength": 65536
+    ///        }
+    ///      },
+    ///      "additionalProperties": false
+    ///    },
+    ///    "instructions": {
+    ///      "description": "Question instructions as text or null.",
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "maxLength": 65536
+    ///    },
+    ///    "type": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "noul"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionNoulQuestion {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub criteria: ::std::option::Option<ExecutionDecisionNoulQuestionCriteria>,
+        ///Question instructions as text or null.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instructions: ::std::option::Option<
+            ExecutionDecisionNoulQuestionInstructions,
+        >,
+        #[serde(rename = "type")]
+        pub type_: ExecutionDecisionNoulQuestionType,
+    }
+    ///`ExecutionDecisionNoulQuestionCriteria`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "false": {
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "maxLength": 65536
+    ///    },
+    ///    "true": {
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "maxLength": 65536
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionNoulQuestionCriteria {
+        #[serde(
+            rename = "false",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub false_: ::std::option::Option<ExecutionDecisionNoulQuestionCriteriaFalse>,
+        #[serde(
+            rename = "true",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub true_: ::std::option::Option<ExecutionDecisionNoulQuestionCriteriaTrue>,
+    }
+    impl ::std::default::Default for ExecutionDecisionNoulQuestionCriteria {
+        fn default() -> Self {
+            Self {
+                false_: Default::default(),
+                true_: Default::default(),
+            }
+        }
+    }
+    ///`ExecutionDecisionNoulQuestionCriteriaFalse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionNoulQuestionCriteriaFalse(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionNoulQuestionCriteriaFalse {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionNoulQuestionCriteriaFalse>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionNoulQuestionCriteriaFalse) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionNoulQuestionCriteriaFalse {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionNoulQuestionCriteriaFalse {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionNoulQuestionCriteriaFalse {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionNoulQuestionCriteriaFalse {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionNoulQuestionCriteriaFalse {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionDecisionNoulQuestionCriteriaTrue`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionNoulQuestionCriteriaTrue(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionNoulQuestionCriteriaTrue {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionNoulQuestionCriteriaTrue>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionNoulQuestionCriteriaTrue) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionNoulQuestionCriteriaTrue {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionNoulQuestionCriteriaTrue {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionNoulQuestionCriteriaTrue {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionNoulQuestionCriteriaTrue {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionNoulQuestionCriteriaTrue {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///Question instructions as text or null.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Question instructions as text or null.",
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionNoulQuestionInstructions(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionNoulQuestionInstructions {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionNoulQuestionInstructions>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionNoulQuestionInstructions) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionNoulQuestionInstructions {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionNoulQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionNoulQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionNoulQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionNoulQuestionInstructions {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionDecisionNoulQuestionType`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "noul"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ExecutionDecisionNoulQuestionType {
+        #[serde(rename = "noul")]
+        Noul,
+    }
+    impl ::std::fmt::Display for ExecutionDecisionNoulQuestionType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Noul => f.write_str("noul"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionNoulQuestionType {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "noul" => Ok(Self::Noul),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionNoulQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionNoulQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionNoulQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///Finite probability. Confidence may be lower than the normalized option probability because native models also report mass outside the answer labels.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Finite probability. Confidence may be lower than the normalized option probability because native models also report mass outside the answer labels.",
+    ///  "type": "number",
+    ///  "format": "double",
+    ///  "maximum": 1.0,
+    ///  "minimum": 0.0
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionProbability(pub f64);
+    impl ::std::ops::Deref for ExecutionDecisionProbability {
+        type Target = f64;
+        fn deref(&self) -> &f64 {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionProbability> for f64 {
+        fn from(value: ExecutionDecisionProbability) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<f64> for ExecutionDecisionProbability {
+        fn from(value: f64) -> Self {
+            Self(value)
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionProbability {
+        type Err = <f64 as ::std::str::FromStr>::Err;
+        fn from_str(value: &str) -> ::std::result::Result<Self, Self::Err> {
+            Ok(Self(value.parse()?))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionProbability {
+        type Error = <f64 as ::std::str::FromStr>::Err;
+        fn try_from(value: &str) -> ::std::result::Result<Self, Self::Error> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<String> for ExecutionDecisionProbability {
+        type Error = <f64 as ::std::str::FromStr>::Err;
+        fn try_from(value: String) -> ::std::result::Result<Self, Self::Error> {
+            value.parse()
+        }
+    }
+    impl ::std::fmt::Display for ExecutionDecisionProbability {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            self.0.fmt(f)
+        }
+    }
+    ///`ExecutionDecisionQuestion`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "oneOf": [
+    ///    {
+    ///      "$ref": "#/components/schemas/Execution.DecisionChoiceQuestion"
+    ///    },
+    ///    {
+    ///      "$ref": "#/components/schemas/Execution.DecisionNoulQuestion"
+    ///    },
+    ///    {
+    ///      "$ref": "#/components/schemas/Execution.DecisionScoreQuestion"
+    ///    }
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(untagged)]
+    pub enum ExecutionDecisionQuestion {
+        ChoiceQuestion(ExecutionDecisionChoiceQuestion),
+        NoulQuestion(ExecutionDecisionNoulQuestion),
+        ScoreQuestion(ExecutionDecisionScoreQuestion),
+    }
+    impl ::std::convert::From<ExecutionDecisionChoiceQuestion>
+    for ExecutionDecisionQuestion {
+        fn from(value: ExecutionDecisionChoiceQuestion) -> Self {
+            Self::ChoiceQuestion(value)
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionNoulQuestion>
+    for ExecutionDecisionQuestion {
+        fn from(value: ExecutionDecisionNoulQuestion) -> Self {
+            Self::NoulQuestion(value)
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionScoreQuestion>
+    for ExecutionDecisionQuestion {
+        fn from(value: ExecutionDecisionScoreQuestion) -> Self {
+            Self::ScoreQuestion(value)
+        }
+    }
+    ///`ExecutionDecisionScoreAnswer`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "confidence",
+    ///    "legend",
+    ///    "probabilities",
+    ///    "score",
+    ///    "type"
+    ///  ],
+    ///  "properties": {
+    ///    "confidence": {
+    ///      "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///    },
+    ///    "legend": {
+    ///      "description": "Every 0-indexed key matches its requested level description. Native null descriptions are returned as the string None.",
+    ///      "type": "object",
+    ///      "maxProperties": 10,
+    ///      "minProperties": 2,
+    ///      "additionalProperties": {
+    ///        "type": [
+    ///          "string",
+    ///          "null"
+    ///        ]
+    ///      }
+    ///    },
+    ///    "probabilities": {
+    ///      "description": "Complete distribution over declared options; probabilities sum to one within rounding tolerance.",
+    ///      "type": "object",
+    ///      "maxProperties": 10,
+    ///      "minProperties": 2,
+    ///      "additionalProperties": {
+    ///        "$ref": "#/components/schemas/Execution.DecisionProbability"
+    ///      }
+    ///    },
+    ///    "score": {
+    ///      "description": "Expected 0-indexed level; bounded by the final declared level.",
+    ///      "type": "number",
+    ///      "format": "double",
+    ///      "maximum": 9.0,
+    ///      "minimum": 0.0
+    ///    },
+    ///    "type": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "score"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionScoreAnswer {
+        pub confidence: ExecutionDecisionProbability,
+        ///Every 0-indexed key matches its requested level description. Native null descriptions are returned as the string None.
+        pub legend: ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::option::Option<::std::string::String>,
+        >,
+        ///Complete distribution over declared options; probabilities sum to one within rounding tolerance.
+        pub probabilities: ::std::collections::HashMap<
+            ::std::string::String,
+            ExecutionDecisionProbability,
+        >,
+        ///Expected 0-indexed level; bounded by the final declared level.
+        pub score: f64,
+        #[serde(rename = "type")]
+        pub type_: ExecutionDecisionScoreAnswerType,
+    }
+    ///`ExecutionDecisionScoreAnswerType`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "score"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ExecutionDecisionScoreAnswerType {
+        #[serde(rename = "score")]
+        Score,
+    }
+    impl ::std::fmt::Display for ExecutionDecisionScoreAnswerType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Score => f.write_str("score"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionScoreAnswerType {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "score" => Ok(Self::Score),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionScoreAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionScoreAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionScoreAnswerType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`ExecutionDecisionScoreQuestion`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "criteria",
+    ///    "type"
+    ///  ],
+    ///  "properties": {
+    ///    "criteria": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": [
+    ///          "string",
+    ///          "null"
+    ///        ],
+    ///        "maxLength": 65536
+    ///      },
+    ///      "maxItems": 10,
+    ///      "minItems": 2
+    ///    },
+    ///    "instructions": {
+    ///      "description": "Question instructions as text or null.",
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "maxLength": 65536
+    ///    },
+    ///    "type": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "score"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionScoreQuestion {
+        pub criteria: ::std::vec::Vec<
+            ::std::option::Option<ExecutionDecisionScoreQuestionCriteriaItem>,
+        >,
+        ///Question instructions as text or null.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instructions: ::std::option::Option<
+            ExecutionDecisionScoreQuestionInstructions,
+        >,
+        #[serde(rename = "type")]
+        pub type_: ExecutionDecisionScoreQuestionType,
+    }
+    ///`ExecutionDecisionScoreQuestionCriteriaItem`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionScoreQuestionCriteriaItem(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionScoreQuestionCriteriaItem {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionScoreQuestionCriteriaItem>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionScoreQuestionCriteriaItem) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionScoreQuestionCriteriaItem {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionScoreQuestionCriteriaItem {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionScoreQuestionCriteriaItem {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionScoreQuestionCriteriaItem {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionScoreQuestionCriteriaItem {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///Question instructions as text or null.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Question instructions as text or null.",
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionDecisionScoreQuestionInstructions(::std::string::String);
+    impl ::std::ops::Deref for ExecutionDecisionScoreQuestionInstructions {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionDecisionScoreQuestionInstructions>
+    for ::std::string::String {
+        fn from(value: ExecutionDecisionScoreQuestionInstructions) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionScoreQuestionInstructions {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionScoreQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionScoreQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionScoreQuestionInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionDecisionScoreQuestionInstructions {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionDecisionScoreQuestionType`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "score"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ExecutionDecisionScoreQuestionType {
+        #[serde(rename = "score")]
+        Score,
+    }
+    impl ::std::fmt::Display for ExecutionDecisionScoreQuestionType {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Score => f.write_str("score"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ExecutionDecisionScoreQuestionType {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "score" => Ok(Self::Score),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionDecisionScoreQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionDecisionScoreQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionDecisionScoreQuestionType {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    ///`ExecutionDecisionUsage`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "input_tokens",
+    ///    "output_tokens"
+    ///  ],
+    ///  "properties": {
+    ///    "input_tokens": {
+    ///      "type": "integer",
+    ///      "format": "int64",
+    ///      "minimum": 0.0
+    ///    },
+    ///    "output_tokens": {
+    ///      "type": "integer",
+    ///      "format": "int64",
+    ///      "minimum": 0.0
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionDecisionUsage {
+        pub input_tokens: i64,
+        pub output_tokens: i64,
+    }
+    ///`ExecutionForecastInput`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "past_future_covariates": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "array",
+    ///        "items": {
+    ///          "type": "number",
+    ///          "format": "float64"
+    ///        }
+    ///      }
+    ///    },
+    ///    "past_only_covariates": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "array",
+    ///        "items": {
+    ///          "type": "number",
+    ///          "format": "float64"
+    ///        }
+    ///      }
+    ///    },
+    ///    "target": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "array",
+    ///        "items": {
+    ///          "type": "number",
+    ///          "format": "float64"
+    ///        }
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "Execution.ForecastInput"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ExecutionForecastInput {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub past_future_covariates: ::std::vec::Vec<::std::vec::Vec<f64>>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub past_only_covariates: ::std::vec::Vec<::std::vec::Vec<f64>>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub target: ::std::vec::Vec<::std::vec::Vec<f64>>,
+    }
+    impl ::std::default::Default for ExecutionForecastInput {
+        fn default() -> Self {
+            Self {
+                id: Default::default(),
+                past_future_covariates: Default::default(),
+                past_only_covariates: Default::default(),
+                target: Default::default(),
+            }
+        }
+    }
+    ///`ExecutionForecastPrediction`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "forecast": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "array",
+    ///        "items": {
+    ///          "type": "number",
+    ///          "format": "float64"
+    ///        }
+    ///      }
+    ///    },
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "quantiles": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "array",
+    ///        "items": {
+    ///          "type": "array",
+    ///          "items": {
+    ///            "type": "number",
+    ///            "format": "float64"
+    ///          }
+    ///        }
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "Execution.ForecastPrediction"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ExecutionForecastPrediction {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub forecast: ::std::vec::Vec<::std::vec::Vec<f64>>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub quantiles: ::std::vec::Vec<::std::vec::Vec<::std::vec::Vec<f64>>>,
+    }
+    impl ::std::default::Default for ExecutionForecastPrediction {
+        fn default() -> Self {
+            Self {
+                forecast: Default::default(),
+                id: Default::default(),
+                quantiles: Default::default(),
+            }
+        }
+    }
+    ///`ExecutionForecastRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "horizon",
+    ///    "inputs",
+    ///    "model"
+    ///  ],
+    ///  "properties": {
+    ///    "horizon": {
+    ///      "type": "integer",
+    ///      "maximum": 1024.0,
+    ///      "minimum": 1.0
+    ///    },
+    ///    "inputs": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/Execution.ForecastInput"
+    ///      }
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "return_quantiles": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "use_symmetric_averaging": {
+    ///      "type": "boolean"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Execution.ForecastRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ExecutionForecastRequest {
+        pub horizon: ::std::num::NonZeroU64,
+        pub inputs: ::std::vec::Vec<ExecutionForecastInput>,
+        pub model: ::std::string::String,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub return_quantiles: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub use_symmetric_averaging: ::std::option::Option<bool>,
+    }
+    ///`ExecutionForecastResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "horizon": {
+    ///      "type": "integer"
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "predictions": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/Execution.ForecastPrediction"
+    ///      }
+    ///    },
+    ///    "quantile_levels": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "number"
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "Execution.ForecastResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ExecutionForecastResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub horizon: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub predictions: ::std::vec::Vec<ExecutionForecastPrediction>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub quantile_levels: ::std::vec::Vec<f64>,
+    }
+    impl ::std::default::Default for ExecutionForecastResponse {
+        fn default() -> Self {
+            Self {
+                horizon: Default::default(),
+                model: Default::default(),
+                predictions: Default::default(),
+                quantile_levels: Default::default(),
+            }
+        }
+    }
+    ///Request up to 32 MiB and depth 64, with at most 1 MiB of original JSON excluding only the top-level images value; at most 64 questions. Each instructions/criteria value is bounded to 64 KiB of JSON. Images require Qwen3.5-9B, DiffusionGemma, Clef or Clef Flash; Nimble rejects images. Nested media inputs and unknown fields are rejected.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Request up to 32 MiB and depth 64, with at most 1 MiB of original JSON excluding only the top-level images value; at most 64 questions. Each instructions/criteria value is bounded to 64 KiB of JSON. Images require Qwen3.5-9B, DiffusionGemma, Clef or Clef Flash; Nimble rejects images. Nested media inputs and unknown fields are rejected.",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "model",
+    ///    "questions",
+    ///    "state"
+    ///  ],
+    ///  "properties": {
+    ///    "images": {
+    ///      "description": "Inline images only, in attachment order. At most 5 MiB decoded and 16 million pixels each. Runtime validates actual image content and its declared MIME type. Remote and file URLs, malformed base64 and null are rejected.",
+    ///      "type": "array",
+    ///      "items": {
+    ///        "description": "Pattern validates URL shape and padding. The gateway also validates canonical base64 length and decoded size.",
+    ///        "type": "string",
+    ///        "maxLength": 6990531,
+    ///        "minLength": 26,
+    ///        "pattern": "^data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/]*(?:[A-Za-z0-9+/]|[AQgw]==|[AEIMQUYcgkosw048]=)$(?![\\s\\S])"
+    ///      },
+    ///      "maxItems": 4
+    ///    },
+    ///    "instructions": {
+    ///      "description": "Native Qwen/DiffusionGemma global instructions; Clef/Nimble reject nonempty global instructions.",
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "maxLength": 65536
+    ///    },
+    ///    "model": {
+    ///      "type": "string",
+    ///      "maxLength": 512,
+    ///      "minLength": 1
+    ///    },
+    ///    "questions": {
+    ///      "description": "Nonblank question IDs up to 256 UTF-8 bytes; insertion order is retained.",
+    ///      "type": "object",
+    ///      "maxProperties": 64,
+    ///      "minProperties": 1,
+    ///      "additionalProperties": {
+    ///        "$ref": "#/components/schemas/Execution.DecisionQuestion"
+    ///      }
+    ///    },
+    ///    "state": {
+    ///      "oneOf": [
+    ///        {
+    ///          "type": "string"
+    ///        },
+    ///        {
+    ///          "type": "object"
+    ///        },
+    ///        {
+    ///          "type": "array",
+    ///          "items": {}
+    ///        }
+    ///      ]
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionSystemOneRequest {
+        ///Inline images only, in attachment order. At most 5 MiB decoded and 16 million pixels each. Runtime validates actual image content and its declared MIME type. Remote and file URLs, malformed base64 and null are rejected.
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub images: ::std::vec::Vec<ExecutionSystemOneRequestImagesItem>,
+        ///Native Qwen/DiffusionGemma global instructions; Clef/Nimble reject nonempty global instructions.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instructions: ::std::option::Option<ExecutionSystemOneRequestInstructions>,
+        pub model: ExecutionSystemOneRequestModel,
+        ///Nonblank question IDs up to 256 UTF-8 bytes; insertion order is retained.
+        pub questions: ::std::collections::HashMap<
+            ::std::string::String,
+            ExecutionDecisionQuestion,
+        >,
+        pub state: ExecutionSystemOneRequestState,
+    }
+    ///Pattern validates URL shape and padding. The gateway also validates canonical base64 length and decoded size.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Pattern validates URL shape and padding. The gateway also validates canonical base64 length and decoded size.",
+    ///  "type": "string",
+    ///  "maxLength": 6990531,
+    ///  "minLength": 26,
+    ///  "pattern": "^data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/]*(?:[A-Za-z0-9+/]|[AQgw]==|[AEIMQUYcgkosw048]=)$(?![\\s\\S])"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionSystemOneRequestImagesItem(::std::string::String);
+    impl ::std::ops::Deref for ExecutionSystemOneRequestImagesItem {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionSystemOneRequestImagesItem>
+    for ::std::string::String {
+        fn from(value: ExecutionSystemOneRequestImagesItem) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionSystemOneRequestImagesItem {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 6990531usize {
+                return Err("longer than 6990531 characters".into());
+            }
+            if value.chars().count() < 26usize {
+                return Err("shorter than 26 characters".into());
+            }
+            static PATTERN: ::std::sync::LazyLock<::regress::Regex> = ::std::sync::LazyLock::new(||
+            {
+                ::regress::Regex::new(
+                        "^data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/]*(?:[A-Za-z0-9+/]|[AQgw]==|[AEIMQUYcgkosw048]=)$(?![\\s\\S])",
+                    )
+                    .unwrap()
+            });
+            if PATTERN.find(value).is_none() {
+                return Err(
+                    "doesn't match pattern \"^data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/]*(?:[A-Za-z0-9+/]|[AQgw]==|[AEIMQUYcgkosw048]=)$(?![\\s\\S])\""
+                        .into(),
+                );
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionSystemOneRequestImagesItem {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionSystemOneRequestImagesItem {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionSystemOneRequestImagesItem {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionSystemOneRequestImagesItem {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///Native Qwen/DiffusionGemma global instructions; Clef/Nimble reject nonempty global instructions.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Native Qwen/DiffusionGemma global instructions; Clef/Nimble reject nonempty global instructions.",
+    ///  "type": "string",
+    ///  "maxLength": 65536
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionSystemOneRequestInstructions(::std::string::String);
+    impl ::std::ops::Deref for ExecutionSystemOneRequestInstructions {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionSystemOneRequestInstructions>
+    for ::std::string::String {
+        fn from(value: ExecutionSystemOneRequestInstructions) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionSystemOneRequestInstructions {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 65536usize {
+                return Err("longer than 65536 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionSystemOneRequestInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionSystemOneRequestInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionSystemOneRequestInstructions {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionSystemOneRequestInstructions {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionSystemOneRequestModel`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "maxLength": 512,
+    ///  "minLength": 1
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+    #[serde(transparent)]
+    pub struct ExecutionSystemOneRequestModel(::std::string::String);
+    impl ::std::ops::Deref for ExecutionSystemOneRequestModel {
+        type Target = ::std::string::String;
+        fn deref(&self) -> &::std::string::String {
+            &self.0
+        }
+    }
+    impl ::std::convert::From<ExecutionSystemOneRequestModel> for ::std::string::String {
+        fn from(value: ExecutionSystemOneRequestModel) -> Self {
+            value.0
+        }
+    }
+    impl ::std::str::FromStr for ExecutionSystemOneRequestModel {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            if value.chars().count() > 512usize {
+                return Err("longer than 512 characters".into());
+            }
+            if value.chars().count() < 1usize {
+                return Err("shorter than 1 characters".into());
+            }
+            Ok(Self(value.to_string()))
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ExecutionSystemOneRequestModel {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ExecutionSystemOneRequestModel {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for ExecutionSystemOneRequestModel {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl<'de> ::serde::Deserialize<'de> for ExecutionSystemOneRequestModel {
+        fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+        where
+            D: ::serde::Deserializer<'de>,
+        {
+            ::std::string::String::deserialize(deserializer)?
+                .parse()
+                .map_err(|e: self::error::ConversionError| {
+                    <D::Error as ::serde::de::Error>::custom(e.to_string())
+                })
+        }
+    }
+    ///`ExecutionSystemOneRequestState`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "oneOf": [
+    ///    {
+    ///      "type": "string"
+    ///    },
+    ///    {
+    ///      "type": "object"
+    ///    },
+    ///    {
+    ///      "type": "array",
+    ///      "items": {}
+    ///    }
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(untagged)]
+    pub enum ExecutionSystemOneRequestState {
+        String(::std::string::String),
+        Object(::serde_json::Map<::std::string::String, ::serde_json::Value>),
+        Array(::std::vec::Vec<::serde_json::Value>),
+    }
+    impl ::std::convert::From<
+        ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    > for ExecutionSystemOneRequestState {
+        fn from(
+            value: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        ) -> Self {
+            Self::Object(value)
+        }
+    }
+    impl ::std::convert::From<::std::vec::Vec<::serde_json::Value>>
+    for ExecutionSystemOneRequestState {
+        fn from(value: ::std::vec::Vec<::serde_json::Value>) -> Self {
+            Self::Array(value)
+        }
+    }
+    ///Response up to 1 MiB. Answer keys exactly match the requested question IDs; answer types/options match their declarations.
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "description": "Response up to 1 MiB. Answer keys exactly match the requested question IDs; answer types/options match their declarations.",
+    ///  "type": "object",
+    ///  "required": [
+    ///    "answers",
+    ///    "model",
+    ///    "usage"
+    ///  ],
+    ///  "properties": {
+    ///    "answers": {
+    ///      "type": "object",
+    ///      "maxProperties": 64,
+    ///      "minProperties": 1,
+    ///      "additionalProperties": {
+    ///        "$ref": "#/components/schemas/Execution.DecisionAnswer"
+    ///      }
+    ///    },
+    ///    "created": {
+    ///      "type": "integer",
+    ///      "format": "int64"
+    ///    },
+    ///    "diagnostics": {
+    ///      "description": "When present, contains one diagnostic for every requested question.",
+    ///      "type": "object",
+    ///      "maxProperties": 64,
+    ///      "minProperties": 1,
+    ///      "additionalProperties": {
+    ///        "$ref": "#/components/schemas/Execution.DecisionDiagnostics"
+    ///      }
+    ///    },
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "model": {
+    ///      "description": "The account-owned serving name or instance UUID used by the caller.",
+    ///      "type": "string"
+    ///    },
+    ///    "object": {
+    ///      "type": "string"
+    ///    },
+    ///    "usage": {
+    ///      "$ref": "#/components/schemas/Execution.DecisionUsage"
+    ///    }
+    ///  },
+    ///  "additionalProperties": false
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    #[serde(deny_unknown_fields)]
+    pub struct ExecutionSystemOneResponse {
+        pub answers: ::std::collections::HashMap<
+            ::std::string::String,
+            ExecutionDecisionAnswer,
+        >,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created: ::std::option::Option<i64>,
+        ///When present, contains one diagnostic for every requested question.
+        #[serde(
+            default,
+            skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
+        )]
+        pub diagnostics: ::std::collections::HashMap<
+            ::std::string::String,
+            ExecutionDecisionDiagnostics,
+        >,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        ///The account-owned serving name or instance UUID used by the caller.
+        pub model: ::std::string::String,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub object: ::std::option::Option<::std::string::String>,
+        pub usage: ExecutionDecisionUsage,
     }
     ///`FinishPasskeyRegistrationRequest`
     ///
@@ -2057,37 +5045,36 @@ pub mod types {
     /// ```json
     ///{
     ///  "type": "object",
-    ///  "properties": {
-    ///    "access_token": {
-    ///      "type": "string"
-    ///    },
-    ///    "access_token_expiry": {
-    ///      "type": "integer"
-    ///    },
-    ///    "refresh_token": {
-    ///      "type": "string"
-    ///    }
-    ///  },
     ///  "x-go-name": "FinishPasskeyloginResponse"
     ///}
     /// ```
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct FinishPasskeyloginResponse {
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token_expiry: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub refresh_token: ::std::option::Option<::std::string::String>,
+    #[serde(transparent)]
+    pub struct FinishPasskeyloginResponse(
+        pub ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    );
+    impl ::std::ops::Deref for FinishPasskeyloginResponse {
+        type Target = ::serde_json::Map<::std::string::String, ::serde_json::Value>;
+        fn deref(
+            &self,
+        ) -> &::serde_json::Map<::std::string::String, ::serde_json::Value> {
+            &self.0
+        }
     }
-    impl ::std::default::Default for FinishPasskeyloginResponse {
-        fn default() -> Self {
-            Self {
-                access_token: Default::default(),
-                access_token_expiry: Default::default(),
-                refresh_token: Default::default(),
-            }
+    impl ::std::convert::From<FinishPasskeyloginResponse>
+    for ::serde_json::Map<::std::string::String, ::serde_json::Value> {
+        fn from(value: FinishPasskeyloginResponse) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<
+        ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    > for FinishPasskeyloginResponse {
+        fn from(
+            value: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        ) -> Self {
+            Self(value)
         }
     }
     ///`FirewallEvaluationRequest`
@@ -2565,6 +5552,203 @@ pub mod types {
             }
         }
     }
+    ///`GetV1PublicTokenUsageResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "as_of",
+    ///    "days",
+    ///    "from",
+    ///    "measured_since",
+    ///    "period_totals",
+    ///    "timezone",
+    ///    "to",
+    ///    "top_models",
+    ///    "totals"
+    ///  ],
+    ///  "properties": {
+    ///    "as_of": {
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "days": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "object",
+    ///        "required": [
+    ///          "date",
+    ///          "total_tokens"
+    ///        ],
+    ///        "properties": {
+    ///          "date": {
+    ///            "type": "string",
+    ///            "format": "date"
+    ///          },
+    ///          "total_tokens": {
+    ///            "type": "integer",
+    ///            "format": "int64",
+    ///            "minimum": 0.0
+    ///          }
+    ///        }
+    ///      },
+    ///      "maxItems": 366
+    ///    },
+    ///    "from": {
+    ///      "type": "string",
+    ///      "format": "date"
+    ///    },
+    ///    "measured_since": {
+    ///      "type": [
+    ///        "string",
+    ///        "null"
+    ///      ],
+    ///      "format": "date-time"
+    ///    },
+    ///    "period_totals": {
+    ///      "type": "object",
+    ///      "required": [
+    ///        "total_tokens"
+    ///      ],
+    ///      "properties": {
+    ///        "total_tokens": {
+    ///          "type": "integer",
+    ///          "format": "int64",
+    ///          "minimum": 0.0
+    ///        }
+    ///      }
+    ///    },
+    ///    "timezone": {
+    ///      "examples": [
+    ///        "Europe/Madrid"
+    ///      ],
+    ///      "type": "string"
+    ///    },
+    ///    "to": {
+    ///      "type": "string",
+    ///      "format": "date"
+    ///    },
+    ///    "top_models": {
+    ///      "description": "Up to ten canonical public model names, ordered by total recorded tokens in the selected period (ties by name); no per-model quantities",
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      },
+    ///      "maxItems": 10
+    ///    },
+    ///    "totals": {
+    ///      "type": "object",
+    ///      "required": [
+    ///        "total_tokens"
+    ///      ],
+    ///      "properties": {
+    ///        "total_tokens": {
+    ///          "type": "integer",
+    ///          "format": "int64",
+    ///          "minimum": 0.0
+    ///        }
+    ///      }
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct GetV1PublicTokenUsageResponse {
+        pub as_of: ::chrono::DateTime<::chrono::offset::Utc>,
+        pub days: ::std::vec::Vec<GetV1PublicTokenUsageResponseDaysItem>,
+        pub from: ::chrono::naive::NaiveDate,
+        pub measured_since: ::std::option::Option<
+            ::chrono::DateTime<::chrono::offset::Utc>,
+        >,
+        pub period_totals: GetV1PublicTokenUsageResponsePeriodTotals,
+        pub timezone: ::std::string::String,
+        pub to: ::chrono::naive::NaiveDate,
+        ///Up to ten canonical public model names, ordered by total recorded tokens in the selected period (ties by name); no per-model quantities
+        pub top_models: ::std::vec::Vec<::std::string::String>,
+        pub totals: GetV1PublicTokenUsageResponseTotals,
+    }
+    ///`GetV1PublicTokenUsageResponseDaysItem`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "date",
+    ///    "total_tokens"
+    ///  ],
+    ///  "properties": {
+    ///    "date": {
+    ///      "type": "string",
+    ///      "format": "date"
+    ///    },
+    ///    "total_tokens": {
+    ///      "type": "integer",
+    ///      "format": "int64",
+    ///      "minimum": 0.0
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct GetV1PublicTokenUsageResponseDaysItem {
+        pub date: ::chrono::naive::NaiveDate,
+        pub total_tokens: i64,
+    }
+    ///`GetV1PublicTokenUsageResponsePeriodTotals`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "total_tokens"
+    ///  ],
+    ///  "properties": {
+    ///    "total_tokens": {
+    ///      "type": "integer",
+    ///      "format": "int64",
+    ///      "minimum": 0.0
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct GetV1PublicTokenUsageResponsePeriodTotals {
+        pub total_tokens: i64,
+    }
+    ///`GetV1PublicTokenUsageResponseTotals`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "total_tokens"
+    ///  ],
+    ///  "properties": {
+    ///    "total_tokens": {
+    ///      "type": "integer",
+    ///      "format": "int64",
+    ///      "minimum": 0.0
+    ///    }
+    ///  }
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct GetV1PublicTokenUsageResponseTotals {
+        pub total_tokens: i64,
+    }
     ///`GpuListResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -2634,6 +5818,121 @@ pub mod types {
             }
         }
     }
+    ///`HttpTarget`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "labels": {
+    ///      "type": "object",
+    ///      "additionalProperties": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "targets": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "HttpTarget"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct HttpTarget {
+        #[serde(
+            default,
+            skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
+        )]
+        pub labels: ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::string::String,
+        >,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub targets: ::std::vec::Vec<::std::string::String>,
+    }
+    impl ::std::default::Default for HttpTarget {
+        fn default() -> Self {
+            Self {
+                labels: Default::default(),
+                targets: Default::default(),
+            }
+        }
+    }
+    ///`HuggingFaceFileResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "filename": {
+    ///      "type": "string"
+    ///    },
+    ///    "quantization": {
+    ///      "type": "string"
+    ///    },
+    ///    "size_bytes": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "HuggingFaceFileResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct HuggingFaceFileResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub filename: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub quantization: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub size_bytes: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for HuggingFaceFileResponse {
+        fn default() -> Self {
+            Self {
+                filename: Default::default(),
+                quantization: Default::default(),
+                size_bytes: Default::default(),
+            }
+        }
+    }
+    ///`HuggingFaceFilesResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "files": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/HuggingFaceFileResponse"
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "HuggingFaceFilesResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct HuggingFaceFilesResponse {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub files: ::std::vec::Vec<HuggingFaceFileResponse>,
+    }
+    impl ::std::default::Default for HuggingFaceFilesResponse {
+        fn default() -> Self {
+            Self { files: Default::default() }
+        }
+    }
     ///`HuggingFaceGgufFileResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -2682,6 +5981,15 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
+    ///    "compatibility_reason": {
+    ///      "type": "string"
+    ///    },
+    ///    "compatible": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "description": {
+    ///      "type": "string"
+    ///    },
     ///    "downloads": {
     ///      "type": "integer"
     ///    },
@@ -2697,6 +6005,9 @@ pub mod types {
     ///    "has_safetensors": {
     ///      "type": "boolean"
     ///    },
+    ///    "last_modified": {
+    ///      "type": "string"
+    ///    },
     ///    "likes": {
     ///      "type": "integer"
     ///    },
@@ -2705,6 +6016,12 @@ pub mod types {
     ///    },
     ///    "repo_id": {
     ///      "type": "string"
+    ///    },
+    ///    "siblings": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
     ///    },
     ///    "tags": {
     ///      "type": "array",
@@ -2717,6 +6034,15 @@ pub mod types {
     ///      "items": {
     ///        "type": "string"
     ///      }
+    ///    },
+    ///    "workload_kind": {
+    ///      "type": "string"
+    ///    },
+    ///    "yolo_files": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/HuggingFaceYOLOFileResponse"
+    ///      }
     ///    }
     ///  },
     ///  "x-go-name": "HuggingFaceModelResponse"
@@ -2726,6 +6052,12 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct HuggingFaceModelResponse {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub compatibility_reason: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub compatible: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub description: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub downloads: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub gguf_files: ::std::vec::Vec<HuggingFaceGgufFileResponse>,
@@ -2734,28 +6066,43 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub has_safetensors: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub last_modified: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub likes: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub pipeline_tag: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub repo_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub siblings: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub tags: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub warnings: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub workload_kind: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub yolo_files: ::std::vec::Vec<HuggingFaceYoloFileResponse>,
     }
     impl ::std::default::Default for HuggingFaceModelResponse {
         fn default() -> Self {
             Self {
+                compatibility_reason: Default::default(),
+                compatible: Default::default(),
+                description: Default::default(),
                 downloads: Default::default(),
                 gguf_files: Default::default(),
                 has_gguf: Default::default(),
                 has_safetensors: Default::default(),
+                last_modified: Default::default(),
                 likes: Default::default(),
                 pipeline_tag: Default::default(),
                 repo_id: Default::default(),
+                siblings: Default::default(),
                 tags: Default::default(),
                 warnings: Default::default(),
+                workload_kind: Default::default(),
+                yolo_files: Default::default(),
             }
         }
     }
@@ -2772,6 +6119,9 @@ pub mod types {
     ///      "items": {
     ///        "$ref": "#/components/schemas/HuggingFaceModelResponse"
     ///      }
+    ///    },
+    ///    "next_cursor": {
+    ///      "type": "string"
     ///    }
     ///  },
     ///  "x-go-name": "HuggingFaceModelsResponse"
@@ -2782,10 +6132,15 @@ pub mod types {
     pub struct HuggingFaceModelsResponse {
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub models: ::std::vec::Vec<HuggingFaceModelResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub next_cursor: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for HuggingFaceModelsResponse {
         fn default() -> Self {
-            Self { models: Default::default() }
+            Self {
+                models: Default::default(),
+                next_cursor: Default::default(),
+            }
         }
     }
     ///`HuggingFaceOrgInfoResponse`
@@ -2819,6 +6174,242 @@ pub mod types {
             Self {
                 avatar_url: Default::default(),
                 fullname: Default::default(),
+            }
+        }
+    }
+    ///`HuggingFaceYoloFileResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "filename": {
+    ///      "type": "string"
+    ///    },
+    ///    "size_bytes": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "HuggingFaceYOLOFileResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct HuggingFaceYoloFileResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub filename: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub size_bytes: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for HuggingFaceYoloFileResponse {
+        fn default() -> Self {
+            Self {
+                filename: Default::default(),
+                size_bytes: Default::default(),
+            }
+        }
+    }
+    ///`ImageDetectionBoxOutput`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "x1": {
+    ///      "type": "number"
+    ///    },
+    ///    "x2": {
+    ///      "type": "number"
+    ///    },
+    ///    "y1": {
+    ///      "type": "number"
+    ///    },
+    ///    "y2": {
+    ///      "type": "number"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ImageDetectionBoxOutput"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ImageDetectionBoxOutput {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub x1: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub x2: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub y1: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub y2: ::std::option::Option<f64>,
+    }
+    impl ::std::default::Default for ImageDetectionBoxOutput {
+        fn default() -> Self {
+            Self {
+                x1: Default::default(),
+                x2: Default::default(),
+                y1: Default::default(),
+                y2: Default::default(),
+            }
+        }
+    }
+    ///`ImageDetectionKeypointOutput`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "confidence": {
+    ///      "type": "number"
+    ///    },
+    ///    "x": {
+    ///      "type": "number"
+    ///    },
+    ///    "y": {
+    ///      "type": "number"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ImageDetectionKeypointOutput"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ImageDetectionKeypointOutput {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub confidence: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub x: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub y: ::std::option::Option<f64>,
+    }
+    impl ::std::default::Default for ImageDetectionKeypointOutput {
+        fn default() -> Self {
+            Self {
+                confidence: Default::default(),
+                x: Default::default(),
+                y: Default::default(),
+            }
+        }
+    }
+    ///`ImageDetectionOutput`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "detections": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/ImageDetectionResultOutput"
+    ///      }
+    ///    },
+    ///    "height": {
+    ///      "type": "integer"
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "width": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ImageDetectionOutput"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ImageDetectionOutput {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub detections: ::std::vec::Vec<ImageDetectionResultOutput>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub height: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub width: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for ImageDetectionOutput {
+        fn default() -> Self {
+            Self {
+                detections: Default::default(),
+                height: Default::default(),
+                model: Default::default(),
+                width: Default::default(),
+            }
+        }
+    }
+    ///`ImageDetectionResultOutput`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "box": {
+    ///      "$ref": "#/components/schemas/ImageDetectionBoxOutput"
+    ///    },
+    ///    "class_id": {
+    ///      "type": "integer"
+    ///    },
+    ///    "class_name": {
+    ///      "type": "string"
+    ///    },
+    ///    "confidence": {
+    ///      "type": "number"
+    ///    },
+    ///    "keypoints": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/ImageDetectionKeypointOutput"
+    ///      }
+    ///    },
+    ///    "track_id": {
+    ///      "type": "integer",
+    ///      "maximum": 9007199254740991.0,
+    ///      "minimum": 1.0
+    ///    }
+    ///  },
+    ///  "x-go-name": "ImageDetectionResultOutput"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ImageDetectionResultOutput {
+        #[serde(
+            rename = "box",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub box_: ::std::option::Option<ImageDetectionBoxOutput>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub class_id: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub class_name: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub confidence: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub keypoints: ::std::vec::Vec<ImageDetectionKeypointOutput>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub track_id: ::std::option::Option<::std::num::NonZeroU64>,
+    }
+    impl ::std::default::Default for ImageDetectionResultOutput {
+        fn default() -> Self {
+            Self {
+                box_: Default::default(),
+                class_id: Default::default(),
+                class_name: Default::default(),
+                confidence: Default::default(),
+                keypoints: Default::default(),
+                track_id: Default::default(),
             }
         }
     }
@@ -2922,6 +6513,40 @@ pub mod types {
             }
         }
     }
+    ///`ImpersonationInfo`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "impersonator_email": {
+    ///      "type": "string"
+    ///    },
+    ///    "impersonator_user_id": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ImpersonationInfo"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ImpersonationInfo {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub impersonator_email: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub impersonator_user_id: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ImpersonationInfo {
+        fn default() -> Self {
+            Self {
+                impersonator_email: Default::default(),
+                impersonator_user_id: Default::default(),
+            }
+        }
+    }
     ///`IndexDocumentRequest`
     ///
     /// <details><summary>JSON schema</summary>
@@ -2940,7 +6565,9 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "metadata": {
+    ///      "description": "Up to 28 exact-match filterable metadata fields per document.",
     ///      "type": "object",
+    ///      "maxProperties": 28,
     ///      "additionalProperties": {
     ///        "type": "string"
     ///      }
@@ -2961,6 +6588,7 @@ pub mod types {
         pub content_image_url: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub id: ::std::option::Option<::std::string::String>,
+        ///Up to 28 exact-match filterable metadata fields per document.
         #[serde(
             default,
             skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
@@ -3169,6 +6797,12 @@ pub mod types {
     ///    "capacity_tier": {
     ///      "type": "string"
     ///    },
+    ///    "cost_optimization_enabled": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "cost_optimization_min_savings_percent": {
+    ///      "type": "number"
+    ///    },
     ///    "created_at": {
     ///      "type": "string"
     ///    },
@@ -3265,11 +6899,17 @@ pub mod types {
     ///    "started_at": {
     ///      "type": "string"
     ///    },
+    ///    "startup_progress": {
+    ///      "$ref": "#/components/schemas/StartupProgress"
+    ///    },
     ///    "state": {
     ///      "type": "string"
     ///    },
     ///    "stopped_at": {
     ///      "type": "string"
+    ///    },
+    ///    "storage_price_per_hour_eur": {
+    ///      "type": "number"
     ///    },
     ///    "supported_protocols": {
     ///      "type": "array",
@@ -3291,6 +6931,10 @@ pub mod types {
         pub account_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub capacity_tier: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cost_optimization_enabled: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cost_optimization_min_savings_percent: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub created_at: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -3352,9 +6996,13 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub started_at: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub startup_progress: ::std::option::Option<StartupProgress>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub state: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub stopped_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub storage_price_per_hour_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub supported_protocols: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -3365,6 +7013,8 @@ pub mod types {
             Self {
                 account_id: Default::default(),
                 capacity_tier: Default::default(),
+                cost_optimization_enabled: Default::default(),
+                cost_optimization_min_savings_percent: Default::default(),
                 created_at: Default::default(),
                 description: Default::default(),
                 estimated_required_vram_gb: Default::default(),
@@ -3395,8 +7045,10 @@ pub mod types {
                 smart_regions: Default::default(),
                 smart_selection_label: Default::default(),
                 started_at: Default::default(),
+                startup_progress: Default::default(),
                 state: Default::default(),
                 stopped_at: Default::default(),
+                storage_price_per_hour_eur: Default::default(),
                 supported_protocols: Default::default(),
                 workload_kind: Default::default(),
             }
@@ -3674,6 +7326,58 @@ pub mod types {
             }
         }
     }
+    ///`JoinSharedCapacityRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "group_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "public_slug": {
+    ///      "type": "string"
+    ///    },
+    ///    "referral_token": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_hash": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_version": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "JoinSharedCapacityRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct JoinSharedCapacityRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub group_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub public_slug: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub referral_token: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_hash: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_version: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for JoinSharedCapacityRequest {
+        fn default() -> Self {
+            Self {
+                group_id: Default::default(),
+                public_slug: Default::default(),
+                referral_token: Default::default(),
+                terms_hash: Default::default(),
+                terms_version: Default::default(),
+            }
+        }
+    }
     ///`LedgerEntryResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -3775,6 +7479,72 @@ pub mod types {
             }
         }
     }
+    ///`LegalAcceptanceItem`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "context",
+    ///    "document_type",
+    ///    "sha256",
+    ///    "version"
+    ///  ],
+    ///  "properties": {
+    ///    "context": {
+    ///      "type": "string"
+    ///    },
+    ///    "document_type": {
+    ///      "type": "string"
+    ///    },
+    ///    "sha256": {
+    ///      "type": "string"
+    ///    },
+    ///    "version": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "LegalAcceptanceItem"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct LegalAcceptanceItem {
+        pub context: ::std::string::String,
+        pub document_type: ::std::string::String,
+        pub sha256: ::std::string::String,
+        pub version: ::std::string::String,
+    }
+    ///`LegalAcceptanceRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "acceptances"
+    ///  ],
+    ///  "properties": {
+    ///    "acceptances": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/LegalAcceptanceItem"
+    ///      },
+    ///      "maxItems": 3,
+    ///      "minItems": 1
+    ///    }
+    ///  },
+    ///  "x-go-name": "LegalAcceptanceRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct LegalAcceptanceRequest {
+        pub acceptances: ::std::vec::Vec<LegalAcceptanceItem>,
+    }
     ///`ListDocumentsResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -3809,6 +7579,43 @@ pub mod types {
             Self {
                 documents: Default::default(),
                 next_cursor: Default::default(),
+            }
+        }
+    }
+    ///`ListNotificationsResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "items": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/NotificationResponse"
+    ///      }
+    ///    },
+    ///    "next_since": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ListNotificationsResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ListNotificationsResponse {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub items: ::std::vec::Vec<NotificationResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub next_since: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ListNotificationsResponse {
+        fn default() -> Self {
+            Self {
+                items: Default::default(),
+                next_since: Default::default(),
             }
         }
     }
@@ -3956,16 +7763,7 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "access_token": {
-    ///      "type": "string"
-    ///    },
-    ///    "access_token_expiry": {
-    ///      "type": "integer"
-    ///    },
     ///    "next_step": {
-    ///      "type": "string"
-    ///    },
-    ///    "refresh_token": {
     ///      "type": "string"
     ///    }
     ///  },
@@ -3976,22 +7774,73 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct LoginResponse {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token_expiry: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub next_step: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub refresh_token: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for LoginResponse {
         fn default() -> Self {
             Self {
-                access_token: Default::default(),
-                access_token_expiry: Default::default(),
                 next_step: Default::default(),
-                refresh_token: Default::default(),
             }
+        }
+    }
+    ///`MarkAllReadRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "kind": {
+    ///      "type": "string"
+    ///    },
+    ///    "severity": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "MarkAllReadRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct MarkAllReadRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub kind: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub severity: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for MarkAllReadRequest {
+        fn default() -> Self {
+            Self {
+                kind: Default::default(),
+                severity: Default::default(),
+            }
+        }
+    }
+    ///`MarkAllReadResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "marked": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "MarkAllReadResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct MarkAllReadResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub marked: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for MarkAllReadResponse {
+        fn default() -> Self {
+            Self { marked: Default::default() }
         }
     }
     ///`Model`
@@ -4160,6 +8009,262 @@ pub mod types {
                 version: Default::default(),
             }
         }
+    }
+    ///`NotificationLinkResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "kind_route": {
+    ///      "type": "string"
+    ///    },
+    ///    "label_key": {
+    ///      "type": "string"
+    ///    },
+    ///    "route_args": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    }
+    ///  },
+    ///  "x-go-name": "NotificationLinkResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct NotificationLinkResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub kind_route: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub label_key: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
+        pub route_args: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    }
+    impl ::std::default::Default for NotificationLinkResponse {
+        fn default() -> Self {
+            Self {
+                kind_route: Default::default(),
+                label_key: Default::default(),
+                route_args: Default::default(),
+            }
+        }
+    }
+    ///`NotificationResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "body_args": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    },
+    ///    "body_key": {
+    ///      "type": "string"
+    ///    },
+    ///    "created_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "dedupe_key": {
+    ///      "type": "string"
+    ///    },
+    ///    "dismissed": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "expires_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "icon": {
+    ///      "type": "string"
+    ///    },
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "kind": {
+    ///      "type": "string"
+    ///    },
+    ///    "links": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/NotificationLinkResponse"
+    ///      }
+    ///    },
+    ///    "metadata": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    },
+    ///    "read": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "severity": {
+    ///      "type": "string"
+    ///    },
+    ///    "source_topic": {
+    ///      "type": "string"
+    ///    },
+    ///    "title_args": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    },
+    ///    "title_key": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "NotificationResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct NotificationResponse {
+        #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
+        pub body_args: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub body_key: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub dedupe_key: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub dismissed: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub expires_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub icon: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub kind: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub links: ::std::vec::Vec<NotificationLinkResponse>,
+        #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
+        pub metadata: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub read: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub severity: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub source_topic: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
+        pub title_args: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub title_key: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for NotificationResponse {
+        fn default() -> Self {
+            Self {
+                body_args: Default::default(),
+                body_key: Default::default(),
+                created_at: Default::default(),
+                dedupe_key: Default::default(),
+                dismissed: Default::default(),
+                expires_at: Default::default(),
+                icon: Default::default(),
+                id: Default::default(),
+                kind: Default::default(),
+                links: Default::default(),
+                metadata: Default::default(),
+                read: Default::default(),
+                severity: Default::default(),
+                source_topic: Default::default(),
+                title_args: Default::default(),
+                title_key: Default::default(),
+            }
+        }
+    }
+    ///`OauthSignupRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "continuation_token",
+    ///    "privacy_acknowledged",
+    ///    "privacy_sha256",
+    ///    "privacy_version",
+    ///    "terms_accepted",
+    ///    "terms_sha256",
+    ///    "terms_version"
+    ///  ],
+    ///  "properties": {
+    ///    "cf_turnstile_response": {
+    ///      "type": "string"
+    ///    },
+    ///    "continuation_token": {
+    ///      "type": "string"
+    ///    },
+    ///    "privacy_acknowledged": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "privacy_sha256": {
+    ///      "type": "string"
+    ///    },
+    ///    "privacy_version": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_accepted": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "terms_sha256": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_version": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "OauthSignupRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OauthSignupRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cf_turnstile_response: ::std::option::Option<::std::string::String>,
+        pub continuation_token: ::std::string::String,
+        pub privacy_acknowledged: bool,
+        pub privacy_sha256: ::std::string::String,
+        pub privacy_version: ::std::string::String,
+        pub terms_accepted: bool,
+        pub terms_sha256: ::std::string::String,
+        pub terms_version: ::std::string::String,
+    }
+    ///`OauthTotpRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "continuation_token",
+    ///    "totp_code"
+    ///  ],
+    ///  "properties": {
+    ///    "cf_turnstile_response": {
+    ///      "type": "string"
+    ///    },
+    ///    "continuation_token": {
+    ///      "type": "string"
+    ///    },
+    ///    "totp_code": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "OauthTOTPRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct OauthTotpRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cf_turnstile_response: ::std::option::Option<::std::string::String>,
+        pub continuation_token: ::std::string::String,
+        pub totp_code: ::std::string::String,
     }
     ///`PasskeyListResponse`
     ///
@@ -4431,6 +8536,209 @@ pub mod types {
     impl ::std::default::Default for PaymentsResponse {
         fn default() -> Self {
             Self { items: Default::default() }
+        }
+    }
+    ///`PreviewInstanceRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "download_size_bytes": {
+    ///      "type": "integer"
+    ///    },
+    ///    "gguf_model_path": {
+    ///      "type": "string"
+    ///    },
+    ///    "huggingface_repo_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "runtime_config": {
+    ///      "$ref": "#/components/schemas/RuntimeConfigRequest"
+    ///    },
+    ///    "runtime_preset": {
+    ///      "type": "string"
+    ///    },
+    ///    "scheduling_mode": {
+    ///      "type": "string"
+    ///    },
+    ///    "smart_allow_community": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "smart_allow_spot": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "smart_max_price_per_hour_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "smart_min_gpu_class": {
+    ///      "type": "string"
+    ///    },
+    ///    "smart_min_total_tflops": {
+    ///      "type": "number"
+    ///    },
+    ///    "smart_provider_filter_mode": {
+    ///      "type": "string"
+    ///    },
+    ///    "smart_provider_preference": {
+    ///      "type": "string"
+    ///    },
+    ///    "smart_region": {
+    ///      "type": "string"
+    ///    },
+    ///    "smart_regions": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "smart_selection_label": {
+    ///      "type": "string"
+    ///    },
+    ///    "workload_kind": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "decision"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "x-go-name": "PreviewInstanceRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PreviewInstanceRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub download_size_bytes: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub gguf_model_path: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub huggingface_repo_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub runtime_config: ::std::option::Option<RuntimeConfigRequest>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub runtime_preset: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub scheduling_mode: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_allow_community: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_allow_spot: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_max_price_per_hour_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_min_gpu_class: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_min_total_tflops: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_provider_filter_mode: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_provider_preference: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_region: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub smart_regions: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub smart_selection_label: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub workload_kind: ::std::option::Option<PreviewInstanceRequestWorkloadKind>,
+    }
+    impl ::std::default::Default for PreviewInstanceRequest {
+        fn default() -> Self {
+            Self {
+                download_size_bytes: Default::default(),
+                gguf_model_path: Default::default(),
+                huggingface_repo_id: Default::default(),
+                runtime_config: Default::default(),
+                runtime_preset: Default::default(),
+                scheduling_mode: Default::default(),
+                smart_allow_community: Default::default(),
+                smart_allow_spot: Default::default(),
+                smart_max_price_per_hour_eur: Default::default(),
+                smart_min_gpu_class: Default::default(),
+                smart_min_total_tflops: Default::default(),
+                smart_provider_filter_mode: Default::default(),
+                smart_provider_preference: Default::default(),
+                smart_region: Default::default(),
+                smart_regions: Default::default(),
+                smart_selection_label: Default::default(),
+                workload_kind: Default::default(),
+            }
+        }
+    }
+    ///`PreviewInstanceRequestWorkloadKind`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "decision"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum PreviewInstanceRequestWorkloadKind {
+        #[serde(rename = "decision")]
+        Decision,
+    }
+    impl ::std::fmt::Display for PreviewInstanceRequestWorkloadKind {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Decision => f.write_str("decision"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for PreviewInstanceRequestWorkloadKind {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "decision" => Ok(Self::Decision),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for PreviewInstanceRequestWorkloadKind {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for PreviewInstanceRequestWorkloadKind {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String>
+    for PreviewInstanceRequestWorkloadKind {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
         }
     }
     ///`PreviewInstanceResponse`
@@ -4714,7 +9022,8 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "price_eur_per_gb_hour": {
-    ///      "type": "number"
+    ///      "type": "number",
+    ///      "exclusiveMinimum": 0.0
     ///    },
     ///    "status": {
     ///      "type": "string"
@@ -4826,6 +9135,149 @@ pub mod types {
             value.parse()
         }
     }
+    ///`ProtocolContextManagement`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "compact_threshold": {
+    ///      "type": "integer"
+    ///    },
+    ///    "type": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Protocol.ContextManagement"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ProtocolContextManagement {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub compact_threshold: ::std::option::Option<i64>,
+        #[serde(
+            rename = "type",
+            default,
+            skip_serializing_if = "::std::option::Option::is_none"
+        )]
+        pub type_: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ProtocolContextManagement {
+        fn default() -> Self {
+            Self {
+                compact_threshold: Default::default(),
+                type_: Default::default(),
+            }
+        }
+    }
+    ///`PublicEndpointPriceResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "audio_per_hour_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "input_per_million_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "output_per_million_eur": {
+    ///      "type": "number"
+    ///    }
+    ///  },
+    ///  "x-go-name": "PublicEndpointPriceResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PublicEndpointPriceResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub audio_per_hour_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub input_per_million_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub output_per_million_eur: ::std::option::Option<f64>,
+    }
+    impl ::std::default::Default for PublicEndpointPriceResponse {
+        fn default() -> Self {
+            Self {
+                audio_per_hour_eur: Default::default(),
+                input_per_million_eur: Default::default(),
+                output_per_million_eur: Default::default(),
+            }
+        }
+    }
+    ///`PublicEndpointResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "name": {
+    ///      "type": "string"
+    ///    },
+    ///    "price": {
+    ///      "$ref": "#/components/schemas/PublicEndpointPriceResponse"
+    ///    }
+    ///  },
+    ///  "x-go-name": "PublicEndpointResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PublicEndpointResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub name: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub price: ::std::option::Option<PublicEndpointPriceResponse>,
+    }
+    impl ::std::default::Default for PublicEndpointResponse {
+        fn default() -> Self {
+            Self {
+                name: Default::default(),
+                price: Default::default(),
+            }
+        }
+    }
+    ///`PublicEndpointsResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "endpoints": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/PublicEndpointResponse"
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "PublicEndpointsResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PublicEndpointsResponse {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub endpoints: ::std::vec::Vec<PublicEndpointResponse>,
+    }
+    impl ::std::default::Default for PublicEndpointsResponse {
+        fn default() -> Self {
+            Self {
+                endpoints: Default::default(),
+            }
+        }
+    }
     ///`PublicGpuPreferenceJson`
     ///
     /// <details><summary>JSON schema</summary>
@@ -4923,11 +9375,35 @@ pub mod types {
     ///    "display_name": {
     ///      "type": "string"
     ///    },
+    ///    "download_size_bytes": {
+    ///      "type": "integer"
+    ///    },
+    ///    "estimated_download_cost_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "estimated_one_hour_cost_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "estimated_spot_reserve_eur": {
+    ///      "type": "number"
+    ///    },
     ///    "gpu_count": {
     ///      "type": "integer"
     ///    },
     ///    "market_type": {
     ///      "type": "string"
+    ///    },
+    ///    "network_download_price_per_gb_eur": {
+    ///      "type": "number"
+    ///    },
+    ///    "network_estimate_available": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "network_pricing_known": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "network_upload_price_per_gb_eur": {
+    ///      "type": "number"
     ///    },
     ///    "price_eur_per_hour": {
     ///      "type": "number"
@@ -4962,9 +9438,25 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub display_name: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub download_size_bytes: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_download_cost_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_one_hour_cost_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_spot_reserve_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub gpu_count: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub market_type: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_download_price_per_gb_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_estimate_available: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_pricing_known: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub network_upload_price_per_gb_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub price_eur_per_hour: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -4984,8 +9476,16 @@ pub mod types {
                 city: Default::default(),
                 country: Default::default(),
                 display_name: Default::default(),
+                download_size_bytes: Default::default(),
+                estimated_download_cost_eur: Default::default(),
+                estimated_one_hour_cost_eur: Default::default(),
+                estimated_spot_reserve_eur: Default::default(),
                 gpu_count: Default::default(),
                 market_type: Default::default(),
+                network_download_price_per_gb_eur: Default::default(),
+                network_estimate_available: Default::default(),
+                network_pricing_known: Default::default(),
+                network_upload_price_per_gb_eur: Default::default(),
                 price_eur_per_hour: Default::default(),
                 provider_codename: Default::default(),
                 public_gpu_id: Default::default(),
@@ -5064,7 +9564,8 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "price_eur_per_gb_hour": {
-    ///      "type": "number"
+    ///      "type": "number",
+    ///      "exclusiveMinimum": 0.0
     ///    },
     ///    "status": {
     ///      "type": "string"
@@ -5107,6 +9608,184 @@ pub mod types {
                 price_eur_per_gb_hour: Default::default(),
                 status: Default::default(),
                 unit: Default::default(),
+            }
+        }
+    }
+    ///`PublicTokenUsageDay`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "date": {
+    ///      "type": "string"
+    ///    },
+    ///    "total_tokens": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "PublicTokenUsageDay"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PublicTokenUsageDay {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub date: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub total_tokens: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for PublicTokenUsageDay {
+        fn default() -> Self {
+            Self {
+                date: Default::default(),
+                total_tokens: Default::default(),
+            }
+        }
+    }
+    ///`PublicTokenUsageResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "as_of": {
+    ///      "type": "string"
+    ///    },
+    ///    "days": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/PublicTokenUsageDay"
+    ///      }
+    ///    },
+    ///    "from": {
+    ///      "type": "string"
+    ///    },
+    ///    "measured_since": {
+    ///      "type": "string"
+    ///    },
+    ///    "period_totals": {
+    ///      "$ref": "#/components/schemas/PublicTokenUsageTotal"
+    ///    },
+    ///    "timezone": {
+    ///      "type": "string"
+    ///    },
+    ///    "to": {
+    ///      "type": "string"
+    ///    },
+    ///    "top_models": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "totals": {
+    ///      "$ref": "#/components/schemas/PublicTokenUsageTotal"
+    ///    }
+    ///  },
+    ///  "x-go-name": "PublicTokenUsageResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PublicTokenUsageResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub as_of: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub days: ::std::vec::Vec<PublicTokenUsageDay>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub from: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub measured_since: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub period_totals: ::std::option::Option<PublicTokenUsageTotal>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub timezone: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub to: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub top_models: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub totals: ::std::option::Option<PublicTokenUsageTotal>,
+    }
+    impl ::std::default::Default for PublicTokenUsageResponse {
+        fn default() -> Self {
+            Self {
+                as_of: Default::default(),
+                days: Default::default(),
+                from: Default::default(),
+                measured_since: Default::default(),
+                period_totals: Default::default(),
+                timezone: Default::default(),
+                to: Default::default(),
+                top_models: Default::default(),
+                totals: Default::default(),
+            }
+        }
+    }
+    ///`PublicTokenUsageTotal`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "total_tokens": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "PublicTokenUsageTotal"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct PublicTokenUsageTotal {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub total_tokens: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for PublicTokenUsageTotal {
+        fn default() -> Self {
+            Self {
+                total_tokens: Default::default(),
+            }
+        }
+    }
+    ///`QueuedDebitResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "operation_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "queued": {
+    ///      "type": "boolean"
+    ///    }
+    ///  },
+    ///  "x-go-name": "QueuedDebitResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct QueuedDebitResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub operation_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub queued: ::std::option::Option<bool>,
+    }
+    impl ::std::default::Default for QueuedDebitResponse {
+        fn default() -> Self {
+            Self {
+                operation_id: Default::default(),
+                queued: Default::default(),
             }
         }
     }
@@ -5196,29 +9875,6 @@ pub mod types {
             }
         }
     }
-    ///`RefreshRequest`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "required": [
-    ///    "refresh_token"
-    ///  ],
-    ///  "properties": {
-    ///    "refresh_token": {
-    ///      "type": "string"
-    ///    }
-    ///  },
-    ///  "x-go-name": "RefreshRequest"
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct RefreshRequest {
-        pub refresh_token: ::std::string::String,
-    }
     ///`RefreshResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -5226,31 +9882,36 @@ pub mod types {
     /// ```json
     ///{
     ///  "type": "object",
-    ///  "properties": {
-    ///    "access_token": {
-    ///      "type": "string"
-    ///    },
-    ///    "access_token_expiry": {
-    ///      "type": "integer"
-    ///    }
-    ///  },
     ///  "x-go-name": "RefreshResponse"
     ///}
     /// ```
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct RefreshResponse {
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token_expiry: ::std::option::Option<i64>,
+    #[serde(transparent)]
+    pub struct RefreshResponse(
+        pub ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    );
+    impl ::std::ops::Deref for RefreshResponse {
+        type Target = ::serde_json::Map<::std::string::String, ::serde_json::Value>;
+        fn deref(
+            &self,
+        ) -> &::serde_json::Map<::std::string::String, ::serde_json::Value> {
+            &self.0
+        }
     }
-    impl ::std::default::Default for RefreshResponse {
-        fn default() -> Self {
-            Self {
-                access_token: Default::default(),
-                access_token_expiry: Default::default(),
-            }
+    impl ::std::convert::From<RefreshResponse>
+    for ::serde_json::Map<::std::string::String, ::serde_json::Value> {
+        fn from(value: RefreshResponse) -> Self {
+            value.0
+        }
+    }
+    impl ::std::convert::From<
+        ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    > for RefreshResponse {
+        fn from(
+            value: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        ) -> Self {
+            Self(value)
         }
     }
     ///`RegisterPasskeyRequest`
@@ -5295,7 +9956,13 @@ pub mod types {
     ///  "type": "object",
     ///  "required": [
     ///    "email",
-    ///    "password"
+    ///    "password",
+    ///    "privacy_acknowledged",
+    ///    "privacy_sha256",
+    ///    "privacy_version",
+    ///    "terms_accepted",
+    ///    "terms_sha256",
+    ///    "terms_version"
     ///  ],
     ///  "properties": {
     ///    "cf_turnstile_response": {
@@ -5308,8 +9975,26 @@ pub mod types {
     ///      "type": "string",
     ///      "minLength": 8
     ///    },
+    ///    "privacy_acknowledged": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "privacy_sha256": {
+    ///      "type": "string"
+    ///    },
+    ///    "privacy_version": {
+    ///      "type": "string"
+    ///    },
     ///    "resend": {
     ///      "type": "boolean"
+    ///    },
+    ///    "terms_accepted": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "terms_sha256": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_version": {
+    ///      "type": "string"
     ///    }
     ///  },
     ///  "x-go-name": "RegisterRequest"
@@ -5322,8 +10007,14 @@ pub mod types {
         pub cf_turnstile_response: ::std::option::Option<::std::string::String>,
         pub email: ::std::string::String,
         pub password: RegisterRequestPassword,
+        pub privacy_acknowledged: bool,
+        pub privacy_sha256: ::std::string::String,
+        pub privacy_version: ::std::string::String,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub resend: ::std::option::Option<bool>,
+        pub terms_accepted: bool,
+        pub terms_sha256: ::std::string::String,
+        pub terms_version: ::std::string::String,
     }
     ///`RegisterRequestPassword`
     ///
@@ -5405,15 +10096,6 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "access_token": {
-    ///      "type": "string"
-    ///    },
-    ///    "access_token_expiry": {
-    ///      "type": "integer"
-    ///    },
-    ///    "refresh_token": {
-    ///      "type": "string"
-    ///    },
     ///    "requires_verification": {
     ///      "type": "boolean"
     ///    },
@@ -5428,12 +10110,6 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct RegisterResponse {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token_expiry: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub refresh_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub requires_verification: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub user_id: ::std::option::Option<::std::string::String>,
@@ -5441,9 +10117,6 @@ pub mod types {
     impl ::std::default::Default for RegisterResponse {
         fn default() -> Self {
             Self {
-                access_token: Default::default(),
-                access_token_expiry: Default::default(),
-                refresh_token: Default::default(),
                 requires_verification: Default::default(),
                 user_id: Default::default(),
             }
@@ -5510,6 +10183,9 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "name": {
+    ///      "type": "string"
+    ///    },
+    ///    "runtime_config_snapshot": {
     ///      "type": "string"
     ///    },
     ///    "scheduling_mode": {
@@ -5596,6 +10272,8 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub runtime_config_snapshot: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub scheduling_mode: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub serving_endpoint_id: ::std::option::Option<::std::string::String>,
@@ -5643,6 +10321,7 @@ pub mod types {
                 min_replicas: Default::default(),
                 model_ref: Default::default(),
                 name: Default::default(),
+                runtime_config_snapshot: Default::default(),
                 scheduling_mode: Default::default(),
                 serving_endpoint_id: Default::default(),
                 serving_name: Default::default(),
@@ -5663,6 +10342,95 @@ pub mod types {
                 workload_kind: Default::default(),
             }
         }
+    }
+    ///`ResendActivationEmailRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "email"
+    ///  ],
+    ///  "properties": {
+    ///    "cf_turnstile_response": {
+    ///      "type": "string"
+    ///    },
+    ///    "email": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ResendActivationEmailRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ResendActivationEmailRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cf_turnstile_response: ::std::option::Option<::std::string::String>,
+        pub email: ::std::string::String,
+    }
+    ///`ResendEmailResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "message": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ResendEmailResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ResendEmailResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub message: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ResendEmailResponse {
+        fn default() -> Self {
+            Self {
+                message: Default::default(),
+            }
+        }
+    }
+    ///`ResendLoginEmailRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "email",
+    ///    "password"
+    ///  ],
+    ///  "properties": {
+    ///    "cf_turnstile_response": {
+    ///      "type": "string"
+    ///    },
+    ///    "email": {
+    ///      "type": "string"
+    ///    },
+    ///    "password": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "ResendLoginEmailRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ResendLoginEmailRequest {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cf_turnstile_response: ::std::option::Option<::std::string::String>,
+        pub email: ::std::string::String,
+        pub password: ::std::string::String,
     }
     ///`ResetPasswordRequest`
     ///
@@ -5781,16 +10549,7 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "access_token": {
-    ///      "type": "string"
-    ///    },
-    ///    "access_token_expiry": {
-    ///      "type": "integer"
-    ///    },
     ///    "email": {
-    ///      "type": "string"
-    ///    },
-    ///    "refresh_token": {
     ///      "type": "string"
     ///    },
     ///    "user_id": {
@@ -5804,23 +10563,14 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct ResetPasswordResponse {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token_expiry: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub email: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub refresh_token: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub user_id: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for ResetPasswordResponse {
         fn default() -> Self {
             Self {
-                access_token: Default::default(),
-                access_token_expiry: Default::default(),
                 email: Default::default(),
-                refresh_token: Default::default(),
                 user_id: Default::default(),
             }
         }
@@ -5836,10 +10586,22 @@ pub mod types {
     ///    "e2e_request_latency_p95_seconds": {
     ///      "type": "number"
     ///    },
+    ///    "generation_tokens_per_second": {
+    ///      "type": "number"
+    ///    },
     ///    "generation_tokens_total": {
     ///      "type": "number"
     ///    },
+    ///    "inter_token_latency_p95_seconds": {
+    ///      "type": "number"
+    ///    },
     ///    "kv_cache_usage_percent": {
+    ///      "type": "number"
+    ///    },
+    ///    "prefix_cache_hit_percent": {
+    ///      "type": "number"
+    ///    },
+    ///    "prompt_tokens_per_second": {
     ///      "type": "number"
     ///    },
     ///    "prompt_tokens_total": {
@@ -5873,9 +10635,17 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub e2e_request_latency_p95_seconds: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub generation_tokens_per_second: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub generation_tokens_total: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub inter_token_latency_p95_seconds: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub kv_cache_usage_percent: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub prefix_cache_hit_percent: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub prompt_tokens_per_second: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub prompt_tokens_total: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -5895,8 +10665,12 @@ pub mod types {
         fn default() -> Self {
             Self {
                 e2e_request_latency_p95_seconds: Default::default(),
+                generation_tokens_per_second: Default::default(),
                 generation_tokens_total: Default::default(),
+                inter_token_latency_p95_seconds: Default::default(),
                 kv_cache_usage_percent: Default::default(),
+                prefix_cache_hit_percent: Default::default(),
+                prompt_tokens_per_second: Default::default(),
                 prompt_tokens_total: Default::default(),
                 requests_running: Default::default(),
                 requests_waiting: Default::default(),
@@ -5964,6 +10738,12 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
+    ///    "context_management": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/Protocol.ContextManagement"
+    ///      }
+    ///    },
     ///    "input": {
     ///      "type": "array",
     ///      "items": {
@@ -5972,6 +10752,9 @@ pub mod types {
     ///    },
     ///    "instructions": {
     ///      "type": "string"
+    ///    },
+    ///    "max_output_tokens": {
+    ///      "type": "integer"
     ///    },
     ///    "metadata": {
     ///      "type": "object",
@@ -6005,6 +10788,12 @@ pub mod types {
     ///    "thinking_token_budget": {
     ///      "type": "integer"
     ///    },
+    ///    "tools": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "integer"
+    ///      }
+    ///    },
     ///    "type": {
     ///      "type": "string"
     ///    }
@@ -6016,9 +10805,13 @@ pub mod types {
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct ResponsesRequestEnvelope {
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub context_management: ::std::vec::Vec<ProtocolContextManagement>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub input: ::std::vec::Vec<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub instructions: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_output_tokens: ::std::option::Option<i64>,
         #[serde(
             default,
             skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
@@ -6041,6 +10834,8 @@ pub mod types {
         pub stream: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub thinking_token_budget: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub tools: ::std::vec::Vec<i64>,
         #[serde(
             rename = "type",
             default,
@@ -6051,8 +10846,10 @@ pub mod types {
     impl ::std::default::Default for ResponsesRequestEnvelope {
         fn default() -> Self {
             Self {
+                context_management: Default::default(),
                 input: Default::default(),
                 instructions: Default::default(),
+                max_output_tokens: Default::default(),
                 metadata: Default::default(),
                 model: Default::default(),
                 previous_response_id: Default::default(),
@@ -6061,6 +10858,7 @@ pub mod types {
                 store: Default::default(),
                 stream: Default::default(),
                 thinking_token_budget: Default::default(),
+                tools: Default::default(),
                 type_: Default::default(),
             }
         }
@@ -6104,6 +10902,15 @@ pub mod types {
     ///    "dtype": {
     ///      "type": "string"
     ///    },
+    ///    "duplex": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "enable_chunked_prefill": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "enable_prefix_caching": {
+    ///      "type": "boolean"
+    ///    },
     ///    "gpu_memory_utilization": {
     ///      "type": "number"
     ///    },
@@ -6111,6 +10918,9 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "max_num_batched_tokens": {
+    ///      "type": "integer"
+    ///    },
+    ///    "max_num_seqs": {
     ///      "type": "integer"
     ///    },
     ///    "profile": {
@@ -6141,6 +10951,9 @@ pub mod types {
     ///    },
     ///    "tensor_parallel_size": {
     ///      "type": "integer"
+    ///    },
+    ///    "yolo_model_file": {
+    ///      "type": "string"
     ///    }
     ///  },
     ///  "x-go-name": "RuntimeConfigRequest"
@@ -6154,11 +10967,19 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub dtype: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub duplex: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub enable_chunked_prefill: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub enable_prefix_caching: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub gpu_memory_utilization: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub kv_cache_dtype: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub max_num_batched_tokens: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_num_seqs: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub profile: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -6167,19 +10988,26 @@ pub mod types {
         pub storage_mounts: ::std::vec::Vec<RuntimeConfigRequestStorageMountsItem>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub tensor_parallel_size: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub yolo_model_file: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for RuntimeConfigRequest {
         fn default() -> Self {
             Self {
                 context_size: Default::default(),
                 dtype: Default::default(),
+                duplex: Default::default(),
+                enable_chunked_prefill: Default::default(),
+                enable_prefix_caching: Default::default(),
                 gpu_memory_utilization: Default::default(),
                 kv_cache_dtype: Default::default(),
                 max_num_batched_tokens: Default::default(),
+                max_num_seqs: Default::default(),
                 profile: Default::default(),
                 quantization: Default::default(),
                 storage_mounts: Default::default(),
                 tensor_parallel_size: Default::default(),
+                yolo_model_file: Default::default(),
             }
         }
     }
@@ -6242,6 +11070,15 @@ pub mod types {
     ///    "dtype": {
     ///      "type": "string"
     ///    },
+    ///    "duplex": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "enable_chunked_prefill": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "enable_prefix_caching": {
+    ///      "type": "boolean"
+    ///    },
     ///    "gpu_memory_utilization": {
     ///      "type": "number"
     ///    },
@@ -6249,6 +11086,9 @@ pub mod types {
     ///      "type": "string"
     ///    },
     ///    "max_num_batched_tokens": {
+    ///      "type": "integer"
+    ///    },
+    ///    "max_num_seqs": {
     ///      "type": "integer"
     ///    },
     ///    "profile": {
@@ -6277,8 +11117,14 @@ pub mod types {
     ///        }
     ///      }
     ///    },
+    ///    "task_type": {
+    ///      "type": "string"
+    ///    },
     ///    "tensor_parallel_size": {
     ///      "type": "integer"
+    ///    },
+    ///    "yolo_model_file": {
+    ///      "type": "string"
     ///    }
     ///  },
     ///  "x-go-name": "RuntimeConfigResponse"
@@ -6292,11 +11138,19 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub dtype: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub duplex: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub enable_chunked_prefill: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub enable_prefix_caching: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub gpu_memory_utilization: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub kv_cache_dtype: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub max_num_batched_tokens: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_num_seqs: ::std::option::Option<i64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub profile: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -6304,20 +11158,30 @@ pub mod types {
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub storage_mounts: ::std::vec::Vec<RuntimeConfigResponseStorageMountsItem>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub task_type: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub tensor_parallel_size: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub yolo_model_file: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for RuntimeConfigResponse {
         fn default() -> Self {
             Self {
                 context_size: Default::default(),
                 dtype: Default::default(),
+                duplex: Default::default(),
+                enable_chunked_prefill: Default::default(),
+                enable_prefix_caching: Default::default(),
                 gpu_memory_utilization: Default::default(),
                 kv_cache_dtype: Default::default(),
                 max_num_batched_tokens: Default::default(),
+                max_num_seqs: Default::default(),
                 profile: Default::default(),
                 quantization: Default::default(),
                 storage_mounts: Default::default(),
+                task_type: Default::default(),
                 tensor_parallel_size: Default::default(),
+                yolo_model_file: Default::default(),
             }
         }
     }
@@ -6439,6 +11303,50 @@ pub mod types {
                 per_gpu_required_vram_gb: Default::default(),
                 required_vram_gb: Default::default(),
                 tensor_parallel_size: Default::default(),
+            }
+        }
+    }
+    ///`RuntimeProgressRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "attempt_id": {
+    ///      "description": "Current observation attempt for ordinary phase notifications.",
+    ///      "type": "string"
+    ///    },
+    ///    "launch_id": {
+    ///      "description": "Retained launch identity, sent only once per boot to resolve attempt_id.",
+    ///      "type": "string"
+    ///    },
+    ///    "phase": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "RuntimeProgressRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct RuntimeProgressRequest {
+        ///Current observation attempt for ordinary phase notifications.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub attempt_id: ::std::option::Option<::std::string::String>,
+        ///Retained launch identity, sent only once per boot to resolve attempt_id.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub launch_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub phase: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for RuntimeProgressRequest {
+        fn default() -> Self {
+            Self {
+                attempt_id: Default::default(),
+                launch_id: Default::default(),
+                phase: Default::default(),
             }
         }
     }
@@ -6840,6 +11748,536 @@ pub mod types {
             }
         }
     }
+    ///`ServiceBiomolecularArtifact`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "filename": {
+    ///      "type": "string"
+    ///    },
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "media_type": {
+    ///      "type": "string"
+    ///    },
+    ///    "size_bytes": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.BiomolecularArtifact"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceBiomolecularArtifact {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub filename: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub media_type: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub size_bytes: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for ServiceBiomolecularArtifact {
+        fn default() -> Self {
+            Self {
+                filename: Default::default(),
+                id: Default::default(),
+                media_type: Default::default(),
+                size_bytes: Default::default(),
+            }
+        }
+    }
+    ///`ServiceBiomolecularAttachment`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "content": {
+    ///      "type": "string"
+    ///    },
+    ///    "name": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.BiomolecularAttachment"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceBiomolecularAttachment {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub content: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub name: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ServiceBiomolecularAttachment {
+        fn default() -> Self {
+            Self {
+                content: Default::default(),
+                name: Default::default(),
+            }
+        }
+    }
+    ///`ServiceBiomolecularJobResult`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "affinity": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    },
+    ///    "artifacts": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/Service.BiomolecularArtifact"
+    ///      }
+    ///    },
+    ///    "completed_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "confidence": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "object",
+    ///        "additionalProperties": {}
+    ///      }
+    ///    },
+    ///    "created_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "error": {
+    ///      "type": "string"
+    ///    },
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "metadata": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "started_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.BiomolecularJobResult"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceBiomolecularJobResult {
+        #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
+        pub affinity: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub artifacts: ::std::vec::Vec<ServiceBiomolecularArtifact>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub completed_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub confidence: ::std::vec::Vec<
+            ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        >,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub error: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
+        pub metadata: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub started_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub status: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ServiceBiomolecularJobResult {
+        fn default() -> Self {
+            Self {
+                affinity: Default::default(),
+                artifacts: Default::default(),
+                completed_at: Default::default(),
+                confidence: Default::default(),
+                created_at: Default::default(),
+                error: Default::default(),
+                id: Default::default(),
+                metadata: Default::default(),
+                model: Default::default(),
+                started_at: Default::default(),
+                status: Default::default(),
+            }
+        }
+    }
+    ///`ServiceBiomolecularOptions`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "affinity_mw_correction": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "diffusion_samples": {
+    ///      "type": "integer"
+    ///    },
+    ///    "diffusion_samples_affinity": {
+    ///      "type": "integer"
+    ///    },
+    ///    "max_msa_seqs": {
+    ///      "type": "integer"
+    ///    },
+    ///    "msa_pairing_strategy": {
+    ///      "type": "string"
+    ///    },
+    ///    "output_format": {
+    ///      "type": "string"
+    ///    },
+    ///    "recycling_steps": {
+    ///      "type": "integer"
+    ///    },
+    ///    "sampling_steps": {
+    ///      "type": "integer"
+    ///    },
+    ///    "sampling_steps_affinity": {
+    ///      "type": "integer"
+    ///    },
+    ///    "seed": {
+    ///      "type": "integer"
+    ///    },
+    ///    "use_msa_server": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "use_potentials": {
+    ///      "type": "boolean"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.BiomolecularOptions"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceBiomolecularOptions {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub affinity_mw_correction: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub diffusion_samples: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub diffusion_samples_affinity: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_msa_seqs: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub msa_pairing_strategy: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub output_format: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub recycling_steps: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub sampling_steps: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub sampling_steps_affinity: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub seed: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub use_msa_server: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub use_potentials: ::std::option::Option<bool>,
+    }
+    impl ::std::default::Default for ServiceBiomolecularOptions {
+        fn default() -> Self {
+            Self {
+                affinity_mw_correction: Default::default(),
+                diffusion_samples: Default::default(),
+                diffusion_samples_affinity: Default::default(),
+                max_msa_seqs: Default::default(),
+                msa_pairing_strategy: Default::default(),
+                output_format: Default::default(),
+                recycling_steps: Default::default(),
+                sampling_steps: Default::default(),
+                sampling_steps_affinity: Default::default(),
+                seed: Default::default(),
+                use_msa_server: Default::default(),
+                use_potentials: Default::default(),
+            }
+        }
+    }
+    ///`ServiceBiomolecularSubmitRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "input",
+    ///    "model"
+    ///  ],
+    ///  "properties": {
+    ///    "attachments": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/Service.BiomolecularAttachment"
+    ///      }
+    ///    },
+    ///    "input": {
+    ///      "type": "object",
+    ///      "additionalProperties": {}
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "options": {
+    ///      "$ref": "#/components/schemas/Service.BiomolecularOptions"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.BiomolecularSubmitRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceBiomolecularSubmitRequest {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub attachments: ::std::vec::Vec<ServiceBiomolecularAttachment>,
+        pub input: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+        pub model: ::std::string::String,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub options: ::std::option::Option<ServiceBiomolecularOptions>,
+    }
+    ///`ServiceVideoJobContentUrl`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "download_url": {
+    ///      "type": "string"
+    ///    },
+    ///    "expires_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "url": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.VideoJobContentURL"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceVideoJobContentUrl {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub download_url: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub expires_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub url: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for ServiceVideoJobContentUrl {
+        fn default() -> Self {
+            Self {
+                download_url: Default::default(),
+                expires_at: Default::default(),
+                url: Default::default(),
+            }
+        }
+    }
+    ///`ServiceVideoJobResult`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "cancel_requested",
+    ///    "completed_at",
+    ///    "created_at",
+    ///    "expires_at",
+    ///    "id",
+    ///    "model",
+    ///    "prompt",
+    ///    "started_at",
+    ///    "status"
+    ///  ],
+    ///  "properties": {
+    ///    "cancel_requested": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "completed_at": {
+    ///      "description": "RFC3339 timestamp, or an empty string before this lifecycle event.",
+    ///      "type": "string"
+    ///    },
+    ///    "created_at": {
+    ///      "type": "string",
+    ///      "format": "date-time"
+    ///    },
+    ///    "error": {
+    ///      "type": "string"
+    ///    },
+    ///    "expires_at": {
+    ///      "description": "RFC3339 timestamp, or an empty string before this lifecycle event.",
+    ///      "type": "string"
+    ///    },
+    ///    "id": {
+    ///      "type": "string",
+    ///      "format": "uuid"
+    ///    },
+    ///    "model": {
+    ///      "type": "string"
+    ///    },
+    ///    "prompt": {
+    ///      "type": "string"
+    ///    },
+    ///    "started_at": {
+    ///      "description": "RFC3339 timestamp, or an empty string before this lifecycle event.",
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "type": "string",
+    ///      "enum": [
+    ///        "queued",
+    ///        "running",
+    ///        "succeeded",
+    ///        "failed",
+    ///        "cancelled"
+    ///      ]
+    ///    }
+    ///  },
+    ///  "x-go-name": "Service.VideoJobResult"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct ServiceVideoJobResult {
+        pub cancel_requested: bool,
+        ///RFC3339 timestamp, or an empty string before this lifecycle event.
+        pub completed_at: ::std::string::String,
+        pub created_at: ::chrono::DateTime<::chrono::offset::Utc>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub error: ::std::option::Option<::std::string::String>,
+        ///RFC3339 timestamp, or an empty string before this lifecycle event.
+        pub expires_at: ::std::string::String,
+        pub id: ::uuid::Uuid,
+        pub model: ::std::string::String,
+        pub prompt: ::std::string::String,
+        ///RFC3339 timestamp, or an empty string before this lifecycle event.
+        pub started_at: ::std::string::String,
+        pub status: ServiceVideoJobResultStatus,
+    }
+    ///`ServiceVideoJobResultStatus`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "string",
+    ///  "enum": [
+    ///    "queued",
+    ///    "running",
+    ///    "succeeded",
+    ///    "failed",
+    ///    "cancelled"
+    ///  ]
+    ///}
+    /// ```
+    /// </details>
+    #[derive(
+        ::serde::Deserialize,
+        ::serde::Serialize,
+        Clone,
+        Copy,
+        Debug,
+        Eq,
+        Hash,
+        Ord,
+        PartialEq,
+        PartialOrd
+    )]
+    pub enum ServiceVideoJobResultStatus {
+        #[serde(rename = "queued")]
+        Queued,
+        #[serde(rename = "running")]
+        Running,
+        #[serde(rename = "succeeded")]
+        Succeeded,
+        #[serde(rename = "failed")]
+        Failed,
+        #[serde(rename = "cancelled")]
+        Cancelled,
+    }
+    impl ::std::fmt::Display for ServiceVideoJobResultStatus {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+            match *self {
+                Self::Queued => f.write_str("queued"),
+                Self::Running => f.write_str("running"),
+                Self::Succeeded => f.write_str("succeeded"),
+                Self::Failed => f.write_str("failed"),
+                Self::Cancelled => f.write_str("cancelled"),
+            }
+        }
+    }
+    impl ::std::str::FromStr for ServiceVideoJobResultStatus {
+        type Err = self::error::ConversionError;
+        fn from_str(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            match value {
+                "queued" => Ok(Self::Queued),
+                "running" => Ok(Self::Running),
+                "succeeded" => Ok(Self::Succeeded),
+                "failed" => Ok(Self::Failed),
+                "cancelled" => Ok(Self::Cancelled),
+                _ => Err("invalid value".into()),
+            }
+        }
+    }
+    impl ::std::convert::TryFrom<&str> for ServiceVideoJobResultStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &str,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<&::std::string::String>
+    for ServiceVideoJobResultStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: &::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
+    impl ::std::convert::TryFrom<::std::string::String> for ServiceVideoJobResultStatus {
+        type Error = self::error::ConversionError;
+        fn try_from(
+            value: ::std::string::String,
+        ) -> ::std::result::Result<Self, self::error::ConversionError> {
+            value.parse()
+        }
+    }
     ///`ServingEndpointResponse`
     ///
     /// <details><summary>JSON schema</summary>
@@ -6863,6 +12301,12 @@ pub mod types {
     ///    "id": {
     ///      "type": "string"
     ///    },
+    ///    "model_ids": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "name": {
     ///      "type": "string"
     ///    },
@@ -6872,14 +12316,38 @@ pub mod types {
     ///        "$ref": "#/components/schemas/ServingProviderResponse"
     ///      }
     ///    },
+    ///    "public_audio_per_hour_eur": {
+    ///      "type": "number"
+    ///    },
     ///    "public_input_per_million_eur": {
     ///      "type": "number"
     ///    },
     ///    "public_output_per_million_eur": {
     ///      "type": "number"
     ///    },
+    ///    "realtime_mode": {
+    ///      "type": "string"
+    ///    },
+    ///    "realtime_profile": {
+    ///      "type": "string"
+    ///    },
     ///    "state": {
     ///      "type": "string"
+    ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "supports_duplex": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "supports_realtime": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "supports_server_vad": {
+    ///      "type": "boolean"
     ///    },
     ///    "supports_thinking": {
     ///      "type": "boolean"
@@ -6913,16 +12381,32 @@ pub mod types {
         pub endpoint_type: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub model_ids: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
         pub providers: ::std::vec::Vec<ServingProviderResponse>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub public_audio_per_hour_eur: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub public_input_per_million_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub public_output_per_million_eur: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub realtime_mode: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub realtime_profile: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub state: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub supports_duplex: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub supports_realtime: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub supports_server_vad: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub supports_thinking: ::std::option::Option<bool>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
@@ -6940,11 +12424,19 @@ pub mod types {
                 enabled: Default::default(),
                 endpoint_type: Default::default(),
                 id: Default::default(),
+                model_ids: Default::default(),
                 name: Default::default(),
                 providers: Default::default(),
+                public_audio_per_hour_eur: Default::default(),
                 public_input_per_million_eur: Default::default(),
                 public_output_per_million_eur: Default::default(),
+                realtime_mode: Default::default(),
+                realtime_profile: Default::default(),
                 state: Default::default(),
+                supported_protocols: Default::default(),
+                supports_duplex: Default::default(),
+                supports_realtime: Default::default(),
+                supports_server_vad: Default::default(),
                 supports_thinking: Default::default(),
                 targets: Default::default(),
                 updated_at: Default::default(),
@@ -7074,6 +12566,12 @@ pub mod types {
     ///    "priority": {
     ///      "type": "integer"
     ///    },
+    ///    "supported_protocols": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
     ///    "target_ref_id": {
     ///      "type": "string"
     ///    },
@@ -7103,6 +12601,8 @@ pub mod types {
         pub instance_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub priority: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub supported_protocols: ::std::vec::Vec<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub target_ref_id: ::std::option::Option<::std::string::String>,
         #[serde(
@@ -7124,10 +12624,684 @@ pub mod types {
                 id: Default::default(),
                 instance_id: Default::default(),
                 priority: Default::default(),
+                supported_protocols: Default::default(),
                 target_ref_id: Default::default(),
                 type_: Default::default(),
                 updated_at: Default::default(),
                 weight: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityInstanceResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "capacity_tier": {
+    ///      "type": "string"
+    ///    },
+    ///    "created_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "gpu": {
+    ///      "type": "string"
+    ///    },
+    ///    "gpu_count": {
+    ///      "type": "integer"
+    ///    },
+    ///    "model_ref": {
+    ///      "type": "string"
+    ///    },
+    ///    "public_price_per_hour_microcents": {
+    ///      "type": "integer"
+    ///    },
+    ///    "started_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "state": {
+    ///      "type": "string"
+    ///    },
+    ///    "storage_price_per_hour_microcents": {
+    ///      "type": "integer"
+    ///    },
+    ///    "workload_kind": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityInstanceResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityInstanceResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub capacity_tier: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub gpu: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub gpu_count: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model_ref: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub public_price_per_hour_microcents: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub started_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub state: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub storage_price_per_hour_microcents: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub workload_kind: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for SharedCapacityInstanceResponse {
+        fn default() -> Self {
+            Self {
+                capacity_tier: Default::default(),
+                created_at: Default::default(),
+                gpu: Default::default(),
+                gpu_count: Default::default(),
+                model_ref: Default::default(),
+                public_price_per_hour_microcents: Default::default(),
+                started_at: Default::default(),
+                state: Default::default(),
+                storage_price_per_hour_microcents: Default::default(),
+                workload_kind: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityLinkResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "created_by_account_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "expires_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "group_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "id": {
+    ///      "type": "string"
+    ///    },
+    ///    "token": {
+    ///      "type": "string"
+    ///    },
+    ///    "url": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityLinkResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityLinkResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created_by_account_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub expires_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub group_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub token: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub url: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for SharedCapacityLinkResponse {
+        fn default() -> Self {
+            Self {
+                created_by_account_id: Default::default(),
+                expires_at: Default::default(),
+                group_id: Default::default(),
+                id: Default::default(),
+                token: Default::default(),
+                url: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityListResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "capacities": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/SharedCapacityResponse"
+    ///      }
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityListResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityListResponse {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub capacities: ::std::vec::Vec<SharedCapacityResponse>,
+    }
+    impl ::std::default::Default for SharedCapacityListResponse {
+        fn default() -> Self {
+            Self {
+                capacities: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityMembershipResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "accepted_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "accepted_terms_hash": {
+    ///      "type": "string"
+    ///    },
+    ///    "accepted_terms_version": {
+    ///      "type": "string"
+    ///    },
+    ///    "active_member_count": {
+    ///      "type": "integer"
+    ///    },
+    ///    "amount_microcents": {
+    ///      "type": "integer"
+    ///    },
+    ///    "base_price_eur_per_hour": {
+    ///      "type": "number"
+    ///    },
+    ///    "base_price_microcents_per_hour": {
+    ///      "type": "integer"
+    ///    },
+    ///    "base_price_microcents_per_second": {
+    ///      "type": "integer"
+    ///    },
+    ///    "created_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "current_member_price_eur_per_hour": {
+    ///      "type": "number"
+    ///    },
+    ///    "current_member_price_microcents_per_hour": {
+    ///      "type": "integer"
+    ///    },
+    ///    "effective_from": {
+    ///      "type": "string"
+    ///    },
+    ///    "group_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "instance": {
+    ///      "$ref": "#/components/schemas/SharedCapacityInstanceResponse"
+    ///    },
+    ///    "leave_effective_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "left_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "max_members": {
+    ///      "type": "integer"
+    ///    },
+    ///    "member_price_microcents_per_second": {
+    ///      "type": "integer"
+    ///    },
+    ///    "membership_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "reservation_attached": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "reservation_state": {
+    ///      "type": "string"
+    ///    },
+    ///    "role": {
+    ///      "type": "string"
+    ///    },
+    ///    "serving_alias_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "type": "string"
+    ///    },
+    ///    "suspended_at": {
+    ///      "type": "string"
+    ///    },
+    ///    "updated_at": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityMembershipResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityMembershipResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub accepted_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub accepted_terms_hash: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub accepted_terms_version: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub active_member_count: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub amount_microcents: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_eur_per_hour: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_microcents_per_hour: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_microcents_per_second: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub created_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub current_member_price_eur_per_hour: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub current_member_price_microcents_per_hour: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub effective_from: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub group_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instance: ::std::option::Option<SharedCapacityInstanceResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub leave_effective_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub left_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_members: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub member_price_microcents_per_second: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub membership_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub reservation_attached: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub reservation_state: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub role: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub serving_alias_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub status: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub suspended_at: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub updated_at: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for SharedCapacityMembershipResponse {
+        fn default() -> Self {
+            Self {
+                accepted_at: Default::default(),
+                accepted_terms_hash: Default::default(),
+                accepted_terms_version: Default::default(),
+                active_member_count: Default::default(),
+                amount_microcents: Default::default(),
+                base_price_eur_per_hour: Default::default(),
+                base_price_microcents_per_hour: Default::default(),
+                base_price_microcents_per_second: Default::default(),
+                created_at: Default::default(),
+                current_member_price_eur_per_hour: Default::default(),
+                current_member_price_microcents_per_hour: Default::default(),
+                effective_from: Default::default(),
+                group_id: Default::default(),
+                instance: Default::default(),
+                leave_effective_at: Default::default(),
+                left_at: Default::default(),
+                max_members: Default::default(),
+                member_price_microcents_per_second: Default::default(),
+                membership_id: Default::default(),
+                reservation_attached: Default::default(),
+                reservation_state: Default::default(),
+                role: Default::default(),
+                serving_alias_id: Default::default(),
+                status: Default::default(),
+                suspended_at: Default::default(),
+                updated_at: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityPublicListResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "capacities": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/SharedCapacityPublicResponse"
+    ///      }
+    ///    },
+    ///    "next_cursor": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityPublicListResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityPublicListResponse {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub capacities: ::std::vec::Vec<SharedCapacityPublicResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub next_cursor: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for SharedCapacityPublicListResponse {
+        fn default() -> Self {
+            Self {
+                capacities: Default::default(),
+                next_cursor: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityPublicResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "active_member_count": {
+    ///      "type": "integer"
+    ///    },
+    ///    "availability_mode": {
+    ///      "type": "string"
+    ///    },
+    ///    "base_price_eur_per_hour": {
+    ///      "type": "number"
+    ///    },
+    ///    "base_price_microcents_per_hour": {
+    ///      "type": "integer"
+    ///    },
+    ///    "base_price_microcents_per_second": {
+    ///      "type": "integer"
+    ///    },
+    ///    "capacity_tier": {
+    ///      "type": "string"
+    ///    },
+    ///    "estimated_join_price_eur_per_hour": {
+    ///      "type": "number"
+    ///    },
+    ///    "estimated_join_price_microcents_per_hour": {
+    ///      "type": "integer"
+    ///    },
+    ///    "gpu": {
+    ///      "type": "string"
+    ///    },
+    ///    "instance_state": {
+    ///      "type": "string"
+    ///    },
+    ///    "max_members": {
+    ///      "type": "integer"
+    ///    },
+    ///    "member_price_microcents_per_second": {
+    ///      "type": "integer"
+    ///    },
+    ///    "model_description": {
+    ///      "type": "string"
+    ///    },
+    ///    "model_ref": {
+    ///      "type": "string"
+    ///    },
+    ///    "selection_mode": {
+    ///      "type": "string"
+    ///    },
+    ///    "slug": {
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_hash": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_version": {
+    ///      "type": "string"
+    ///    },
+    ///    "visibility": {
+    ///      "type": "string"
+    ///    },
+    ///    "workload_kind": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityPublicResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityPublicResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub active_member_count: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub availability_mode: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_eur_per_hour: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_microcents_per_hour: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_microcents_per_second: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub capacity_tier: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_join_price_eur_per_hour: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub estimated_join_price_microcents_per_hour: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub gpu: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instance_state: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_members: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub member_price_microcents_per_second: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model_description: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub model_ref: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub selection_mode: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub slug: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub status: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_hash: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_version: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub visibility: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub workload_kind: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for SharedCapacityPublicResponse {
+        fn default() -> Self {
+            Self {
+                active_member_count: Default::default(),
+                availability_mode: Default::default(),
+                base_price_eur_per_hour: Default::default(),
+                base_price_microcents_per_hour: Default::default(),
+                base_price_microcents_per_second: Default::default(),
+                capacity_tier: Default::default(),
+                estimated_join_price_eur_per_hour: Default::default(),
+                estimated_join_price_microcents_per_hour: Default::default(),
+                gpu: Default::default(),
+                instance_state: Default::default(),
+                max_members: Default::default(),
+                member_price_microcents_per_second: Default::default(),
+                model_description: Default::default(),
+                model_ref: Default::default(),
+                selection_mode: Default::default(),
+                slug: Default::default(),
+                status: Default::default(),
+                terms_hash: Default::default(),
+                terms_version: Default::default(),
+                visibility: Default::default(),
+                workload_kind: Default::default(),
+            }
+        }
+    }
+    ///`SharedCapacityResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "active_member_count": {
+    ///      "type": "integer"
+    ///    },
+    ///    "backing_instance_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "base_price_eur_per_hour": {
+    ///      "type": "number"
+    ///    },
+    ///    "base_price_microcents_per_hour": {
+    ///      "type": "integer"
+    ///    },
+    ///    "base_price_microcents_per_second": {
+    ///      "type": "integer"
+    ///    },
+    ///    "close_reason": {
+    ///      "type": "string"
+    ///    },
+    ///    "current_member_price_eur_per_hour": {
+    ///      "type": "number"
+    ///    },
+    ///    "current_member_price_microcents_per_hour": {
+    ///      "type": "integer"
+    ///    },
+    ///    "group_id": {
+    ///      "type": "string"
+    ///    },
+    ///    "instance": {
+    ///      "$ref": "#/components/schemas/SharedCapacityInstanceResponse"
+    ///    },
+    ///    "max_members": {
+    ///      "type": "integer"
+    ///    },
+    ///    "member_price_microcents_per_second": {
+    ///      "type": "integer"
+    ///    },
+    ///    "members": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/SharedCapacityMembershipResponse"
+    ///      }
+    ///    },
+    ///    "membership": {
+    ///      "$ref": "#/components/schemas/SharedCapacityMembershipResponse"
+    ///    },
+    ///    "public_slug": {
+    ///      "type": "string"
+    ///    },
+    ///    "status": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_hash": {
+    ///      "type": "string"
+    ///    },
+    ///    "terms_version": {
+    ///      "type": "string"
+    ///    },
+    ///    "visibility": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "SharedCapacityResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct SharedCapacityResponse {
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub active_member_count: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub backing_instance_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_eur_per_hour: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_microcents_per_hour: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub base_price_microcents_per_second: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub close_reason: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub current_member_price_eur_per_hour: ::std::option::Option<f64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub current_member_price_microcents_per_hour: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub group_id: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub instance: ::std::option::Option<SharedCapacityInstanceResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub max_members: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub member_price_microcents_per_second: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub members: ::std::vec::Vec<SharedCapacityMembershipResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub membership: ::std::option::Option<SharedCapacityMembershipResponse>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub public_slug: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub status: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_hash: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub terms_version: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub visibility: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for SharedCapacityResponse {
+        fn default() -> Self {
+            Self {
+                active_member_count: Default::default(),
+                backing_instance_id: Default::default(),
+                base_price_eur_per_hour: Default::default(),
+                base_price_microcents_per_hour: Default::default(),
+                base_price_microcents_per_second: Default::default(),
+                close_reason: Default::default(),
+                current_member_price_eur_per_hour: Default::default(),
+                current_member_price_microcents_per_hour: Default::default(),
+                group_id: Default::default(),
+                instance: Default::default(),
+                max_members: Default::default(),
+                member_price_microcents_per_second: Default::default(),
+                members: Default::default(),
+                membership: Default::default(),
+                public_slug: Default::default(),
+                status: Default::default(),
+                terms_hash: Default::default(),
+                terms_version: Default::default(),
+                visibility: Default::default(),
             }
         }
     }
@@ -7477,6 +13651,18 @@ pub mod types {
     ///    "routing_mode": {
     ///      "type": "string"
     ///    },
+    ///    "serverless_start_requests": {
+    ///      "description": "Requests in the rolling window required before starting stopped serverless destinations.",
+    ///      "type": "integer",
+    ///      "maximum": 10000.0,
+    ///      "minimum": 1.0
+    ///    },
+    ///    "serverless_start_window_seconds": {
+    ///      "description": "Rolling request window in seconds.",
+    ///      "type": "integer",
+    ///      "maximum": 86400.0,
+    ///      "minimum": 1.0
+    ///    },
     ///    "serving_endpoint_id": {
     ///      "type": "string"
     ///    },
@@ -7511,6 +13697,14 @@ pub mod types {
         pub routes: ::std::vec::Vec<SmartBalancerRouteResponse>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub routing_mode: ::std::option::Option<::std::string::String>,
+        ///Requests in the rolling window required before starting stopped serverless destinations.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub serverless_start_requests: ::std::option::Option<::std::num::NonZeroU64>,
+        ///Rolling request window in seconds.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub serverless_start_window_seconds: ::std::option::Option<
+            ::std::num::NonZeroU64,
+        >,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub serving_endpoint_id: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
@@ -7530,13 +13724,15 @@ pub mod types {
                 router_model: Default::default(),
                 routes: Default::default(),
                 routing_mode: Default::default(),
+                serverless_start_requests: Default::default(),
+                serverless_start_window_seconds: Default::default(),
                 serving_endpoint_id: Default::default(),
                 updated_at: Default::default(),
                 workload_kind: Default::default(),
             }
         }
     }
-    ///`StorageVolumeResponse`
+    ///`StartupProgress`
     ///
     /// <details><summary>JSON schema</summary>
     ///
@@ -7544,148 +13740,35 @@ pub mod types {
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "account_id": {
+    ///    "phase": {
     ///      "type": "string"
     ///    },
-    ///    "bucket": {
-    ///      "type": "string"
-    ///    },
-    ///    "created_at": {
-    ///      "type": "string"
-    ///    },
-    ///    "description": {
-    ///      "type": "string"
-    ///    },
-    ///    "error_message": {
-    ///      "type": "string"
-    ///    },
-    ///    "id": {
-    ///      "type": "string"
-    ///    },
-    ///    "name": {
-    ///      "type": "string"
-    ///    },
-    ///    "prefix": {
-    ///      "type": "string"
-    ///    },
-    ///    "provider": {
-    ///      "type": "string"
-    ///    },
-    ///    "status": {
+    ///    "source": {
     ///      "type": "string"
     ///    },
     ///    "updated_at": {
     ///      "type": "string"
     ///    }
     ///  },
-    ///  "x-go-name": "StorageVolumeResponse"
+    ///  "x-go-name": "StartupProgress"
     ///}
     /// ```
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct StorageVolumeResponse {
+    pub struct StartupProgress {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub account_id: ::std::option::Option<::std::string::String>,
+        pub phase: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub bucket: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub created_at: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub description: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub error_message: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub id: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub name: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub prefix: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub provider: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub status: ::std::option::Option<::std::string::String>,
+        pub source: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub updated_at: ::std::option::Option<::std::string::String>,
     }
-    impl ::std::default::Default for StorageVolumeResponse {
+    impl ::std::default::Default for StartupProgress {
         fn default() -> Self {
             Self {
-                account_id: Default::default(),
-                bucket: Default::default(),
-                created_at: Default::default(),
-                description: Default::default(),
-                error_message: Default::default(),
-                id: Default::default(),
-                name: Default::default(),
-                prefix: Default::default(),
-                provider: Default::default(),
-                status: Default::default(),
+                phase: Default::default(),
+                source: Default::default(),
                 updated_at: Default::default(),
-            }
-        }
-    }
-    ///`SystemToolOutput`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "properties": {
-    ///    "configuration_schema": {
-    ///      "type": "object",
-    ///      "additionalProperties": {
-    ///        "type": "string"
-    ///      }
-    ///    },
-    ///    "description": {
-    ///      "type": "string"
-    ///    },
-    ///    "managed_by": {
-    ///      "type": "string"
-    ///    },
-    ///    "type": {
-    ///      "type": "string"
-    ///    },
-    ///    "visibility": {
-    ///      "type": "string"
-    ///    }
-    ///  },
-    ///  "x-go-name": "SystemToolOutput"
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct SystemToolOutput {
-        #[serde(
-            default,
-            skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
-        )]
-        pub configuration_schema: ::std::collections::HashMap<
-            ::std::string::String,
-            ::std::string::String,
-        >,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub description: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub managed_by: ::std::option::Option<::std::string::String>,
-        #[serde(
-            rename = "type",
-            default,
-            skip_serializing_if = "::std::option::Option::is_none"
-        )]
-        pub type_: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub visibility: ::std::option::Option<::std::string::String>,
-    }
-    impl ::std::default::Default for SystemToolOutput {
-        fn default() -> Self {
-            Self {
-                configuration_schema: Default::default(),
-                description: Default::default(),
-                managed_by: Default::default(),
-                type_: Default::default(),
-                visibility: Default::default(),
             }
         }
     }
@@ -8064,7 +14147,7 @@ pub mod types {
     ///      "type": "integer"
     ///    },
     ///    "seconds": {
-    ///      "description": "Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must\nbe between -315576000000 and 315576000000 inclusive (which corresponds to\n0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z).",
+    ///      "description": "Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must\nbe between -62135596800 and 253402300799 inclusive (which corresponds to\n0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z).",
     ///      "type": "integer"
     ///    }
     ///  },
@@ -8082,7 +14165,7 @@ inclusive.*/
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub nanos: ::std::option::Option<i64>,
         /**Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must
-be between -315576000000 and 315576000000 inclusive (which corresponds to
+be between -62135596800 and 253402300799 inclusive (which corresponds to
 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z).*/
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub seconds: ::std::option::Option<i64>,
@@ -8135,6 +14218,96 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
             }
         }
     }
+    ///`TutorialProgressResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "completed_step_ids": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "content_version": {
+    ///      "type": "integer"
+    ///    },
+    ///    "found": {
+    ///      "type": "boolean"
+    ///    },
+    ///    "state": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "TutorialProgressResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct TutorialProgressResponse {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub completed_step_ids: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub content_version: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub found: ::std::option::Option<bool>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub state: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for TutorialProgressResponse {
+        fn default() -> Self {
+            Self {
+                completed_step_ids: Default::default(),
+                content_version: Default::default(),
+                found: Default::default(),
+                state: Default::default(),
+            }
+        }
+    }
+    ///`UnreadCountResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "by_severity": {
+    ///      "type": "object",
+    ///      "additionalProperties": {
+    ///        "type": "integer",
+    ///        "format": "int64"
+    ///      }
+    ///    },
+    ///    "count": {
+    ///      "type": "integer"
+    ///    }
+    ///  },
+    ///  "x-go-name": "UnreadCountResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct UnreadCountResponse {
+        #[serde(
+            default,
+            skip_serializing_if = ":: std :: collections :: HashMap::is_empty"
+        )]
+        pub by_severity: ::std::collections::HashMap<::std::string::String, i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub count: ::std::option::Option<i64>,
+    }
+    impl ::std::default::Default for UnreadCountResponse {
+        fn default() -> Self {
+            Self {
+                by_severity: Default::default(),
+                count: Default::default(),
+            }
+        }
+    }
     ///`UpdateAccountMemberRequest`
     ///
     /// <details><summary>JSON schema</summary>
@@ -8172,9 +14345,6 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///    "description": {
     ///      "type": "string"
     ///    },
-    ///    "fiscal_customer_type": {
-    ///      "type": "string"
-    ///    },
     ///    "name": {
     ///      "type": "string"
     ///    }
@@ -8188,15 +14358,12 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_customer_type: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for UpdateAccountRequest {
         fn default() -> Self {
             Self {
                 description: Default::default(),
-                fiscal_customer_type: Default::default(),
                 name: Default::default(),
             }
         }
@@ -8320,34 +14487,6 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
             }
         }
     }
-    ///`UpdateFiscalProfileRequest`
-    ///
-    /// <details><summary>JSON schema</summary>
-    ///
-    /// ```json
-    ///{
-    ///  "type": "object",
-    ///  "properties": {
-    ///    "fiscal_customer_type": {
-    ///      "type": "string"
-    ///    }
-    ///  },
-    ///  "x-go-name": "UpdateFiscalProfileRequest"
-    ///}
-    /// ```
-    /// </details>
-    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
-    pub struct UpdateFiscalProfileRequest {
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub fiscal_customer_type: ::std::option::Option<::std::string::String>,
-    }
-    impl ::std::default::Default for UpdateFiscalProfileRequest {
-        fn default() -> Self {
-            Self {
-                fiscal_customer_type: Default::default(),
-            }
-        }
-    }
     ///`UpdateInstanceRequest`
     ///
     /// <details><summary>JSON schema</summary>
@@ -8356,6 +14495,14 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///{
     ///  "type": "object",
     ///  "properties": {
+    ///    "cost_optimization_enabled": {
+    ///      "description": "Opt into automatic Smart cost optimization. Omission preserves the saved setting; switching to manual disables it.",
+    ///      "type": "boolean"
+    ///    },
+    ///    "cost_optimization_min_savings_percent": {
+    ///      "description": "Minimum percentage saving required for replacement. Defaults to 20; must be finite, greater than 0 and less than 100. Decimals are accepted.",
+    ///      "type": "number"
+    ///    },
     ///    "description": {
     ///      "type": "string"
     ///    },
@@ -8432,6 +14579,12 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     /// </details>
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct UpdateInstanceRequest {
+        ///Opt into automatic Smart cost optimization. Omission preserves the saved setting; switching to manual disables it.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cost_optimization_enabled: ::std::option::Option<bool>,
+        ///Minimum percentage saving required for replacement. Defaults to 20; must be finite, greater than 0 and less than 100. Decimals are accepted.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub cost_optimization_min_savings_percent: ::std::option::Option<f64>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
@@ -8476,6 +14629,8 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     impl ::std::default::Default for UpdateInstanceRequest {
         fn default() -> Self {
             Self {
+                cost_optimization_enabled: Default::default(),
+                cost_optimization_min_savings_percent: Default::default(),
                 description: Default::default(),
                 gpu_preferences: Default::default(),
                 idle_timeout_seconds: Default::default(),
@@ -8653,6 +14808,18 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///    "routing_mode": {
     ///      "type": "string"
     ///    },
+    ///    "serverless_start_requests": {
+    ///      "description": "Requests in the rolling window required before starting stopped serverless destinations. Omitted settings retain their stored values.",
+    ///      "type": "integer",
+    ///      "maximum": 10000.0,
+    ///      "minimum": 1.0
+    ///    },
+    ///    "serverless_start_window_seconds": {
+    ///      "description": "Rolling request window in seconds.",
+    ///      "type": "integer",
+    ///      "maximum": 86400.0,
+    ///      "minimum": 1.0
+    ///    },
     ///    "workload_kind": {
     ///      "type": "string"
     ///    }
@@ -8675,6 +14842,14 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         pub routes: ::std::vec::Vec<SmartBalancerRouteRequest>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub routing_mode: ::std::option::Option<::std::string::String>,
+        ///Requests in the rolling window required before starting stopped serverless destinations. Omitted settings retain their stored values.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub serverless_start_requests: ::std::option::Option<::std::num::NonZeroU64>,
+        ///Rolling request window in seconds.
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub serverless_start_window_seconds: ::std::option::Option<
+            ::std::num::NonZeroU64,
+        >,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub workload_kind: ::std::option::Option<::std::string::String>,
     }
@@ -8687,6 +14862,8 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
                 router_model: Default::default(),
                 routes: Default::default(),
                 routing_mode: Default::default(),
+                serverless_start_requests: Default::default(),
+                serverless_start_window_seconds: Default::default(),
                 workload_kind: Default::default(),
             }
         }
@@ -8746,6 +14923,49 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
             }
         }
     }
+    ///`UpdateTutorialProgressRequest`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "properties": {
+    ///    "completed_step_ids": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "type": "string"
+    ///      }
+    ///    },
+    ///    "content_version": {
+    ///      "type": "integer"
+    ///    },
+    ///    "state": {
+    ///      "type": "string"
+    ///    }
+    ///  },
+    ///  "x-go-name": "UpdateTutorialProgressRequest"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct UpdateTutorialProgressRequest {
+        #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+        pub completed_step_ids: ::std::vec::Vec<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub content_version: ::std::option::Option<i64>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub state: ::std::option::Option<::std::string::String>,
+    }
+    impl ::std::default::Default for UpdateTutorialProgressRequest {
+        fn default() -> Self {
+            Self {
+                completed_step_ids: Default::default(),
+                content_version: Default::default(),
+                state: Default::default(),
+            }
+        }
+    }
     ///`UpdateVectorDatabaseRequest`
     ///
     /// <details><summary>JSON schema</summary>
@@ -8755,6 +14975,9 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///  "type": "object",
     ///  "properties": {
     ///    "description": {
+    ///      "type": "string"
+    ///    },
+    ///    "embedding_serving_name": {
     ///      "type": "string"
     ///    },
     ///    "name": {
@@ -8773,6 +14996,8 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub description: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub embedding_serving_name: ::std::option::Option<::std::string::String>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub name: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub slug: ::std::option::Option<::std::string::String>,
@@ -8781,6 +15006,7 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         fn default() -> Self {
             Self {
                 description: Default::default(),
+                embedding_serving_name: Default::default(),
                 name: Default::default(),
                 slug: Default::default(),
             }
@@ -8797,6 +15023,9 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///    "email": {
     ///      "type": "string"
     ///    },
+    ///    "impersonating": {
+    ///      "$ref": "#/components/schemas/ImpersonationInfo"
+    ///    },
     ///    "user_id": {
     ///      "type": "string"
     ///    }
@@ -8810,12 +15039,15 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub email: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
+        pub impersonating: ::std::option::Option<ImpersonationInfo>,
+        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub user_id: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for UserInfoResponse {
         fn default() -> Self {
             Self {
                 email: Default::default(),
+                impersonating: Default::default(),
                 user_id: Default::default(),
             }
         }
@@ -9220,16 +15452,7 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     ///{
     ///  "type": "object",
     ///  "properties": {
-    ///    "access_token": {
-    ///      "type": "string"
-    ///    },
-    ///    "access_token_expiry": {
-    ///      "type": "integer"
-    ///    },
     ///    "email": {
-    ///      "type": "string"
-    ///    },
-    ///    "refresh_token": {
     ///      "type": "string"
     ///    },
     ///    "user_id": {
@@ -9243,26 +15466,44 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
     #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
     pub struct VerifyEmailResponse {
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub access_token_expiry: ::std::option::Option<i64>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub email: ::std::option::Option<::std::string::String>,
-        #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
-        pub refresh_token: ::std::option::Option<::std::string::String>,
         #[serde(default, skip_serializing_if = "::std::option::Option::is_none")]
         pub user_id: ::std::option::Option<::std::string::String>,
     }
     impl ::std::default::Default for VerifyEmailResponse {
         fn default() -> Self {
             Self {
-                access_token: Default::default(),
-                access_token_expiry: Default::default(),
                 email: Default::default(),
-                refresh_token: Default::default(),
                 user_id: Default::default(),
             }
         }
+    }
+    ///`VideoJobsListResponse`
+    ///
+    /// <details><summary>JSON schema</summary>
+    ///
+    /// ```json
+    ///{
+    ///  "type": "object",
+    ///  "required": [
+    ///    "data"
+    ///  ],
+    ///  "properties": {
+    ///    "data": {
+    ///      "type": "array",
+    ///      "items": {
+    ///        "$ref": "#/components/schemas/Service.VideoJobResult"
+    ///      },
+    ///      "maxItems": 100
+    ///    }
+    ///  },
+    ///  "x-go-name": "VideoJobsListResponse"
+    ///}
+    /// ```
+    /// </details>
+    #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+    pub struct VideoJobsListResponse {
+        pub data: ::std::vec::Vec<ServiceVideoJobResult>,
     }
     ///`ViewElementRequest`
     ///
@@ -9302,6 +15543,18 @@ be between -315576000000 and 315576000000 inclusive (which corresponds to
                 recommend_token: Default::default(),
                 weight: Default::default(),
             }
+        }
+    }
+    /// Generation of default values for serde.
+    pub mod defaults {
+        pub(super) fn default_nzu64<T, const V: u64>() -> T
+        where
+            T: ::std::convert::TryFrom<::std::num::NonZeroU64>,
+            <T as ::std::convert::TryFrom<
+                ::std::num::NonZeroU64,
+            >>::Error: ::std::fmt::Debug,
+        {
+            T::try_from(::std::num::NonZeroU64::try_from(V).unwrap()).unwrap()
         }
     }
 }
@@ -9361,70 +15614,21 @@ impl ClientInfo<()> for Client {
 impl ClientHooks<()> for &Client {}
 #[allow(clippy::all)]
 impl Client {
-    /**List user accounts
+    /**Show model metadata
 
-Returns the accounts and memberships visible to the authenticated user.
+Returns the enabled account model's effective context and capabilities in Ollama-compatible form. This metadata query does not run inference or start instances.
 
-Sends a `GET` request to `/accounts`
-
-*/
-    pub async fn get_accounts<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::AccountListResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/accounts", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_accounts",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create an account
-
-Creates a new account owned by the authenticated user.
-
-Sends a `POST` request to `/accounts`
+Sends a `POST` request to `/api/show`
 
 */
-    pub async fn post_accounts<'a>(
+    pub async fn post_ollama_show<'a>(
         &'a self,
-        body: &'a types::CreateAccountRequest,
+        body: &'a ::serde_json::Map<::std::string::String, ::serde_json::Value>,
     ) -> Result<
-        ResponseValue<types::AccountMembershipResponse>,
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
         Error<types::ErrorResponse>,
     > {
-        let url = format!("{}/accounts", self.baseurl,);
+        let url = format!("{}/api/show", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -9443,1148 +15647,7 @@ Sends a `POST` request to `/accounts`
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "post_accounts",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get the selected account
-
-Returns the account resolved from the active account context.
-
-Sends a `GET` request to `/accounts/current`
-
-*/
-    pub async fn get_accounts_current<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::AccountResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/accounts/current", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_accounts_current",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete the selected account
-
-Deletes the active account context.
-
-Sends a `DELETE` request to `/accounts/current`
-
-*/
-    pub async fn delete_accounts_current<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!("{}/accounts/current", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_accounts_current",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update the selected account
-
-Updates editable metadata for the active account context.
-
-Sends a `PATCH` request to `/accounts/current`
-
-*/
-    pub async fn patch_accounts_current<'a>(
-        &'a self,
-        body: &'a types::UpdateAccountRequest,
-    ) -> Result<ResponseValue<types::AccountResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/accounts/current", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_accounts_current",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update the current account fiscal profile
-
-Updates only the fiscal-profile fields of the active account context, preserving the existing account name and description.
-
-Sends a `PATCH` request to `/accounts/current/fiscal-profile`
-
-*/
-    pub async fn patch_accounts_current_fiscal_profile<'a>(
-        &'a self,
-        body: &'a types::UpdateFiscalProfileRequest,
-    ) -> Result<ResponseValue<types::AccountResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/accounts/current/fiscal-profile", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_accounts_current_fiscal_profile",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create an invitation for the selected account
-
-Invites a user by email to join the active account context with a given role.
-
-Sends a `POST` request to `/accounts/current/invitations`
-
-*/
-    pub async fn post_accounts_current_invitations<'a>(
-        &'a self,
-        body: &'a types::CreateInvitationRequest,
-    ) -> Result<ResponseValue<types::InvitationResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/accounts/current/invitations", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_accounts_current_invitations",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            412u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Cancel an invitation for the selected account
-
-Cancels a pending invitation issued by the active account context.
-
-Sends a `DELETE` request to `/accounts/current/invitations/{invitationID}`
-
-Arguments:
-- `invitation_id`: Invitation ID
-*/
-    pub async fn delete_accounts_current_invitations_by_invitation_id<'a>(
-        &'a self,
-        invitation_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/accounts/current/invitations/{}", self.baseurl, encode_path(&
-            invitation_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_accounts_current_invitations_by_invitation_id",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List selected account members
-
-Returns the members and roles for the active account context.
-
-Sends a `GET` request to `/accounts/current/members`
-
-*/
-    pub async fn get_accounts_current_members<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::AccountMemberListResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/accounts/current/members", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_accounts_current_members",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Add a member to the selected account
-
-Adds a registered user to the active account context or updates their role if they already belong to it.
-
-Sends a `POST` request to `/accounts/current/members`
-
-*/
-    pub async fn post_accounts_current_members<'a>(
-        &'a self,
-        body: &'a types::AddAccountMemberRequest,
-    ) -> Result<
-        ResponseValue<types::AccountMemberResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/accounts/current/members", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_accounts_current_members",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            412u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a selected account member role
-
-Updates the role of an existing user within the active account context.
-
-Sends a `PATCH` request to `/accounts/current/members/{userID}`
-
-Arguments:
-- `user_id`: User ID
-- `body`
-*/
-    pub async fn patch_accounts_current_members_by_user_id<'a>(
-        &'a self,
-        user_id: &'a str,
-        body: &'a types::UpdateAccountMemberRequest,
-    ) -> Result<
-        ResponseValue<types::AccountMemberResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/accounts/current/members/{}", self.baseurl, encode_path(& user_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_accounts_current_members_by_user_id",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            412u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List API keys for the selected account
-
-Returns the API keys issued for the active account context.
-
-Sends a `GET` request to `/api-keys`
-
-*/
-    pub async fn get_api_keys<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::ApiKeyListResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/api-keys", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_api_keys",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create an API key for the selected account
-
-Issues a new API key for the active account context and returns the plaintext key once.
-
-Sends a `POST` request to `/api-keys`
-
-*/
-    pub async fn post_api_keys<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::ApiKeyResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/api-keys", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_api_keys",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Revoke an API key
-
-Revokes an API key issued for the active account context.
-
-Sends a `POST` request to `/api-keys/{keyID}/revoke`
-
-Arguments:
-- `key_id`: API key ID
-*/
-    pub async fn post_api_keys_key_id_revoke<'a>(
-        &'a self,
-        key_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/api-keys/{}/revoke", self.baseurl, encode_path(& key_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_api_keys_key_id_revoke",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Request a password reset email
-
-Always returns 200 with a generic message to avoid user enumeration.
-
-Sends a `POST` request to `/auth/forgot-password`
-
-*/
-    pub async fn post_auth_forgot_password<'a>(
-        &'a self,
-        body: &'a types::ForgotPasswordRequest,
-    ) -> Result<
-        ResponseValue<types::ForgotPasswordResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/forgot-password", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_forgot_password",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Authenticate a user
-
-Exchanges email and password credentials for access and refresh tokens.
-
-Sends a `POST` request to `/auth/login`
-
-*/
-    pub async fn post_auth_login<'a>(
-        &'a self,
-        body: &'a types::LoginRequest,
-    ) -> Result<ResponseValue<types::LoginResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/login", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_login",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Return the current authenticated user
-
-Resolves the user attached to the bearer token.
-
-Sends a `GET` request to `/auth/me`
-
-*/
-    pub async fn get_auth_me<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::UserInfoResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/me", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_auth_me",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List passkeys
-
-Returns the current user's passkey credentials.
-
-Sends a `GET` request to `/auth/passkeys`
-
-*/
-    pub async fn get_auth_passkeys<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::PasskeyListResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/passkeys", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_auth_passkeys",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Register a passkey
-
-Stores a passkey credential for the authenticated user.
-
-Sends a `POST` request to `/auth/passkeys`
-
-*/
-    pub async fn post_auth_passkeys<'a>(
-        &'a self,
-        body: &'a types::RegisterPasskeyRequest,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/passkeys", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_passkeys",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Begin passkey login
-
-Creates a passkey login challenge for the provided email.
-
-Sends a `POST` request to `/auth/passkeys/begin-login`
-
-*/
-    pub async fn post_auth_passkeys_begin_login<'a>(
-        &'a self,
-        body: &'a types::BeginPasskeyloginRequest,
-    ) -> Result<
-        ResponseValue<types::BeginPasskeyloginResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/passkeys/begin-login", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_passkeys_begin_login",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            503u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Begin passkey registration
-
-Creates a passkey registration challenge for the authenticated user.
-
-Sends a `POST` request to `/auth/passkeys/begin-registration`
-
-*/
-    pub async fn post_auth_passkeys_begin_registration<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::BeginPasskeyRegistrationResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/passkeys/begin-registration", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_passkeys_begin_registration",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Finish passkey login
-
-Consumes a passkey login challenge and returns a session.
-
-Sends a `POST` request to `/auth/passkeys/finish-login`
-
-*/
-    pub async fn post_auth_passkeys_finish_login<'a>(
-        &'a self,
-        body: &'a types::FinishPasskeyloginRequest,
-    ) -> Result<
-        ResponseValue<types::FinishPasskeyloginResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/passkeys/finish-login", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_passkeys_finish_login",
+            operation_id: "post_ollama_show",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -10603,2493 +15666,6 @@ Sends a `POST` request to `/auth/passkeys/finish-login`
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Finish passkey registration
-
-Consumes a passkey registration challenge and stores the credential.
-
-Sends a `POST` request to `/auth/passkeys/finish-registration`
-
-*/
-    pub async fn post_auth_passkeys_finish_registration<'a>(
-        &'a self,
-        body: &'a types::FinishPasskeyRegistrationRequest,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/passkeys/finish-registration", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_passkeys_finish_registration",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Remove a passkey
-
-Deletes a passkey credential from the authenticated user.
-
-Sends a `DELETE` request to `/auth/passkeys/{credentialID}`
-
-*/
-    pub async fn delete_auth_passkeys<'a>(
-        &'a self,
-        credential_id: &'a str,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/auth/passkeys/{}", self.baseurl, encode_path(& credential_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_auth_passkeys",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Change the current user's password
-
-Requires the authenticated user to provide the current password and a new password.
-
-Sends a `PATCH` request to `/auth/password`
-
-*/
-    pub async fn patch_auth_password<'a>(
-        &'a self,
-        body: &'a types::ChangePasswordRequest,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/password", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_auth_password",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get the current user's security preferences
-
-Returns the per-user security toggles for the authenticated user.
-
-Sends a `GET` request to `/auth/preferences`
-
-*/
-    pub async fn get_auth_preferences<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::UserPreferencesResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/preferences", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_auth_preferences",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update the current user's security preferences
-
-Partial update of the per-user security toggles. Only fields present in the body are applied.
-
-Sends a `PATCH` request to `/auth/preferences`
-
-*/
-    pub async fn patch_auth_preferences<'a>(
-        &'a self,
-        body: &'a types::UpdatePreferencesRequest,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/preferences", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_auth_preferences",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Refresh an access token
-
-Exchanges a refresh token for a new access token.
-
-Sends a `POST` request to `/auth/refresh`
-
-*/
-    pub async fn post_auth_refresh<'a>(
-        &'a self,
-        body: &'a types::RefreshRequest,
-    ) -> Result<ResponseValue<types::RefreshResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/refresh", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_refresh",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Register a new user
-
-Creates a new account using email and password credentials.
-
-Sends a `POST` request to `/auth/register`
-
-*/
-    pub async fn post_auth_register<'a>(
-        &'a self,
-        body: &'a types::RegisterRequest,
-    ) -> Result<ResponseValue<types::RegisterResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/register", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_register",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            409u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Reset a password using a one-time token
-
-Consumes the reset token, updates the password, and returns a fresh session.
-
-Sends a `POST` request to `/auth/reset-password`
-
-*/
-    pub async fn post_auth_reset_password<'a>(
-        &'a self,
-        body: &'a types::ResetPasswordRequest,
-    ) -> Result<
-        ResponseValue<types::ResetPasswordResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/reset-password", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_reset_password",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Disable TOTP
-
-Removes the current user's TOTP credential.
-
-Sends a `DELETE` request to `/auth/totp`
-
-*/
-    pub async fn delete_auth_totp<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/totp", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_auth_totp",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Start TOTP enrollment
-
-Returns a new TOTP secret and otpauth URI for the authenticated user.
-
-Sends a `POST` request to `/auth/totp/begin`
-
-*/
-    pub async fn post_auth_totp_begin<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::BeginTotpEnrollmentResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/auth/totp/begin", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_totp_begin",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Confirm TOTP enrollment
-
-Stores a TOTP secret for the authenticated user after verifying the code.
-
-Sends a `POST` request to `/auth/totp/confirm`
-
-*/
-    pub async fn post_auth_totp_confirm<'a>(
-        &'a self,
-        body: &'a types::ConfirmTotpEnrollmentRequest,
-    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/totp/confirm", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_auth_totp_confirm",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Verify an email activation link
-
-Consumes the activation token and returns a session.
-
-Sends a `GET` request to `/auth/verify-email`
-
-Arguments:
-- `token`: Activation token from the email
-*/
-    pub async fn get_auth_verify_email<'a>(
-        &'a self,
-        token: &'a str,
-    ) -> Result<ResponseValue<types::VerifyEmailResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/auth/verify-email", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("token", &token))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_auth_verify_email",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get the current account balance
-
-Returns the billing balance of the authenticated account.
-
-Sends a `GET` request to `/billing/balance`
-
-*/
-    pub async fn get_billing_balance<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::AccountBalanceResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/billing/balance", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_billing_balance",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a checkout session
-
-Creates a billing checkout session for the authenticated account.
-
-Sends a `POST` request to `/billing/checkout`
-
-Arguments:
-- `idempotency_key`: Checkout idempotency key
-- `body`
-*/
-    pub async fn post_billing_checkout<'a>(
-        &'a self,
-        idempotency_key: &'a str,
-        body: &'a types::CreateCheckoutSessionRequest,
-    ) -> Result<
-        ResponseValue<types::CheckoutSessionResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/billing/checkout", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        header_map.append("Idempotency-Key", idempotency_key.to_string().try_into()?);
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_billing_checkout",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            409u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Debit the current account balance
-
-Debits a positive amount from the authenticated account.
-
-Sends a `POST` request to `/billing/debit`
-
-*/
-    pub async fn post_billing_debit<'a>(
-        &'a self,
-        body: &'a types::DebitBalanceRequest,
-    ) -> Result<
-        ResponseValue<types::DebitBalanceResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/billing/debit", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_billing_debit",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List ledger entries
-
-Returns ledger movements for the authenticated account.
-
-Sends a `GET` request to `/billing/ledger`
-
-Arguments:
-- `limit`: Maximum number of entries
-- `offset`: Number of entries to skip
-*/
-    pub async fn get_billing_ledger<'a>(
-        &'a self,
-        limit: Option<i64>,
-        offset: Option<i64>,
-    ) -> Result<
-        ResponseValue<types::LedgerHistoryResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/billing/ledger", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("limit", &limit))
-            .query(&progenitor_client::QueryParam::new("offset", &offset))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_billing_ledger",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List payments for the authenticated account
-
-Returns the payment history for the active account context.
-
-Sends a `GET` request to `/billing/payments`
-
-*/
-    pub async fn get_billing_payments<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::PaymentsResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/billing/payments", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_billing_payments",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Download a payment invoice PDF
-
-Returns the invoice PDF for a given payment of the active account context.
-
-Sends a `GET` request to `/billing/payments/{paymentID}/invoice.pdf`
-
-Arguments:
-- `payment_id`: Payment ID
-*/
-    pub async fn get_billing_payments_payment_id_invoice_pdf<'a>(
-        &'a self,
-        payment_id: &'a str,
-    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/billing/payments/{}/invoice.pdf", self.baseurl, encode_path(& payment_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self.client.get(url).headers(header_map).build()?;
-        let info = OperationInfo {
-            operation_id: "get_billing_payments_payment_id_invoice_pdf",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => Ok(ResponseValue::stream(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List firewall rules
-
-Returns all firewall rules for the authenticated account.
-
-Sends a `GET` request to `/firewall-rules`
-
-*/
-    pub async fn get_firewall_rules<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<::std::vec::Vec<types::FirewallRuleResponse>>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/firewall-rules", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_firewall_rules",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a firewall rule
-
-Creates a new firewall rule for the authenticated account.
-
-Sends a `POST` request to `/firewall-rules`
-
-*/
-    pub async fn post_firewall_rule<'a>(
-        &'a self,
-        body: &'a types::CreateFirewallRuleRequest,
-    ) -> Result<
-        ResponseValue<types::FirewallRuleResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/firewall-rules", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_firewall_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            409u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get a firewall rule
-
-Returns a single firewall rule by slug.
-
-Sends a `GET` request to `/firewall-rules/{ruleSlug}`
-
-Arguments:
-- `rule_slug`: Firewall rule slug
-*/
-    pub async fn get_firewall_rule<'a>(
-        &'a self,
-        rule_slug: &'a str,
-    ) -> Result<
-        ResponseValue<types::FirewallRuleResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/firewall-rules/{}", self.baseurl, encode_path(& rule_slug.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_firewall_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a firewall rule
-
-Removes a firewall rule by slug.
-
-Sends a `DELETE` request to `/firewall-rules/{ruleSlug}`
-
-Arguments:
-- `rule_slug`: Firewall rule slug
-*/
-    pub async fn delete_firewall_rule<'a>(
-        &'a self,
-        rule_slug: &'a str,
-    ) -> Result<
-        ResponseValue<::std::collections::HashMap<::std::string::String, bool>>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/firewall-rules/{}", self.baseurl, encode_path(& rule_slug.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_firewall_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a firewall rule
-
-Partially updates a firewall rule by slug.
-
-Sends a `PATCH` request to `/firewall-rules/{ruleSlug}`
-
-Arguments:
-- `rule_slug`: Firewall rule slug
-- `body`
-*/
-    pub async fn patch_firewall_rule<'a>(
-        &'a self,
-        rule_slug: &'a str,
-        body: &'a types::UpdateFirewallRuleRequest,
-    ) -> Result<
-        ResponseValue<types::FirewallRuleResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/firewall-rules/{}", self.baseurl, encode_path(& rule_slug.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_firewall_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Evaluate a firewall rule
-
-Runs input against a single firewall rule and returns the evaluation result.
-
-Sends a `POST` request to `/firewall-rules/{ruleSlug}:evaluate`
-
-Arguments:
-- `rule_slug`: Firewall rule slug
-- `body`
-*/
-    pub async fn post_firewall_rule_evaluate<'a>(
-        &'a self,
-        rule_slug: &'a str,
-        body: &'a types::FirewallRuleEvaluationRequest,
-    ) -> Result<
-        ResponseValue<types::FirewallEvaluationResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/firewall-rules/{}:evaluate", self.baseurl, encode_path(& rule_slug
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_firewall_rule_evaluate",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List firewalls
-
-Returns all firewalls for the authenticated account.
-
-Sends a `GET` request to `/firewalls`
-
-*/
-    pub async fn get_firewalls<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<::std::vec::Vec<types::FirewallResponse>>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/firewalls", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_firewalls",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a firewall
-
-Creates a new firewall for the authenticated account.
-
-Sends a `POST` request to `/firewalls`
-
-*/
-    pub async fn post_firewall<'a>(
-        &'a self,
-        body: &'a types::CreateFirewallRequest,
-    ) -> Result<ResponseValue<types::FirewallResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/firewalls", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_firewall",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            409u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get a firewall
-
-Returns a single firewall by slug.
-
-Sends a `GET` request to `/firewalls/{firewallSlug}`
-
-Arguments:
-- `firewall_slug`: Firewall slug
-*/
-    pub async fn get_firewall<'a>(
-        &'a self,
-        firewall_slug: &'a str,
-    ) -> Result<ResponseValue<types::FirewallResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/firewalls/{}", self.baseurl, encode_path(& firewall_slug.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_firewall",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a firewall
-
-Removes a firewall by slug.
-
-Sends a `DELETE` request to `/firewalls/{firewallSlug}`
-
-Arguments:
-- `firewall_slug`: Firewall slug
-*/
-    pub async fn delete_firewall<'a>(
-        &'a self,
-        firewall_slug: &'a str,
-    ) -> Result<
-        ResponseValue<::std::collections::HashMap<::std::string::String, bool>>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/firewalls/{}", self.baseurl, encode_path(& firewall_slug.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_firewall",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a firewall
-
-Partially updates a firewall by slug.
-
-Sends a `PATCH` request to `/firewalls/{firewallSlug}`
-
-Arguments:
-- `firewall_slug`: Firewall slug
-- `body`
-*/
-    pub async fn patch_firewall<'a>(
-        &'a self,
-        firewall_slug: &'a str,
-        body: &'a types::UpdateFirewallRequest,
-    ) -> Result<ResponseValue<types::FirewallResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/firewalls/{}", self.baseurl, encode_path(& firewall_slug.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_firewall",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Evaluate a firewall
-
-Runs input against a firewall and returns the evaluation result.
-
-Sends a `POST` request to `/firewalls/{firewallSlug}:evaluate`
-
-Arguments:
-- `firewall_slug`: Firewall slug
-- `body`
-*/
-    pub async fn post_firewall_evaluate<'a>(
-        &'a self,
-        firewall_slug: &'a str,
-        body: &'a types::FirewallEvaluationRequest,
-    ) -> Result<
-        ResponseValue<types::FirewallEvaluationResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/firewalls/{}:evaluate", self.baseurl, encode_path(& firewall_slug
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_firewall_evaluate",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List vector databases
-
-Returns the vector databases owned by the authenticated account.
-
-Sends a `GET` request to `/flexible-vector-databases`
-
-*/
-    pub async fn get_vector_databases<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::VectorDatabaseResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/flexible-vector-databases", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_vector_databases",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a vector database
-
-Creates a new vector database for the authenticated account.
-
-Sends a `POST` request to `/flexible-vector-databases`
-
-*/
-    pub async fn post_vector_databases<'a>(
-        &'a self,
-        body: &'a types::CreateVectorDatabaseRequest,
-    ) -> Result<
-        ResponseValue<types::VectorDatabaseResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/flexible-vector-databases", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_vector_databases",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get a vector database
-
-Returns a single vector database owned by the authenticated account.
-
-Sends a `GET` request to `/flexible-vector-databases/{databaseID}`
-
-Arguments:
-- `database_id`: Vector database ID
-*/
-    pub async fn get_vector_database<'a>(
-        &'a self,
-        database_id: &'a str,
-    ) -> Result<
-        ResponseValue<types::VectorDatabaseResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}", self.baseurl, encode_path(& database_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_vector_database",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a vector database
-
-Removes a vector database owned by the authenticated account.
-
-Sends a `DELETE` request to `/flexible-vector-databases/{databaseID}`
-
-Arguments:
-- `database_id`: Vector database ID
-*/
-    pub async fn delete_vector_database<'a>(
-        &'a self,
-        database_id: &'a str,
-    ) -> Result<
-        ResponseValue<::std::collections::HashMap<::std::string::String, bool>>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}", self.baseurl, encode_path(& database_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_vector_database",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a vector database
-
-Updates the slug, name, or description of an existing vector database.
-
-Sends a `PATCH` request to `/flexible-vector-databases/{databaseID}`
-
-Arguments:
-- `database_id`: Vector database ID
-- `body`
-*/
-    pub async fn patch_vector_database<'a>(
-        &'a self,
-        database_id: &'a str,
-        body: &'a types::UpdateVectorDatabaseRequest,
-    ) -> Result<
-        ResponseValue<types::VectorDatabaseResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}", self.baseurl, encode_path(& database_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_vector_database",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List documents in a vector database
-
-Returns documents stored in a vector database with optional pagination.
-
-Sends a `GET` request to `/flexible-vector-databases/{databaseID}/documents`
-
-Arguments:
-- `database_id`: Vector database ID
-- `cursor`: Pagination cursor from a previous response
-- `limit`: Maximum number of documents to return
-*/
-    pub async fn get_vector_database_documents<'a>(
-        &'a self,
-        database_id: &'a str,
-        cursor: Option<&'a str>,
-        limit: Option<i64>,
-    ) -> Result<
-        ResponseValue<types::ListDocumentsResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/documents", self.baseurl, encode_path(&
-            database_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("cursor", &cursor))
-            .query(&progenitor_client::QueryParam::new("limit", &limit))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_vector_database_documents",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Index documents directly
-
-Indexes documents into a vector database synchronously.
-
-Sends a `POST` request to `/flexible-vector-databases/{databaseID}/index-direct`
-
-Arguments:
-- `database_id`: Vector database ID
-- `body`
-*/
-    pub async fn post_vector_database_index_direct<'a>(
-        &'a self,
-        database_id: &'a str,
-        body: &'a types::IndexDocumentsRequest,
-    ) -> Result<
-        ResponseValue<::std::collections::HashMap<::std::string::String, i32>>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/index-direct", self.baseurl, encode_path(&
-            database_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_vector_database_index_direct",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Enqueue an index job
-
-Enqueues documents for asynchronous indexing into a vector database.
-
-Sends a `POST` request to `/flexible-vector-databases/{databaseID}/index-jobs`
-
-Arguments:
-- `database_id`: Vector database ID
-- `body`
-*/
-    pub async fn post_vector_database_index_jobs<'a>(
-        &'a self,
-        database_id: &'a str,
-        body: &'a types::IndexDocumentsRequest,
-    ) -> Result<
-        ResponseValue<
-            ::std::collections::HashMap<::std::string::String, ::std::string::String>,
-        >,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/index-jobs", self.baseurl, encode_path(&
-            database_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_vector_database_index_jobs",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            202u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get an index job
-
-Returns the status of an asynchronous index job.
-
-Sends a `GET` request to `/flexible-vector-databases/{databaseID}/index-jobs/{jobID}`
-
-Arguments:
-- `database_id`: Vector database ID
-- `job_id`: Index job ID
-*/
-    pub async fn get_vector_database_index_job<'a>(
-        &'a self,
-        database_id: &'a str,
-        job_id: &'a str,
-    ) -> Result<ResponseValue<types::IndexJobResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/index-jobs/{}", self.baseurl, encode_path(&
-            database_id.to_string()), encode_path(& job_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_vector_database_index_job",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Recommend documents
-
-Returns recommended documents for a recommend token.
-
-Sends a `POST` request to `/flexible-vector-databases/{databaseID}/recommend`
-
-Arguments:
-- `database_id`: Vector database ID
-- `body`
-*/
-    pub async fn post_vector_database_recommend<'a>(
-        &'a self,
-        database_id: &'a str,
-        body: &'a types::RecommendRequest,
-    ) -> Result<ResponseValue<types::SearchHitResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/recommend", self.baseurl, encode_path(&
-            database_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_vector_database_recommend",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Search a vector database
-
-Searches a vector database by query text and/or image URL.
-
-Sends a `POST` request to `/flexible-vector-databases/{databaseID}/search`
-
-Arguments:
-- `database_id`: Vector database ID
-- `body`
-*/
-    pub async fn post_vector_database_search<'a>(
-        &'a self,
-        database_id: &'a str,
-        body: &'a types::SearchRequest,
-    ) -> Result<ResponseValue<types::SearchHitResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/search", self.baseurl, encode_path(&
-            database_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_vector_database_search",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**View an element
-
-Records a view for a document and returns a recommend token.
-
-Sends a `POST` request to `/flexible-vector-databases/{databaseID}/view-element`
-
-Arguments:
-- `database_id`: Vector database ID
-- `body`
-*/
-    pub async fn post_vector_database_view_element<'a>(
-        &'a self,
-        database_id: &'a str,
-        body: &'a types::ViewElementRequest,
-    ) -> Result<
-        ResponseValue<
-            ::std::collections::HashMap<::std::string::String, ::std::string::String>,
-        >,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/flexible-vector-databases/{}/view-element", self.baseurl, encode_path(&
-            database_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_vector_database_view_element",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             500u16 => {
@@ -13105,7 +15681,7 @@ Returns service health
 Sends a `GET` request to `/health`
 
 */
-    pub async fn x<'a>(
+    pub async fn generated_get_health_12d00a941e<'a>(
         &'a self,
     ) -> Result<ResponseValue<::std::string::String>, Error<()>> {
         let url = format!("{}/health", self.baseurl,);
@@ -13125,59 +15701,8 @@ Sends a `GET` request to `/health`
             )
             .headers(header_map)
             .build()?;
-        let info = OperationInfo { operation_id: "x" };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Search embedding models
-
-Searches Hugging Face for embedding models.
-
-Sends a `GET` request to `/huggingface/embeddings`
-
-Arguments:
-- `limit`: Number of models (default 50, max 100)
-- `search`: Search query
-*/
-    pub async fn get_huggingface_embeddings<'a>(
-        &'a self,
-        limit: Option<i64>,
-        search: Option<&'a str>,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceModelsResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/huggingface/embeddings", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("limit", &limit))
-            .query(&progenitor_client::QueryParam::new("search", &search))
-            .headers(header_map)
-            .build()?;
         let info = OperationInfo {
-            operation_id: "get_huggingface_embeddings",
+            operation_id: "generated_get_health_12d00a941e",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -13189,1640 +15714,6 @@ Arguments:
         let response = result?;
         match response.status().as_u16() {
             200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get Hugging Face file sizes
-
-Returns GGUF file sizes and quantization for a Hugging Face repository.
-
-Sends a `GET` request to `/huggingface/files`
-
-Arguments:
-- `repo`: Hugging Face repository ID (e.g. owner/model)
-*/
-    pub async fn get_huggingface_files<'a>(
-        &'a self,
-        repo: &'a str,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceGgufFileResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/huggingface/files", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("repo", &repo))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_huggingface_files",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Search Hugging Face models
-
-Searches Hugging Face for compatible models matching the query.
-
-Sends a `GET` request to `/huggingface/models`
-
-Arguments:
-- `q`: Search query
-*/
-    pub async fn get_huggingface_models<'a>(
-        &'a self,
-        q: Option<&'a str>,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceModelsResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/huggingface/models", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("q", &q))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_huggingface_models",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get Hugging Face organization info
-
-Returns profile information for a Hugging Face organization.
-
-Sends a `GET` request to `/huggingface/orgs/{org}`
-
-Arguments:
-- `org`: Hugging Face organization name
-*/
-    pub async fn get_huggingface_orgs<'a>(
-        &'a self,
-        org: &'a str,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceOrgInfoResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/huggingface/orgs/{}", self.baseurl, encode_path(& org.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_huggingface_orgs",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Search Hugging Face models by tag
-
-Searches Hugging Face for models matching a query and pipeline tag.
-
-Sends a `GET` request to `/huggingface/search-tag`
-
-Arguments:
-- `limit`: Number of models (default 50, max 100)
-- `pipeline_tag`: Pipeline tag (e.g. text-generation)
-- `q`: Search query
-*/
-    pub async fn get_huggingface_search_tag<'a>(
-        &'a self,
-        limit: Option<i64>,
-        pipeline_tag: &'a str,
-        q: &'a str,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceModelsResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/huggingface/search-tag", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("limit", &limit))
-            .query(&progenitor_client::QueryParam::new("pipeline_tag", &pipeline_tag))
-            .query(&progenitor_client::QueryParam::new("q", &q))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_huggingface_search_tag",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Trending Hugging Face models
-
-Returns trending Hugging Face models.
-
-Sends a `GET` request to `/huggingface/trending`
-
-Arguments:
-- `limit`: Number of models (default 20, max 100)
-*/
-    pub async fn get_huggingface_trending<'a>(
-        &'a self,
-        limit: Option<i64>,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceModelsResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/huggingface/trending", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("limit", &limit))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_huggingface_trending",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List available GPUs
-
-Returns the GPU catalog with pricing, regions, and availability for the authenticated account.
-
-Sends a `GET` request to `/instance-config/gpus`
-
-*/
-    pub async fn get_instance_config_gpus<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::GpuListResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/instance-config/gpus", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_instance_config_gpus",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            502u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List inference instances
-
-Sends a `GET` request to `/instances`
-
-Arguments:
-- `state`: Optional state filter (non_bootstrap, pending, running, stopped, failed)
-*/
-    pub async fn get_instances<'a>(
-        &'a self,
-        state: Option<&'a str>,
-    ) -> Result<
-        ResponseValue<types::InstanceListResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/instances", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("state", &state))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_instances",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create an inference instance
-
-Sends a `POST` request to `/instances`
-
-Arguments:
-- `idempotency_key`: Optional idempotency key
-- `body`
-*/
-    pub async fn post_instances<'a>(
-        &'a self,
-        idempotency_key: Option<&'a str>,
-        body: &'a types::CreateInstanceRequest,
-    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/instances", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        if let Some(value) = idempotency_key {
-            header_map.append("Idempotency-Key", value.to_string().try_into()?);
-        }
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_instances",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            402u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get an inference instance
-
-Sends a `GET` request to `/instances/{instanceID}`
-
-Arguments:
-- `instance_id`: Instance ID
-*/
-    pub async fn get_instance_by_id<'a>(
-        &'a self,
-        instance_id: &'a str,
-    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/instances/{}", self.baseurl, encode_path(& instance_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_instance_by_id",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete an inference instance
-
-Sends a `DELETE` request to `/instances/{instanceID}`
-
-Arguments:
-- `instance_id`: Instance ID
-*/
-    pub async fn delete_instance<'a>(
-        &'a self,
-        instance_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/instances/{}", self.baseurl, encode_path(& instance_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_instance",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update an inference instance
-
-Sends a `PATCH` request to `/instances/{instanceID}`
-
-Arguments:
-- `instance_id`: Instance ID
-- `body`
-*/
-    pub async fn patch_instance<'a>(
-        &'a self,
-        instance_id: &'a str,
-        body: &'a types::UpdateInstanceRequest,
-    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/instances/{}", self.baseurl, encode_path(& instance_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_instance",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Preview smart selection for an existing instance update
-
-Previews the compatibility and smart selection for an existing instance while applying smart-setting overrides from the request body. Lets the instance settings page fetch the same backend-filtered GPU list used at launch time instead of reimplementing compatibility filtering in the UI.
-
-Sends a `POST` request to `/instances/{instanceID}/preview`
-
-Arguments:
-- `instance_id`: Instance ID
-- `body`
-*/
-    pub async fn post_instance_preview_update<'a>(
-        &'a self,
-        instance_id: &'a str,
-        body: &'a types::PreviewInstanceUpdateRequest,
-    ) -> Result<
-        ResponseValue<types::PreviewInstanceResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/instances/{}/preview", self.baseurl, encode_path(& instance_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_instance_preview_update",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List schedule rules for an instance
-
-Sends a `GET` request to `/instances/{instanceID}/schedule-rules`
-
-Arguments:
-- `instance_id`: Instance ID
-*/
-    pub async fn get_instance_schedule_rules<'a>(
-        &'a self,
-        instance_id: &'a str,
-    ) -> Result<
-        ResponseValue<types::ScheduleRuleListResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/instances/{}/schedule-rules", self.baseurl, encode_path(& instance_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_instance_schedule_rules",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a schedule rule for an instance
-
-Sends a `POST` request to `/instances/{instanceID}/schedule-rules`
-
-Arguments:
-- `instance_id`: Instance ID
-- `body`
-*/
-    pub async fn post_instance_schedule_rule<'a>(
-        &'a self,
-        instance_id: &'a str,
-        body: &'a types::ScheduleRuleRequest,
-    ) -> Result<
-        ResponseValue<types::ScheduleRuleResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/instances/{}/schedule-rules", self.baseurl, encode_path(& instance_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_instance_schedule_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a schedule rule for an instance
-
-Sends a `DELETE` request to `/instances/{instanceID}/schedule-rules/{ruleID}`
-
-Arguments:
-- `instance_id`: Instance ID
-- `rule_id`: Schedule rule ID
-*/
-    pub async fn delete_instance_schedule_rule<'a>(
-        &'a self,
-        instance_id: &'a str,
-        rule_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/instances/{}/schedule-rules/{}", self.baseurl, encode_path(& instance_id
-            .to_string()), encode_path(& rule_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_instance_schedule_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a schedule rule for an instance
-
-Sends a `PATCH` request to `/instances/{instanceID}/schedule-rules/{ruleID}`
-
-Arguments:
-- `instance_id`: Instance ID
-- `rule_id`: Schedule rule ID
-- `body`
-*/
-    pub async fn patch_instance_schedule_rule<'a>(
-        &'a self,
-        instance_id: &'a str,
-        rule_id: &'a str,
-        body: &'a types::ScheduleRuleRequest,
-    ) -> Result<
-        ResponseValue<types::ScheduleRuleResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/instances/{}/schedule-rules/{}", self.baseurl, encode_path(& instance_id
-            .to_string()), encode_path(& rule_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_instance_schedule_rule",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Start an inference instance
-
-Sends a `POST` request to `/instances/{instanceID}/start`
-
-Arguments:
-- `instance_id`: Instance ID
-*/
-    pub async fn post_instance_start<'a>(
-        &'a self,
-        instance_id: &'a str,
-    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/instances/{}/start", self.baseurl, encode_path(& instance_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_instance_start",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Stop an inference instance
-
-Sends a `POST` request to `/instances/{instanceID}/stop`
-
-Arguments:
-- `instance_id`: Instance ID
-*/
-    pub async fn post_instance_stop<'a>(
-        &'a self,
-        instance_id: &'a str,
-    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/instances/{}/stop", self.baseurl, encode_path(& instance_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_instance_stop",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get an inference instance usage and cost breakdown
-
-Sends a `GET` request to `/instances/{instanceID}/usage`
-
-Arguments:
-- `instance_id`: Instance ID
-- `range`: Time range (24h, 7d, 30d)
-*/
-    pub async fn get_instance_usage<'a>(
-        &'a self,
-        instance_id: &'a str,
-        range: Option<types::GetInstanceUsageRange>,
-    ) -> Result<
-        ResponseValue<types::InstanceUsageResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/instances/{}/usage", self.baseurl, encode_path(& instance_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .query(&progenitor_client::QueryParam::new("range", &range))
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_instance_usage",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List pending invitations for the authenticated user
-
-Returns invitations pending acceptance that were sent to the authenticated user's email.
-
-Sends a `GET` request to `/invitations`
-
-*/
-    pub async fn get_invitations<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::InvitationListResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/invitations", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_invitations",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Accept an invitation
-
-Accepts a pending invitation by token or invitation ID and attaches the authenticated user to the account.
-
-Sends a `POST` request to `/invitations/accept`
-
-*/
-    pub async fn post_invitations_accept<'a>(
-        &'a self,
-        body: &'a types::AcceptInvitationRequest,
-    ) -> Result<
-        ResponseValue<types::AccountMembershipResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/invitations/accept", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_invitations_accept",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            410u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List fixed models
-
-Returns the catalog of fixed (curated) models supported by the platform.
-
-Sends a `GET` request to `/models/fixed`
-
-*/
-    pub async fn get_models_fixed<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::HuggingFaceModelsResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/models/fixed", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_models_fixed",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List replica sets
-
-Sends a `GET` request to `/replica-sets`
-
-*/
-    pub async fn get_replica_sets<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::ReplicaSetListResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/replica-sets", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_replica_sets",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get a replica set
-
-Sends a `GET` request to `/replica-sets/{replicaSetID}`
-
-Arguments:
-- `replica_set_id`: Replica set ID
-*/
-    pub async fn get_replica_set<'a>(
-        &'a self,
-        replica_set_id: &'a str,
-    ) -> Result<ResponseValue<types::ReplicaSetResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/replica-sets/{}", self.baseurl, encode_path(& replica_set_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_replica_set",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a replica set
-
-Sends a `DELETE` request to `/replica-sets/{replicaSetID}`
-
-Arguments:
-- `replica_set_id`: Replica set ID
-*/
-    pub async fn delete_replica_set<'a>(
-        &'a self,
-        replica_set_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/replica-sets/{}", self.baseurl, encode_path(& replica_set_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_replica_set",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a replica set
-
-Sends a `PATCH` request to `/replica-sets/{replicaSetID}`
-
-Arguments:
-- `replica_set_id`: Replica set ID
-- `body`
-*/
-    pub async fn patch_replica_set<'a>(
-        &'a self,
-        replica_set_id: &'a str,
-        body: &'a types::UpdateReplicaSetRequest,
-    ) -> Result<ResponseValue<types::ReplicaSetResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/replica-sets/{}", self.baseurl, encode_path(& replica_set_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_replica_set",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Scale a replica set
-
-Sends a `POST` request to `/replica-sets/{replicaSetID}/scale`
-
-Arguments:
-- `replica_set_id`: Replica set ID
-- `body`
-*/
-    pub async fn post_replica_set_scale<'a>(
-        &'a self,
-        replica_set_id: &'a str,
-        body: &'a types::ScaleReplicaSetRequest,
-    ) -> Result<ResponseValue<types::ReplicaSetResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/replica-sets/{}/scale", self.baseurl, encode_path(& replica_set_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_replica_set_scale",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
@@ -14880,23 +15771,18 @@ Sends a `POST` request to `/runtime/notify/crash`
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**List serving endpoints
+    /**Report runtime startup progress
 
-Sends a `GET` request to `/serving-endpoints`
+Authenticated runtime-only endpoint. Send attempt_id and phase to advance startup (204). Once per launcher boot, send launch_id and phase=preparing_runtime to resolve the current attempt, including resumed containers (200). Unknown or stale attempts cannot advance progress. Readiness is verified independently.
+
+Sends a `POST` request to `/runtime/notify/progress`
 
 */
-    pub async fn get_serving_endpoints<'a>(
+    pub async fn post_runtime_notify_progress<'a>(
         &'a self,
-    ) -> Result<
-        ResponseValue<
-            ::std::collections::HashMap<
-                ::std::string::String,
-                ::std::vec::Vec<types::ServingEndpointResponse>,
-            >,
-        >,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/serving-endpoints", self.baseurl,);
+        body: &'a types::RuntimeProgressRequest,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!("{}/runtime/notify/progress", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -14904,17 +15790,9 @@ Sends a `GET` request to `/serving-endpoints`
                 ::reqwest::header::HeaderValue::from_static(Self::api_version()),
             );
         #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
+        let mut request = self.client.post(url).json(&body).headers(header_map).build()?;
         let info = OperationInfo {
-            operation_id: "get_serving_endpoints",
+            operation_id: "post_runtime_notify_progress",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -14925,91 +15803,28 @@ Sends a `GET` request to `/serving-endpoints`
         self.post(&result, &info).await?;
         let response = result?;
         match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a serving endpoint
-
-Sends a `POST` request to `/serving-endpoints`
-
-*/
-    pub async fn post_serving_endpoint<'a>(
-        &'a self,
-        body: &'a types::CreateServingEndpointRequest,
-    ) -> Result<
-        ResponseValue<types::ServingEndpointResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/serving-endpoints", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_serving_endpoint",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
+            200u16 => Ok(ResponseValue::stream(response)),
+            204u16 => Ok(ResponseValue::stream(response)),
             400u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             401u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
-            409u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**List smart balancers
+    /**List user accounts
 
-Sends a `GET` request to `/smart-balancers`
+Returns the accounts and memberships visible to the authenticated user.
+
+Sends a `GET` request to `/v1/accounts`
 
 */
-    pub async fn get_smart_balancers<'a>(
+    pub async fn get_accounts<'a>(
         &'a self,
-    ) -> Result<
-        ResponseValue<
-            ::std::collections::HashMap<
-                ::std::string::String,
-                ::std::vec::Vec<types::SmartBalancerViewResponse>,
-            >,
-        >,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/smart-balancers", self.baseurl,);
+    ) -> Result<ResponseValue<types::AccountListResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/accounts", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -15027,7 +15842,7 @@ Sends a `GET` request to `/smart-balancers`
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "get_smart_balancers",
+            operation_id: "get_accounts",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15048,19 +15863,21 @@ Sends a `GET` request to `/smart-balancers`
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Create a smart balancer
+    /**Create an account
 
-Sends a `POST` request to `/smart-balancers`
+Creates a new account owned by the authenticated user.
+
+Sends a `POST` request to `/v1/accounts`
 
 */
-    pub async fn post_smart_balancer<'a>(
+    pub async fn post_accounts<'a>(
         &'a self,
-        body: &'a types::CreateSmartBalancerRequest,
+        body: &'a types::CreateAccountRequest,
     ) -> Result<
-        ResponseValue<types::SmartBalancerViewResponse>,
+        ResponseValue<types::AccountMembershipResponse>,
         Error<types::ErrorResponse>,
     > {
-        let url = format!("{}/smart-balancers", self.baseurl,);
+        let url = format!("{}/v1/accounts", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -15079,7 +15896,7 @@ Sends a `POST` request to `/smart-balancers`
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "post_smart_balancer",
+            operation_id: "post_accounts",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15103,20 +15920,255 @@ Sends a `POST` request to `/smart-balancers`
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Delete a smart balancer
+    /**Get the selected account
 
-Sends a `DELETE` request to `/smart-balancers/{smartBalancerID}`
+Returns the account resolved from the active account context.
+
+Sends a `GET` request to `/v1/accounts/current`
+
+*/
+    pub async fn get_accounts_current<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::AccountResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/accounts/current", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_accounts_current",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete the selected account
+
+Deletes the active account context.
+
+Sends a `DELETE` request to `/v1/accounts/current`
+
+*/
+    pub async fn delete_accounts_current<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/accounts/current", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_accounts_current",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update the selected account
+
+Updates editable metadata for the active account context.
+
+Sends a `PATCH` request to `/v1/accounts/current`
+
+*/
+    pub async fn patch_accounts_current<'a>(
+        &'a self,
+        body: &'a types::UpdateAccountRequest,
+    ) -> Result<ResponseValue<types::AccountResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/accounts/current", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_accounts_current",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create an invitation for the selected account
+
+Invites a user by email to join the active account context with a given role.
+
+Sends a `POST` request to `/v1/accounts/current/invitations`
+
+*/
+    pub async fn post_accounts_current_invitations<'a>(
+        &'a self,
+        body: &'a types::CreateInvitationRequest,
+    ) -> Result<ResponseValue<types::InvitationResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/accounts/current/invitations", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_accounts_current_invitations",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            412u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Cancel an invitation for the selected account
+
+Cancels a pending invitation issued by the active account context.
+
+Sends a `DELETE` request to `/v1/accounts/current/invitations/{invitationID}`
 
 Arguments:
-- `smart_balancer_id`: Smart balancer ID
+- `invitation_id`: Invitation ID
 */
-    pub async fn delete_smart_balancer<'a>(
+    pub async fn delete_accounts_current_invitations_by_invitation_id<'a>(
         &'a self,
-        smart_balancer_id: &'a str,
+        invitation_id: &'a str,
     ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
         let url = format!(
-            "{}/smart-balancers/{}", self.baseurl, encode_path(& smart_balancer_id
-            .to_string()),
+            "{}/v1/accounts/current/invitations/{}", self.baseurl, encode_path(&
+            invitation_id.to_string()),
         );
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
@@ -15135,7 +16187,7 @@ Arguments:
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "delete_smart_balancer",
+            operation_id: "delete_accounts_current_invitations_by_invitation_id",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15165,24 +16217,147 @@ Arguments:
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Update a smart balancer
+    /**List selected account members
 
-Sends a `PATCH` request to `/smart-balancers/{smartBalancerID}`
+Returns the members and roles for the active account context.
+
+Sends a `GET` request to `/v1/accounts/current/members`
+
+*/
+    pub async fn get_accounts_current_members<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::AccountMemberListResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/accounts/current/members", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_accounts_current_members",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Add a member to the selected account
+
+Adds a registered user to the active account context or updates their role if they already belong to it.
+
+Sends a `POST` request to `/v1/accounts/current/members`
+
+*/
+    pub async fn post_accounts_current_members<'a>(
+        &'a self,
+        body: &'a types::AddAccountMemberRequest,
+    ) -> Result<
+        ResponseValue<types::AccountMemberResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/accounts/current/members", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_accounts_current_members",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            412u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a selected account member role
+
+Updates the role of an existing user within the active account context.
+
+Sends a `PATCH` request to `/v1/accounts/current/members/{userID}`
 
 Arguments:
-- `smart_balancer_id`: Smart balancer ID
+- `user_id`: User ID
 - `body`
 */
-    pub async fn patch_smart_balancer<'a>(
+    pub async fn patch_accounts_current_members_by_user_id<'a>(
         &'a self,
-        smart_balancer_id: &'a str,
-        body: &'a types::UpdateSmartBalancerRequest,
+        user_id: &'a str,
+        body: &'a types::UpdateAccountMemberRequest,
     ) -> Result<
-        ResponseValue<types::SmartBalancerViewResponse>,
+        ResponseValue<types::AccountMemberResponse>,
         Error<types::ErrorResponse>,
     > {
         let url = format!(
-            "{}/smart-balancers/{}", self.baseurl, encode_path(& smart_balancer_id
+            "{}/v1/accounts/current/members/{}", self.baseurl, encode_path(& user_id
             .to_string()),
         );
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
@@ -15203,7 +16378,7 @@ Arguments:
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "patch_smart_balancer",
+            operation_id: "patch_accounts_current_members_by_user_id",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15227,319 +16402,7 @@ Arguments:
             404u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List storage volumes
-
-Lists all persistent storage volumes owned by the authenticated account.
-
-Sends a `GET` request to `/storage/volumes`
-
-*/
-    pub async fn get_storage_volumes<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<types::StorageVolumeResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/storage/volumes", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_storage_volumes",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Create a storage volume
-
-Creates a persistent storage volume for model checkpoints and caches.
-
-Sends a `POST` request to `/storage/volumes`
-
-*/
-    pub async fn post_storage_volumes<'a>(
-        &'a self,
-        body: &'a types::CreateStorageVolumeRequest,
-    ) -> Result<
-        ResponseValue<types::StorageVolumeResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/storage/volumes", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "post_storage_volumes",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Get a storage volume
-
-Returns details for a specific persistent storage volume.
-
-Sends a `GET` request to `/storage/volumes/{volumeID}`
-
-Arguments:
-- `volume_id`: Volume ID
-*/
-    pub async fn get_storage_volume<'a>(
-        &'a self,
-        volume_id: &'a str,
-    ) -> Result<
-        ResponseValue<types::StorageVolumeResponse>,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!(
-            "{}/storage/volumes/{}", self.baseurl, encode_path(& volume_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_storage_volume",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a storage volume
-
-Deletes a persistent storage volume and its contents.
-
-Sends a `DELETE` request to `/storage/volumes/{volumeID}`
-
-Arguments:
-- `volume_id`: Volume ID
-*/
-    pub async fn delete_storage_volume<'a>(
-        &'a self,
-        volume_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/storage/volumes/{}", self.baseurl, encode_path(& volume_id.to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_storage_volume",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List system tools
-
-Lists available system tools (code interpreter, web search, etc.) for the authenticated account.
-
-Sends a `GET` request to `/system-tools`
-
-*/
-    pub async fn get_system_tools<'a>(
-        &'a self,
-    ) -> Result<ResponseValue<types::SystemToolOutput>, Error<types::ErrorResponse>> {
-        let url = format!("{}/system-tools", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_system_tools",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List target groups
-
-Sends a `GET` request to `/target-groups`
-
-*/
-    pub async fn get_target_groups<'a>(
-        &'a self,
-    ) -> Result<
-        ResponseValue<
-            ::std::collections::HashMap<
-                ::std::string::String,
-                ::std::vec::Vec<types::TargetGroupResponse>,
-            >,
-        >,
-        Error<types::ErrorResponse>,
-    > {
-        let url = format!("{}/target-groups", self.baseurl,);
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_target_groups",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            401u16 => {
+            412u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             500u16 => {
@@ -15548,16 +16411,18 @@ Sends a `GET` request to `/target-groups`
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Create a target group
+    /**Chat with the agent
 
-Sends a `POST` request to `/target-groups`
+Stream an agent conversation over server-sent events. Messages may include tool calls returned by a previous turn.
+
+Sends a `POST` request to `/v1/agent/chat`
 
 */
-    pub async fn post_target_group<'a>(
+    pub async fn post_v1_agent_chat<'a>(
         &'a self,
-        body: &'a types::CreateTargetGroupRequest,
-    ) -> Result<ResponseValue<types::TargetGroupResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/target-groups", self.baseurl,);
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<ByteStream>, Error<()>> {
+        let url = format!("{}/v1/agent/chat", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -15565,18 +16430,9 @@ Sends a `POST` request to `/target-groups`
                 ::reqwest::header::HeaderValue::from_static(Self::api_version()),
             );
         #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .post(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
+        let mut request = self.client.post(url).json(&body).headers(header_map).build()?;
         let info = OperationInfo {
-            operation_id: "post_target_group",
+            operation_id: "post_v1_agent_chat",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15587,219 +16443,22 @@ Sends a `POST` request to `/target-groups`
         self.post(&result, &info).await?;
         let response = result?;
         match response.status().as_u16() {
-            201u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
+            200u16 => Ok(ResponseValue::stream(response)),
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Get a target group
+    /**List API keys for the selected account
 
-Sends a `GET` request to `/target-groups/{targetGroupID}`
+Returns the API keys issued for the active account context.
 
-Arguments:
-- `target_group_id`: Target group ID
-*/
-    pub async fn get_target_group<'a>(
-        &'a self,
-        target_group_id: &'a str,
-    ) -> Result<ResponseValue<types::TargetGroupResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/target-groups/{}", self.baseurl, encode_path(& target_group_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .get(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "get_target_group",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Delete a target group
-
-Sends a `DELETE` request to `/target-groups/{targetGroupID}`
-
-Arguments:
-- `target_group_id`: Target group ID
-*/
-    pub async fn delete_target_group<'a>(
-        &'a self,
-        target_group_id: &'a str,
-    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/target-groups/{}", self.baseurl, encode_path(& target_group_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .delete(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "delete_target_group",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            204u16 => Ok(ResponseValue::empty(response)),
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**Update a target group
-
-Sends a `PATCH` request to `/target-groups/{targetGroupID}`
-
-Arguments:
-- `target_group_id`: Target group ID
-- `body`
-*/
-    pub async fn patch_target_group<'a>(
-        &'a self,
-        target_group_id: &'a str,
-        body: &'a types::UpdateTargetGroupRequest,
-    ) -> Result<ResponseValue<types::TargetGroupResponse>, Error<types::ErrorResponse>> {
-        let url = format!(
-            "{}/target-groups/{}", self.baseurl, encode_path(& target_group_id
-            .to_string()),
-        );
-        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
-        header_map
-            .append(
-                ::reqwest::header::HeaderName::from_static("api-version"),
-                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
-            );
-        #[allow(unused_mut)]
-        let mut request = self
-            .client
-            .patch(url)
-            .header(
-                ::reqwest::header::ACCEPT,
-                ::reqwest::header::HeaderValue::from_static("application/json"),
-            )
-            .json(&body)
-            .headers(header_map)
-            .build()?;
-        let info = OperationInfo {
-            operation_id: "patch_target_group",
-        };
-        match (crate::auth::inject)(&mut request).await {
-            Ok(_) => {}
-            Err(e) => return Err(Error::Custom(e.to_string())),
-        }
-        self.pre(&mut request, &info).await?;
-        let result = self.exec(request, &info).await;
-        self.post(&result, &info).await?;
-        let response = result?;
-        match response.status().as_u16() {
-            200u16 => ResponseValue::from_response(response).await,
-            400u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            401u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            403u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            404u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            500u16 => {
-                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
-            }
-            _ => Err(Error::UnexpectedResponse(response)),
-        }
-    }
-    /**List API keys for the authenticated user
-
-Returns the API keys issued for the authenticated user identity.
-
-Sends a `GET` request to `/users/me/api-keys`
+Sends a `GET` request to `/v1/api-keys`
 
 */
-    pub async fn get_user_api_keys<'a>(
+    pub async fn get_api_keys<'a>(
         &'a self,
     ) -> Result<ResponseValue<types::ApiKeyListResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/users/me/api-keys", self.baseurl,);
+        let url = format!("{}/v1/api-keys", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -15817,7 +16476,7 @@ Sends a `GET` request to `/users/me/api-keys`
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "get_user_api_keys",
+            operation_id: "get_api_keys",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15832,23 +16491,26 @@ Sends a `GET` request to `/users/me/api-keys`
             401u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
             500u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Create an API key for the authenticated user
+    /**Create an API key for the selected account
 
-Issues a new API key for the authenticated user identity and returns the plaintext key once.
+Issues a new API key for the active account context and returns the plaintext key once.
 
-Sends a `POST` request to `/users/me/api-keys`
+Sends a `POST` request to `/v1/api-keys`
 
 */
-    pub async fn post_user_api_keys<'a>(
+    pub async fn post_api_keys<'a>(
         &'a self,
     ) -> Result<ResponseValue<types::ApiKeyResponse>, Error<types::ErrorResponse>> {
-        let url = format!("{}/users/me/api-keys", self.baseurl,);
+        let url = format!("{}/v1/api-keys", self.baseurl,);
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
             .append(
@@ -15866,7 +16528,7 @@ Sends a `POST` request to `/users/me/api-keys`
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "post_user_api_keys",
+            operation_id: "post_api_keys",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15881,28 +16543,30 @@ Sends a `POST` request to `/users/me/api-keys`
             401u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
             500u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
-    /**Revoke a user API key
+    /**Revoke an API key
 
-Revokes an API key issued for the authenticated user identity.
+Revokes an API key issued for the active account context.
 
-Sends a `POST` request to `/users/me/api-keys/{keyID}/revoke`
+Sends a `POST` request to `/v1/api-keys/{keyID}/revoke`
 
 Arguments:
 - `key_id`: API key ID
 */
-    pub async fn post_user_api_keys_key_id_revoke<'a>(
+    pub async fn post_api_keys_key_id_revoke<'a>(
         &'a self,
         key_id: &'a str,
     ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
         let url = format!(
-            "{}/users/me/api-keys/{}/revoke", self.baseurl, encode_path(& key_id
-            .to_string()),
+            "{}/v1/api-keys/{}/revoke", self.baseurl, encode_path(& key_id.to_string()),
         );
         let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
         header_map
@@ -15921,7 +16585,7 @@ Arguments:
             .headers(header_map)
             .build()?;
         let info = OperationInfo {
-            operation_id: "post_user_api_keys_key_id_revoke",
+            operation_id: "post_api_keys_key_id_revoke",
         };
         match (crate::auth::inject)(&mut request).await {
             Ok(_) => {}
@@ -15937,6 +16601,9 @@ Arguments:
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             404u16 => {
@@ -16052,6 +16719,3015 @@ Arguments:
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
+    /**List audit events
+
+List audit events for the authenticated account with optional filters.
+
+Sends a `GET` request to `/v1/audit`
+
+Arguments:
+- `action`: Filter by semantic action
+- `from`: RFC3339 lower time bound
+- `limit`: Maximum number of events
+- `method`: Filter by HTTP method
+- `offset`: Pagination offset
+- `path`: Filter by route path
+- `status`: Filter by HTTP status code
+- `to`: RFC3339 upper time bound
+- `user_id`: Filter by user ID
+*/
+    pub async fn get_v1_audit<'a>(
+        &'a self,
+        action: Option<&'a str>,
+        from: Option<&'a str>,
+        limit: Option<i64>,
+        method: Option<&'a str>,
+        offset: Option<i64>,
+        path: Option<&'a str>,
+        status: Option<&'a str>,
+        to: Option<&'a str>,
+        user_id: Option<&'a str>,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/audit", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("action", &action))
+            .query(&progenitor_client::QueryParam::new("from", &from))
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .query(&progenitor_client::QueryParam::new("method", &method))
+            .query(&progenitor_client::QueryParam::new("offset", &offset))
+            .query(&progenitor_client::QueryParam::new("path", &path))
+            .query(&progenitor_client::QueryParam::new("status", &status))
+            .query(&progenitor_client::QueryParam::new("to", &to))
+            .query(&progenitor_client::QueryParam::new("user_id", &user_id))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_audit",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Request a password reset email
+
+Always returns 200 with a generic message to avoid user enumeration.
+
+Sends a `POST` request to `/v1/auth/forgot-password`
+
+*/
+    pub async fn post_auth_forgot_password<'a>(
+        &'a self,
+        body: &'a types::ForgotPasswordRequest,
+    ) -> Result<
+        ResponseValue<types::ForgotPasswordResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/forgot-password", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_forgot_password",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Record current legal acceptances
+
+Appends server-validated legal acceptance evidence for the authenticated user.
+
+Sends a `POST` request to `/v1/auth/legal-acceptances`
+
+*/
+    pub async fn post_auth_legal_acceptances<'a>(
+        &'a self,
+        body: &'a types::LegalAcceptanceRequest,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/legal-acceptances", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_legal_acceptances",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Authenticate a user
+
+Authenticates a user with email and password. If verification is required, the JSON response may include a next_step. Only successful authentication sets the HTTP-only qdiv0_access and qdiv0_refresh browser-session cookies; the JSON response contains no access or refresh token values.
+
+Sends a `POST` request to `/v1/auth/login`
+
+*/
+    pub async fn post_auth_login<'a>(
+        &'a self,
+        body: &'a types::LoginRequest,
+    ) -> Result<ResponseValue<types::LoginResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/login", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_login",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Resend a password sign-in email
+
+Revalidates the supplied password and sends a fresh sign-in email when the account uses email sign-in verification. The response is intentionally generic.
+
+Sends a `POST` request to `/v1/auth/login/resend`
+
+*/
+    pub async fn post_auth_login_resend<'a>(
+        &'a self,
+        body: &'a types::ResendLoginEmailRequest,
+    ) -> Result<ResponseValue<types::ResendEmailResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/login/resend", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_login_resend",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            202u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            429u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Log out
+
+Clear the HTTP-only qdiv0_access and qdiv0_refresh browser-session cookies.
+
+Sends a `POST` request to `/v1/auth/logout`
+
+*/
+    pub async fn post_v1_auth_logout<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<()>, Error<()>> {
+        let url = format!("{}/v1/auth/logout", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.post(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_auth_logout",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Return the current authenticated user
+
+Resolves the user attached to the bearer token.
+
+Sends a `GET` request to `/v1/auth/me`
+
+*/
+    pub async fn get_auth_me<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::UserInfoResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/me", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_me",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List linked OAuth identities
+
+Returns the authenticated user's linked providers without exposing secrets.
+
+Sends a `GET` request to `/v1/auth/oauth/identities`
+
+*/
+    pub async fn get_auth_oauth_identities<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/oauth/identities", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_oauth_identities",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Unlink an OAuth identity
+
+Removes a provider identity. The auth service enforces the last-access-method invariant.
+
+Sends a `DELETE` request to `/v1/auth/oauth/identities/{provider}`
+
+Arguments:
+- `provider`: OAuth provider
+*/
+    pub async fn delete_auth_oauth_identities_provider<'a>(
+        &'a self,
+        provider: &'a str,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/auth/oauth/identities/{}", self.baseurl, encode_path(& provider
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_auth_oauth_identities_provider",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Complete OAuth signup
+
+Completes an OAuth-only signup with the continuation token and legal acceptance payload, then sets the browser session.
+
+Sends a `POST` request to `/v1/auth/oauth/signup`
+
+*/
+    pub async fn post_auth_oauth_signup<'a>(
+        &'a self,
+        body: &'a types::OauthSignupRequest,
+    ) -> Result<
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/oauth/signup", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_oauth_signup",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Complete OAuth TOTP challenge
+
+Redeems a totp_required continuation and sets the browser session.
+
+Sends a `POST` request to `/v1/auth/oauth/totp`
+
+*/
+    pub async fn post_auth_oauth_totp<'a>(
+        &'a self,
+        body: &'a types::OauthTotpRequest,
+    ) -> Result<
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/oauth/totp", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_oauth_totp",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Start OAuth sign-in
+
+Redirects the browser to the selected provider. The optional redirect URI must be allowlisted by the auth service.
+
+Sends a `GET` request to `/v1/auth/oauth/{provider}/begin`
+
+Arguments:
+- `provider`: OAuth provider
+- `redirect_uri`: Optional allowlisted callback URI
+*/
+    pub async fn get_auth_oauth_provider_begin<'a>(
+        &'a self,
+        provider: &'a str,
+        redirect_uri: Option<&'a str>,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/auth/oauth/{}/begin", self.baseurl, encode_path(& provider
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .query(&progenitor_client::QueryParam::new("redirect_uri", &redirect_uri))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_oauth_provider_begin",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200..=299 => Ok(ResponseValue::stream(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            429u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Finish OAuth callback
+
+Exchanges the provider authorization code and redirects to the frontend. Tokens are stored in HttpOnly cookies or a continuation is returned in the URL fragment.
+
+Sends a `GET` request to `/v1/auth/oauth/{provider}/callback`
+
+Arguments:
+- `provider`: OAuth provider
+- `code`: Provider authorization code
+- `error`: Provider error
+- `state`: OAuth state
+*/
+    pub async fn get_auth_oauth_provider_callback<'a>(
+        &'a self,
+        provider: &'a str,
+        code: Option<&'a str>,
+        error: Option<&'a str>,
+        state: Option<&'a str>,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/auth/oauth/{}/callback", self.baseurl, encode_path(& provider
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .query(&progenitor_client::QueryParam::new("code", &code))
+            .query(&progenitor_client::QueryParam::new("error", &error))
+            .query(&progenitor_client::QueryParam::new("state", &state))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_oauth_provider_callback",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200..=299 => Ok(ResponseValue::stream(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Link an OAuth provider
+
+Redirects an authenticated user to the selected provider to link that identity.
+
+Sends a `POST` request to `/v1/auth/oauth/{provider}/link`
+
+Arguments:
+- `provider`: OAuth provider
+*/
+    pub async fn post_auth_oauth_provider_link<'a>(
+        &'a self,
+        provider: &'a str,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/auth/oauth/{}/link", self.baseurl, encode_path(& provider
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.post(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_oauth_provider_link",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200..=299 => Ok(ResponseValue::stream(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            429u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List passkeys
+
+Returns the current user's passkey credentials.
+
+Sends a `GET` request to `/v1/auth/passkeys`
+
+*/
+    pub async fn get_auth_passkeys<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::PasskeyListResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/passkeys", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_passkeys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Register a passkey
+
+Stores a passkey credential for the authenticated user.
+
+Sends a `POST` request to `/v1/auth/passkeys`
+
+*/
+    pub async fn post_auth_passkeys<'a>(
+        &'a self,
+        body: &'a types::RegisterPasskeyRequest,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/passkeys", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_passkeys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Begin passkey login
+
+Creates a passkey login challenge for the provided email.
+
+Sends a `POST` request to `/v1/auth/passkeys/begin-login`
+
+*/
+    pub async fn post_auth_passkeys_begin_login<'a>(
+        &'a self,
+        body: &'a types::BeginPasskeyloginRequest,
+    ) -> Result<
+        ResponseValue<types::BeginPasskeyloginResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/passkeys/begin-login", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_passkeys_begin_login",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Begin passkey registration
+
+Creates a passkey registration challenge for the authenticated user.
+
+Sends a `POST` request to `/v1/auth/passkeys/begin-registration`
+
+*/
+    pub async fn post_auth_passkeys_begin_registration<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::BeginPasskeyRegistrationResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/passkeys/begin-registration", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_passkeys_begin_registration",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Finish passkey login
+
+Consumes a passkey login challenge and returns a session.
+
+Sends a `POST` request to `/v1/auth/passkeys/finish-login`
+
+*/
+    pub async fn post_auth_passkeys_finish_login<'a>(
+        &'a self,
+        body: &'a types::FinishPasskeyloginRequest,
+    ) -> Result<
+        ResponseValue<types::FinishPasskeyloginResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/passkeys/finish-login", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_passkeys_finish_login",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Finish passkey registration
+
+Consumes a passkey registration challenge and stores the credential.
+
+Sends a `POST` request to `/v1/auth/passkeys/finish-registration`
+
+*/
+    pub async fn post_auth_passkeys_finish_registration<'a>(
+        &'a self,
+        body: &'a types::FinishPasskeyRegistrationRequest,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/passkeys/finish-registration", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_passkeys_finish_registration",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Remove a passkey
+
+Deletes a passkey credential from the authenticated user.
+
+Sends a `DELETE` request to `/v1/auth/passkeys/{credentialID}`
+
+Arguments:
+- `credential_id`: Passkey credential ID
+*/
+    pub async fn delete_auth_passkeys<'a>(
+        &'a self,
+        credential_id: &'a str,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/auth/passkeys/{}", self.baseurl, encode_path(& credential_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_auth_passkeys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Change the current user's password
+
+Requires the authenticated user to provide the current password and a new password.
+
+Sends a `PATCH` request to `/v1/auth/password`
+
+*/
+    pub async fn patch_auth_password<'a>(
+        &'a self,
+        body: &'a types::ChangePasswordRequest,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/password", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_auth_password",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get the current user's security preferences
+
+Returns the per-user security toggles for the authenticated user.
+
+Sends a `GET` request to `/v1/auth/preferences`
+
+*/
+    pub async fn get_auth_preferences<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::UserPreferencesResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/preferences", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_preferences",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update the current user's security preferences
+
+Partial update of the per-user security toggles. Only fields present in the body are applied.
+
+Sends a `PATCH` request to `/v1/auth/preferences`
+
+*/
+    pub async fn patch_auth_preferences<'a>(
+        &'a self,
+        body: &'a types::UpdatePreferencesRequest,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/preferences", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_auth_preferences",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Check private beta access
+
+Check whether the request is allowed to use private-beta routes. When private-beta protection is disabled, the endpoint returns 204.
+
+Sends a `GET` request to `/v1/auth/private-beta/check`
+
+*/
+    pub async fn get_v1_auth_private_beta_check<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<()>, Error<()>> {
+        let url = format!("{}/v1/auth/private-beta/check", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.get(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_auth_private_beta_check",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Refresh the browser session
+
+Consumes the HTTP-only qdiv0_refresh cookie and, on success, resets the qdiv0_access and qdiv0_refresh browser-session cookies. The endpoint has no JSON request body and the JSON response contains no access or refresh token values.
+
+Sends a `POST` request to `/v1/auth/refresh`
+
+*/
+    pub async fn post_auth_refresh<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::RefreshResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/refresh", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_refresh",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Register a new user
+
+Creates a pending account using email and password credentials. Email verification is required; registration does not issue session tokens or cookies, and the JSON response contains no access or refresh token values.
+
+Sends a `POST` request to `/v1/auth/register`
+
+*/
+    pub async fn post_auth_register<'a>(
+        &'a self,
+        body: &'a types::RegisterRequest,
+    ) -> Result<ResponseValue<types::RegisterResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/register", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_register",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Resend an activation email
+
+Replaces the activation link for an eligible pending account. The response is intentionally generic.
+
+Sends a `POST` request to `/v1/auth/resend-activation`
+
+*/
+    pub async fn post_auth_activation_resend<'a>(
+        &'a self,
+        body: &'a types::ResendActivationEmailRequest,
+    ) -> Result<ResponseValue<types::ResendEmailResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/resend-activation", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_activation_resend",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            202u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            429u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Reset a password using a one-time token
+
+Consumes the reset token, updates the password, and returns a fresh session.
+
+Sends a `POST` request to `/v1/auth/reset-password`
+
+*/
+    pub async fn post_auth_reset_password<'a>(
+        &'a self,
+        body: &'a types::ResetPasswordRequest,
+    ) -> Result<
+        ResponseValue<types::ResetPasswordResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/reset-password", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_reset_password",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Disable TOTP
+
+Removes the current user's TOTP credential.
+
+Sends a `DELETE` request to `/v1/auth/totp`
+
+*/
+    pub async fn delete_auth_totp<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/totp", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_auth_totp",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Start TOTP enrollment
+
+Returns a new TOTP secret and otpauth URI for the authenticated user.
+
+Sends a `POST` request to `/v1/auth/totp/begin`
+
+*/
+    pub async fn post_auth_totp_begin<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::BeginTotpEnrollmentResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/auth/totp/begin", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_totp_begin",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Confirm TOTP enrollment
+
+Stores a TOTP secret for the authenticated user after verifying the code.
+
+Sends a `POST` request to `/v1/auth/totp/confirm`
+
+*/
+    pub async fn post_auth_totp_confirm<'a>(
+        &'a self,
+        body: &'a types::ConfirmTotpEnrollmentRequest,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/totp/confirm", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_auth_totp_confirm",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Revoke trusted browsers
+
+Revokes every trusted-browser token for the authenticated user and clears the current browser cookie.
+
+Sends a `DELETE` request to `/v1/auth/trusted-browsers`
+
+*/
+    pub async fn delete_auth_trusted_browsers<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::std::string::String>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/trusted-browsers", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_auth_trusted_browsers",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Verify an email activation link
+
+Consumes the activation token and returns a session.
+
+Sends a `GET` request to `/v1/auth/verify-email`
+
+Arguments:
+- `token`: Activation token from the email
+*/
+    pub async fn get_auth_verify_email<'a>(
+        &'a self,
+        token: &'a str,
+    ) -> Result<ResponseValue<types::VerifyEmailResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/auth/verify-email", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("token", &token))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_auth_verify_email",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List automations
+
+List automations belonging to the current account.
+
+Sends a `GET` request to `/v1/automations`
+
+*/
+    pub async fn get_v1_automations<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/automations", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_automations",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create automation
+
+Create an account-scoped automation connecting input, processor, and output resources.
+
+Sends a `POST` request to `/v1/automations`
+
+*/
+    pub async fn post_v1_automations<'a>(
+        &'a self,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/automations", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_automations",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List automation types
+
+List automation processor types supported by the platform.
+
+Sends a `GET` request to `/v1/automations/types`
+
+*/
+    pub async fn get_v1_automations_types<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/automations/types", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_automations_types",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get automation
+
+Get an account-scoped automation by ID.
+
+Sends a `GET` request to `/v1/automations/{automationID}`
+
+Arguments:
+- `automation_id`: Automation ID
+*/
+    pub async fn get_v1_automations_automation_id<'a>(
+        &'a self,
+        automation_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/automations/{}", self.baseurl, encode_path(& automation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_automations_automation_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete automation
+
+Delete an account-scoped automation.
+
+Sends a `DELETE` request to `/v1/automations/{automationID}`
+
+Arguments:
+- `automation_id`: Automation ID
+*/
+    pub async fn delete_v1_automations_automation_id<'a>(
+        &'a self,
+        automation_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<()>> {
+        let url = format!(
+            "{}/v1/automations/{}", self.baseurl, encode_path(& automation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.delete(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "delete_v1_automations_automation_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update automation
+
+Update an account-scoped automation.
+
+Sends a `PATCH` request to `/v1/automations/{automationID}`
+
+Arguments:
+- `automation_id`: Automation ID
+- `body`
+*/
+    pub async fn patch_v1_automations_automation_id<'a>(
+        &'a self,
+        automation_id: &'a str,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/automations/{}", self.baseurl, encode_path(& automation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_v1_automations_automation_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Pause automation
+
+Pause an active automation.
+
+Sends a `POST` request to `/v1/automations/{automationID}/pause`
+
+Arguments:
+- `automation_id`: Automation ID
+*/
+    pub async fn post_v1_automations_automation_id_pause<'a>(
+        &'a self,
+        automation_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/automations/{}/pause", self.baseurl, encode_path(& automation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_automations_automation_id_pause",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Resume automation
+
+Resume a paused automation.
+
+Sends a `POST` request to `/v1/automations/{automationID}/resume`
+
+Arguments:
+- `automation_id`: Automation ID
+*/
+    pub async fn post_v1_automations_automation_id_resume<'a>(
+        &'a self,
+        automation_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/automations/{}/resume", self.baseurl, encode_path(& automation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_automations_automation_id_resume",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Validate automation
+
+Validate an automation's connector and processor configuration.
+
+Sends a `POST` request to `/v1/automations/{automationID}/validate`
+
+Arguments:
+- `automation_id`: Automation ID
+*/
+    pub async fn post_v1_automations_automation_id_validate<'a>(
+        &'a self,
+        automation_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/automations/{}/validate", self.baseurl, encode_path(& automation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_automations_automation_id_validate",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get the current account balance
+
+Returns the billing balance of the authenticated account.
+
+Sends a `GET` request to `/v1/billing/balance`
+
+*/
+    pub async fn get_billing_balance<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::AccountBalanceResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/billing/balance", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_billing_balance",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a checkout session
+
+Creates a billing checkout session for the authenticated account.
+
+Sends a `POST` request to `/v1/billing/checkout`
+
+Arguments:
+- `idempotency_key`: Checkout idempotency key
+- `body`
+*/
+    pub async fn post_billing_checkout<'a>(
+        &'a self,
+        idempotency_key: &'a str,
+        body: &'a types::CreateCheckoutSessionRequest,
+    ) -> Result<
+        ResponseValue<types::CheckoutSessionResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/billing/checkout", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        header_map.append("Idempotency-Key", idempotency_key.to_string().try_into()?);
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_billing_checkout",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Debit the current account balance
+
+Debits a positive amount from the authenticated account.
+
+Sends a `POST` request to `/v1/billing/debit`
+
+Arguments:
+- `idempotency_key`: Debit idempotency key
+- `body`
+*/
+    pub async fn post_billing_debit<'a>(
+        &'a self,
+        idempotency_key: &'a str,
+        body: &'a types::DebitBalanceRequest,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/billing/debit", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        header_map.append("Idempotency-Key", idempotency_key.to_string().try_into()?);
+        #[allow(unused_mut)]
+        let mut request = self.client.post(url).json(&body).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "post_billing_debit",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => Ok(ResponseValue::stream(response)),
+            202u16 => Ok(ResponseValue::stream(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a debit operation
+
+Sends a `GET` request to `/v1/billing/debit/operations/{operationID}`
+
+Arguments:
+- `operation_id`: Debit operation ID
+*/
+    pub async fn get_billing_debit_operation<'a>(
+        &'a self,
+        operation_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::DebitOperationResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/billing/debit/operations/{}", self.baseurl, encode_path(& operation_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_billing_debit_operation",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List ledger entries
+
+Returns ledger movements for the authenticated account.
+
+Sends a `GET` request to `/v1/billing/ledger`
+
+Arguments:
+- `limit`: Maximum number of entries
+- `offset`: Number of entries to skip
+*/
+    pub async fn get_billing_ledger<'a>(
+        &'a self,
+        limit: Option<i64>,
+        offset: Option<i64>,
+    ) -> Result<
+        ResponseValue<types::LedgerHistoryResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/billing/ledger", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .query(&progenitor_client::QueryParam::new("offset", &offset))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_billing_ledger",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List payments for the authenticated account
+
+Returns the payment history for the active account context.
+
+Sends a `GET` request to `/v1/billing/payments`
+
+*/
+    pub async fn get_billing_payments<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::PaymentsResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/billing/payments", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_billing_payments",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Download a payment invoice PDF
+
+Returns the invoice PDF for a given payment of the active account context.
+
+Sends a `GET` request to `/v1/billing/payments/{paymentID}/invoice.pdf`
+
+Arguments:
+- `payment_id`: Payment ID
+*/
+    pub async fn get_billing_payments_payment_id_invoice_pdf<'a>(
+        &'a self,
+        payment_id: &'a str,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/billing/payments/{}/invoice.pdf", self.baseurl, encode_path(&
+            payment_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.get(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "get_billing_payments_payment_id_invoice_pdf",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => Ok(ResponseValue::stream(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Check operator MSA connectivity without starting a GPU instance
+
+Sends a `GET` request to `/v1/biomolecular/capabilities`
+
+Arguments:
+- `model`: Account-owned serving name or instance UUID
+*/
+    pub async fn get_v1_biomolecular_capabilities<'a>(
+        &'a self,
+        model: &'a str,
+    ) -> Result<
+        ResponseValue<types::BiomolecularCapabilities>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/biomolecular/capabilities", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("model", &model))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_biomolecular_capabilities",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Submit a durable Boltz prediction job
+
+Validated native version-1 Boltz input, up to 32 text attachments (8 MiB), 32 chains and 4096 polymer residues. Account-scoped idempotency. Eight nonterminal jobs per account; one prediction per instance. Terminal results/artifacts expire after seven days.
+
+Sends a `POST` request to `/v1/biomolecular/jobs`
+
+Arguments:
+- `idempotency_key`: Account-scoped request identity
+- `body`
+*/
+    pub async fn post_v1_biomolecular_job<'a>(
+        &'a self,
+        idempotency_key: Option<&'a str>,
+        body: &'a types::ServiceBiomolecularSubmitRequest,
+    ) -> Result<
+        ResponseValue<types::ServiceBiomolecularJobResult>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/biomolecular/jobs", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        if let Some(value) = idempotency_key {
+            header_map.append("Idempotency-Key", value.to_string().try_into()?);
+        }
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_biomolecular_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            202u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            413u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            415u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            429u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Read an account-owned Boltz job
+
+Sends a `GET` request to `/v1/biomolecular/jobs/{job_id}`
+
+Arguments:
+- `job_id`: Job UUID
+*/
+    pub async fn get_v1_biomolecular_job<'a>(
+        &'a self,
+        job_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::ServiceBiomolecularJobResult>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/biomolecular/jobs/{}", self.baseurl, encode_path(& job_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_biomolecular_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Download a persisted Boltz artifact
+
+Bounded binary stream, available independently of the original instance for seven days after job completion.
+
+Sends a `GET` request to `/v1/biomolecular/jobs/{job_id}/artifacts/{artifact_id}`
+
+Arguments:
+- `job_id`: Job UUID
+- `artifact_id`: Artifact UUID
+*/
+    pub async fn download_v1_biomolecular_artifact<'a>(
+        &'a self,
+        job_id: &'a str,
+        artifact_id: &'a str,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/biomolecular/jobs/{}/artifacts/{}", self.baseurl, encode_path(& job_id
+            .to_string()), encode_path(& artifact_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.get(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "download_v1_biomolecular_artifact",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => Ok(ResponseValue::stream(response)),
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Request idempotent Boltz job cancellation
+
+Sends a `POST` request to `/v1/biomolecular/jobs/{job_id}/cancel`
+
+Arguments:
+- `job_id`: Job UUID
+*/
+    pub async fn cancel_v1_biomolecular_job<'a>(
+        &'a self,
+        job_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::ServiceBiomolecularJobResult>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/biomolecular/jobs/{}/cancel", self.baseurl, encode_path(& job_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "cancel_v1_biomolecular_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
     /**OpenAI-compatible chat completions
 
 Executes a chat completion using a managed instance or public model. Accepts Bearer access tokens or API keys. Supports streaming (SSE) when "stream": true.
@@ -16112,6 +19788,686 @@ Sends a `POST` request to `/v1/chat/completions`
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
+    /**List connectors
+
+List connectors belonging to the current account.
+
+Sends a `GET` request to `/v1/connectors`
+
+*/
+    pub async fn get_v1_connectors<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/connectors", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_connectors",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create connector
+
+Create an account-scoped connector.
+
+Sends a `POST` request to `/v1/connectors`
+
+*/
+    pub async fn post_v1_connectors<'a>(
+        &'a self,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/connectors", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List connector types
+
+List connector types supported by the platform.
+
+Sends a `GET` request to `/v1/connectors/types`
+
+*/
+    pub async fn get_v1_connectors_types<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/connectors/types", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_connectors_types",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get connector
+
+Get an account-scoped connector by ID.
+
+Sends a `GET` request to `/v1/connectors/{connectorID}`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn get_v1_connectors_connector_id<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}", self.baseurl, encode_path(& connector_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_connectors_connector_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete connector
+
+Delete an account-scoped connector.
+
+Sends a `DELETE` request to `/v1/connectors/{connectorID}`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn delete_v1_connectors_connector_id<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}", self.baseurl, encode_path(& connector_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.delete(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "delete_v1_connectors_connector_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update connector
+
+Update an account-scoped connector configuration.
+
+Sends a `PATCH` request to `/v1/connectors/{connectorID}`
+
+Arguments:
+- `connector_id`: Connector ID
+- `body`
+*/
+    pub async fn patch_v1_connectors_connector_id<'a>(
+        &'a self,
+        connector_id: &'a str,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}", self.baseurl, encode_path(& connector_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_v1_connectors_connector_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List connector access requests
+
+List access requests for a connector.
+
+Sends a `GET` request to `/v1/connectors/{connectorID}/access-requests`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn get_v1_connectors_connector_id_access_requests<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/access-requests", self.baseurl, encode_path(&
+            connector_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_connectors_connector_id_access_requests",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Approve connector access request
+
+Approve a pending connector access request.
+
+Sends a `POST` request to `/v1/connectors/{connectorID}/access-requests/{requestID}/approve`
+
+Arguments:
+- `connector_id`: Connector ID
+- `request_id`: Access request ID
+*/
+    pub async fn post_v1_connectors_connector_id_access_requests_request_id_approve<'a>(
+        &'a self,
+        connector_id: &'a str,
+        request_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/access-requests/{}/approve", self.baseurl, encode_path(&
+            connector_id.to_string()), encode_path(& request_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors_connector_id_access_requests_request_id_approve",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Reject connector access request
+
+Reject a pending connector access request.
+
+Sends a `POST` request to `/v1/connectors/{connectorID}/access-requests/{requestID}/reject`
+
+Arguments:
+- `connector_id`: Connector ID
+- `request_id`: Access request ID
+*/
+    pub async fn post_v1_connectors_connector_id_access_requests_request_id_reject<'a>(
+        &'a self,
+        connector_id: &'a str,
+        request_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/access-requests/{}/reject", self.baseurl, encode_path(&
+            connector_id.to_string()), encode_path(& request_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors_connector_id_access_requests_request_id_reject",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Pause connector
+
+Pause a connector without deleting its configuration.
+
+Sends a `POST` request to `/v1/connectors/{connectorID}/pause`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn post_v1_connectors_connector_id_pause<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/pause", self.baseurl, encode_path(& connector_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors_connector_id_pause",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List connector principals
+
+List active principals associated with a connector.
+
+Sends a `GET` request to `/v1/connectors/{connectorID}/principals`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn get_v1_connectors_connector_id_principals<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/principals", self.baseurl, encode_path(& connector_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_connectors_connector_id_principals",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Resume connector
+
+Resume a paused connector.
+
+Sends a `POST` request to `/v1/connectors/{connectorID}/resume`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn post_v1_connectors_connector_id_resume<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/resume", self.baseurl, encode_path(& connector_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors_connector_id_resume",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Rotate connector webhook
+
+Rotate the webhook credentials for a connector.
+
+Sends a `POST` request to `/v1/connectors/{connectorID}/rotate-webhook`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn post_v1_connectors_connector_id_rotate_webhook<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/rotate-webhook", self.baseurl, encode_path(&
+            connector_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors_connector_id_rotate_webhook",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Verify connector
+
+Verify that a connector can reach its provider.
+
+Sends a `POST` request to `/v1/connectors/{connectorID}/verify`
+
+Arguments:
+- `connector_id`: Connector ID
+*/
+    pub async fn post_v1_connectors_connector_id_verify<'a>(
+        &'a self,
+        connector_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/connectors/{}/verify", self.baseurl, encode_path(& connector_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_connectors_connector_id_verify",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
     /**OpenAI-compatible embeddings
 
 Generates embeddings for a text or multimodal input. Accepts Bearer access tokens or API keys.
@@ -16164,6 +20520,1909 @@ Sends a `POST` request to `/v1/embeddings`
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             502u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List firewall rules
+
+Returns all firewall rules for the authenticated account.
+
+Sends a `GET` request to `/v1/firewall-rules`
+
+*/
+    pub async fn get_firewall_rules<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<::std::vec::Vec<types::FirewallRuleResponse>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/firewall-rules", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_firewall_rules",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a firewall rule
+
+Creates a new firewall rule for the authenticated account.
+
+Sends a `POST` request to `/v1/firewall-rules`
+
+*/
+    pub async fn post_firewall_rule<'a>(
+        &'a self,
+        body: &'a types::CreateFirewallRuleRequest,
+    ) -> Result<
+        ResponseValue<types::FirewallRuleResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/firewall-rules", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_firewall_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a firewall rule
+
+Returns a single firewall rule by slug.
+
+Sends a `GET` request to `/v1/firewall-rules/{ruleSlug}`
+
+Arguments:
+- `rule_slug`: Firewall rule slug
+*/
+    pub async fn get_firewall_rule<'a>(
+        &'a self,
+        rule_slug: &'a str,
+    ) -> Result<
+        ResponseValue<types::FirewallRuleResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/firewall-rules/{}", self.baseurl, encode_path(& rule_slug
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_firewall_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a firewall rule
+
+Removes a firewall rule by slug.
+
+Sends a `DELETE` request to `/v1/firewall-rules/{ruleSlug}`
+
+Arguments:
+- `rule_slug`: Firewall rule slug
+*/
+    pub async fn delete_firewall_rule<'a>(
+        &'a self,
+        rule_slug: &'a str,
+    ) -> Result<
+        ResponseValue<::std::collections::HashMap<::std::string::String, bool>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/firewall-rules/{}", self.baseurl, encode_path(& rule_slug
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_firewall_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a firewall rule
+
+Partially updates a firewall rule by slug.
+
+Sends a `PATCH` request to `/v1/firewall-rules/{ruleSlug}`
+
+Arguments:
+- `rule_slug`: Firewall rule slug
+- `body`
+*/
+    pub async fn patch_firewall_rule<'a>(
+        &'a self,
+        rule_slug: &'a str,
+        body: &'a types::UpdateFirewallRuleRequest,
+    ) -> Result<
+        ResponseValue<types::FirewallRuleResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/firewall-rules/{}", self.baseurl, encode_path(& rule_slug
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_firewall_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Evaluate a firewall rule
+
+Runs input against a single firewall rule and returns the evaluation result.
+
+Sends a `POST` request to `/v1/firewall-rules/{ruleSlug}:evaluate`
+
+Arguments:
+- `rule_slug`: Firewall rule slug
+- `body`
+*/
+    pub async fn post_firewall_rule_evaluate<'a>(
+        &'a self,
+        rule_slug: &'a str,
+        body: &'a types::FirewallRuleEvaluationRequest,
+    ) -> Result<
+        ResponseValue<types::FirewallEvaluationResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/firewall-rules/{}:evaluate", self.baseurl, encode_path(& rule_slug
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_firewall_rule_evaluate",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List firewalls
+
+Returns all firewalls for the authenticated account.
+
+Sends a `GET` request to `/v1/firewalls`
+
+*/
+    pub async fn get_firewalls<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<::std::vec::Vec<types::FirewallResponse>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/firewalls", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_firewalls",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a firewall
+
+Creates a new firewall for the authenticated account.
+
+Sends a `POST` request to `/v1/firewalls`
+
+*/
+    pub async fn post_firewall<'a>(
+        &'a self,
+        body: &'a types::CreateFirewallRequest,
+    ) -> Result<ResponseValue<types::FirewallResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/firewalls", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_firewall",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a firewall
+
+Returns a single firewall by slug.
+
+Sends a `GET` request to `/v1/firewalls/{firewallSlug}`
+
+Arguments:
+- `firewall_slug`: Firewall slug
+*/
+    pub async fn get_firewall<'a>(
+        &'a self,
+        firewall_slug: &'a str,
+    ) -> Result<ResponseValue<types::FirewallResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/firewalls/{}", self.baseurl, encode_path(& firewall_slug.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_firewall",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a firewall
+
+Removes a firewall by slug.
+
+Sends a `DELETE` request to `/v1/firewalls/{firewallSlug}`
+
+Arguments:
+- `firewall_slug`: Firewall slug
+*/
+    pub async fn delete_firewall<'a>(
+        &'a self,
+        firewall_slug: &'a str,
+    ) -> Result<
+        ResponseValue<::std::collections::HashMap<::std::string::String, bool>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/firewalls/{}", self.baseurl, encode_path(& firewall_slug.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_firewall",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a firewall
+
+Partially updates a firewall by slug.
+
+Sends a `PATCH` request to `/v1/firewalls/{firewallSlug}`
+
+Arguments:
+- `firewall_slug`: Firewall slug
+- `body`
+*/
+    pub async fn patch_firewall<'a>(
+        &'a self,
+        firewall_slug: &'a str,
+        body: &'a types::UpdateFirewallRequest,
+    ) -> Result<ResponseValue<types::FirewallResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/firewalls/{}", self.baseurl, encode_path(& firewall_slug.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_firewall",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Evaluate a firewall
+
+Runs input against a firewall and returns the evaluation result.
+
+Sends a `POST` request to `/v1/firewalls/{firewallSlug}:evaluate`
+
+Arguments:
+- `firewall_slug`: Firewall slug
+- `body`
+*/
+    pub async fn post_firewall_evaluate<'a>(
+        &'a self,
+        firewall_slug: &'a str,
+        body: &'a types::FirewallEvaluationRequest,
+    ) -> Result<
+        ResponseValue<types::FirewallEvaluationResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/firewalls/{}:evaluate", self.baseurl, encode_path(& firewall_slug
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_firewall_evaluate",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List vector databases
+
+Returns the vector databases owned by the authenticated account.
+
+Sends a `GET` request to `/v1/flexible-vector-databases`
+
+*/
+    pub async fn get_vector_databases<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::VectorDatabaseResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/flexible-vector-databases", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_vector_databases",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a vector database
+
+Creates a new vector database for the authenticated account.
+
+Sends a `POST` request to `/v1/flexible-vector-databases`
+
+*/
+    pub async fn post_vector_databases<'a>(
+        &'a self,
+        body: &'a types::CreateVectorDatabaseRequest,
+    ) -> Result<
+        ResponseValue<types::VectorDatabaseResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/flexible-vector-databases", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_vector_databases",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a vector database
+
+Returns a single vector database owned by the authenticated account.
+
+Sends a `GET` request to `/v1/flexible-vector-databases/{databaseID}`
+
+Arguments:
+- `database_id`: Vector database ID
+*/
+    pub async fn get_vector_database<'a>(
+        &'a self,
+        database_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::VectorDatabaseResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}", self.baseurl, encode_path(& database_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_vector_database",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a vector database
+
+Removes a vector database owned by the authenticated account.
+
+Sends a `DELETE` request to `/v1/flexible-vector-databases/{databaseID}`
+
+Arguments:
+- `database_id`: Vector database ID
+*/
+    pub async fn delete_vector_database<'a>(
+        &'a self,
+        database_id: &'a str,
+    ) -> Result<
+        ResponseValue<::std::collections::HashMap<::std::string::String, bool>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}", self.baseurl, encode_path(& database_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_vector_database",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a vector database
+
+Updates the slug, name, description, or compatible embedding model of an existing vector database. Changing models requires identical vectors for the text test.
+
+Sends a `PATCH` request to `/v1/flexible-vector-databases/{databaseID}`
+
+Arguments:
+- `database_id`: Vector database ID
+- `body`
+*/
+    pub async fn patch_vector_database<'a>(
+        &'a self,
+        database_id: &'a str,
+        body: &'a types::UpdateVectorDatabaseRequest,
+    ) -> Result<
+        ResponseValue<types::VectorDatabaseResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}", self.baseurl, encode_path(& database_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_vector_database",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List documents in a vector database
+
+Returns documents stored in a vector database with optional pagination.
+
+Sends a `GET` request to `/v1/flexible-vector-databases/{databaseID}/documents`
+
+Arguments:
+- `database_id`: Vector database ID
+- `cursor`: Pagination cursor from a previous response
+- `limit`: Maximum number of documents to return
+*/
+    pub async fn get_vector_database_documents<'a>(
+        &'a self,
+        database_id: &'a str,
+        cursor: Option<&'a str>,
+        limit: Option<i64>,
+    ) -> Result<
+        ResponseValue<types::ListDocumentsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/documents", self.baseurl, encode_path(&
+            database_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("cursor", &cursor))
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_vector_database_documents",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Index documents directly
+
+Indexes documents into a vector database synchronously.
+
+Sends a `POST` request to `/v1/flexible-vector-databases/{databaseID}/index-direct`
+
+Arguments:
+- `database_id`: Vector database ID
+- `body`
+*/
+    pub async fn post_vector_database_index_direct<'a>(
+        &'a self,
+        database_id: &'a str,
+        body: &'a types::IndexDocumentsRequest,
+    ) -> Result<
+        ResponseValue<::std::collections::HashMap<::std::string::String, i32>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/index-direct", self.baseurl,
+            encode_path(& database_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_vector_database_index_direct",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Enqueue an index job
+
+Enqueues documents for asynchronous indexing into a vector database.
+
+Sends a `POST` request to `/v1/flexible-vector-databases/{databaseID}/index-jobs`
+
+Arguments:
+- `database_id`: Vector database ID
+- `body`
+*/
+    pub async fn post_vector_database_index_jobs<'a>(
+        &'a self,
+        database_id: &'a str,
+        body: &'a types::IndexDocumentsRequest,
+    ) -> Result<
+        ResponseValue<
+            ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+        >,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/index-jobs", self.baseurl, encode_path(&
+            database_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_vector_database_index_jobs",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            202u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get an index job
+
+Returns the status of an asynchronous index job.
+
+Sends a `GET` request to `/v1/flexible-vector-databases/{databaseID}/index-jobs/{jobID}`
+
+Arguments:
+- `database_id`: Vector database ID
+- `job_id`: Index job ID
+*/
+    pub async fn get_vector_database_index_job<'a>(
+        &'a self,
+        database_id: &'a str,
+        job_id: &'a str,
+    ) -> Result<ResponseValue<types::IndexJobResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/index-jobs/{}", self.baseurl,
+            encode_path(& database_id.to_string()), encode_path(& job_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_vector_database_index_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Recommend documents
+
+Returns recommended documents for a recommend token.
+
+Sends a `POST` request to `/v1/flexible-vector-databases/{databaseID}/recommend`
+
+Arguments:
+- `database_id`: Vector database ID
+- `body`
+*/
+    pub async fn post_vector_database_recommend<'a>(
+        &'a self,
+        database_id: &'a str,
+        body: &'a types::RecommendRequest,
+    ) -> Result<ResponseValue<types::SearchHitResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/recommend", self.baseurl, encode_path(&
+            database_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_vector_database_recommend",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Search a vector database
+
+Searches a vector database by query text and/or image URL.
+
+Sends a `POST` request to `/v1/flexible-vector-databases/{databaseID}/search`
+
+Arguments:
+- `database_id`: Vector database ID
+- `body`
+*/
+    pub async fn post_vector_database_search<'a>(
+        &'a self,
+        database_id: &'a str,
+        body: &'a types::SearchRequest,
+    ) -> Result<ResponseValue<types::SearchHitResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/search", self.baseurl, encode_path(&
+            database_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_vector_database_search",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**View an element
+
+Records a view for a document and returns a recommend token.
+
+Sends a `POST` request to `/v1/flexible-vector-databases/{databaseID}/view-element`
+
+Arguments:
+- `database_id`: Vector database ID
+- `body`
+*/
+    pub async fn post_vector_database_view_element<'a>(
+        &'a self,
+        database_id: &'a str,
+        body: &'a types::ViewElementRequest,
+    ) -> Result<
+        ResponseValue<
+            ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+        >,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/flexible-vector-databases/{}/view-element", self.baseurl,
+            encode_path(& database_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_vector_database_view_element",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Search embedding models
+
+Searches Hugging Face for embedding models.
+
+Sends a `GET` request to `/v1/huggingface/embeddings`
+
+Arguments:
+- `limit`: Number of models (default 50, max 100)
+- `search`: Search query
+*/
+    pub async fn get_huggingface_embeddings<'a>(
+        &'a self,
+        limit: Option<i64>,
+        search: Option<&'a str>,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceModelsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/huggingface/embeddings", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .query(&progenitor_client::QueryParam::new("search", &search))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_huggingface_embeddings",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get Hugging Face file sizes
+
+Returns GGUF files by default, or compatible YOLO .pt checkpoints when format=yolo. Repository revisions are supported.
+
+Sends a `GET` request to `/v1/huggingface/files`
+
+Arguments:
+- `format`: Checkpoint format: gguf (default) or yolo
+- `repo`: Hugging Face repository ID (e.g. owner/model)
+*/
+    pub async fn get_huggingface_files<'a>(
+        &'a self,
+        format: Option<&'a str>,
+        repo: &'a str,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceFilesResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/huggingface/files", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("format", &format))
+            .query(&progenitor_client::QueryParam::new("repo", &repo))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_huggingface_files",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Search Hugging Face models
+
+Searches Hugging Face for compatible models matching the query.
+
+Sends a `GET` request to `/v1/huggingface/models`
+
+Arguments:
+- `cursor`: Pagination cursor
+- `limit`: Number of models (default 100, max 500)
+- `q`: Search query
+- `sort`: Catalog sort order
+*/
+    pub async fn get_huggingface_models<'a>(
+        &'a self,
+        cursor: Option<&'a str>,
+        limit: Option<i64>,
+        q: Option<&'a str>,
+        sort: Option<&'a str>,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceModelsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/huggingface/models", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("cursor", &cursor))
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .query(&progenitor_client::QueryParam::new("q", &q))
+            .query(&progenitor_client::QueryParam::new("sort", &sort))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_huggingface_models",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            412u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get Hugging Face organization info
+
+Returns profile information for a Hugging Face organization.
+
+Sends a `GET` request to `/v1/huggingface/orgs/{org}`
+
+Arguments:
+- `org`: Hugging Face organization name
+*/
+    pub async fn get_huggingface_orgs<'a>(
+        &'a self,
+        org: &'a str,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceOrgInfoResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/huggingface/orgs/{}", self.baseurl, encode_path(& org.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_huggingface_orgs",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Search Hugging Face models by tag
+
+Searches Hugging Face for models matching a query and pipeline tag.
+
+Sends a `GET` request to `/v1/huggingface/search-tag`
+
+Arguments:
+- `limit`: Number of models (default 50, max 100)
+- `pipeline_tag`: Pipeline tag (e.g. text-generation)
+- `q`: Search query
+*/
+    pub async fn get_huggingface_search_tag<'a>(
+        &'a self,
+        limit: Option<i64>,
+        pipeline_tag: &'a str,
+        q: &'a str,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceModelsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/huggingface/search-tag", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .query(&progenitor_client::QueryParam::new("pipeline_tag", &pipeline_tag))
+            .query(&progenitor_client::QueryParam::new("q", &q))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_huggingface_search_tag",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Trending Hugging Face models
+
+Returns trending Hugging Face models.
+
+Sends a `GET` request to `/v1/huggingface/trending`
+
+Arguments:
+- `limit`: Number of models (default 20, max 20)
+*/
+    pub async fn get_huggingface_trending<'a>(
+        &'a self,
+        limit: Option<i64>,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceModelsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/huggingface/trending", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_huggingface_trending",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Stream image detection, pose and object tracking over WebSocket
+
+Upgrades to a WebSocket and sends session.ready with normalized options and max_frame_bytes. Send optional session.configure JSON options patches and receive session.configured. Binary messages contain one PNG/JPEG image up to 16 MiB, 16384 pixels per side and 40 million pixels total; each returns frame.result with increasing frame_id, processing_ms and the existing typed detection result including optional pose keypoints. Text controls are limited to 32 KiB. Errors contain type, status, optional frame_id and error code/message. One frame executes at a time with at most one pending message; overload closes the session. Inference timeout 60 seconds, idle timeout 90 seconds, session limit 30 minutes. Browser cookies require a configured allowed Origin; native clients use Bearer API keys. account_id is membership-resolved for user credentials and cannot override an account API key. Query credentials are not accepted.
+Opt in with session.configure options.tracking=true for ByteTrack. Detections include optional positive track_id integers scoped to this connection. Tracking pins frames to the same replica; changing inference options resets identities, an empty patch preserves them. Disconnect/reconnect starts a new identity space. Tracking state expires after 90 seconds without a processed frame; unavailable state or inference errors close the tracking connection after an error event. Still-image requests remain stateless.
+
+Sends a `GET` request to `/v1/images/detections/stream`
+
+Arguments:
+- `account_id`: Preferred account; validated through user membership
+- `model`: Serving name or instance UUID
+*/
+    pub async fn get_v1_image_detections_stream<'a>(
+        &'a self,
+        account_id: Option<&'a str>,
+        model: &'a str,
+    ) -> Result<ResponseValue<types::ErrorResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/images/detections/stream", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("account_id", &account_id))
+            .query(&progenitor_client::QueryParam::new("model", &model))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_image_detections_stream",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            101u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             _ => Err(Error::UnexpectedResponse(response)),
@@ -16223,6 +22482,1656 @@ Sends a `POST` request to `/v1/images/generations`
             502u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List available GPUs
+
+Returns the GPU catalog with pricing, regions, and availability for the authenticated account.
+
+Sends a `GET` request to `/v1/instance-config/gpus`
+
+*/
+    pub async fn get_instance_config_gpus<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::GpuListResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/instance-config/gpus", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_instance_config_gpus",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            502u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List inference instances
+
+Sends a `GET` request to `/v1/instances`
+
+Arguments:
+- `state`: Optional state filter (non_bootstrap, pending, running, stopped, failed)
+*/
+    pub async fn get_instances<'a>(
+        &'a self,
+        state: Option<&'a str>,
+    ) -> Result<
+        ResponseValue<types::InstanceListResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/instances", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("state", &state))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_instances",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create an inference instance
+
+Workload is derived from the repository. Optional workload_kind=decision selects an approved decision checkpoint; Qwen/Qwen3.5-9B defaults to chat.
+
+Sends a `POST` request to `/v1/instances`
+
+Arguments:
+- `idempotency_key`: Optional idempotency key
+- `body`
+*/
+    pub async fn post_instances<'a>(
+        &'a self,
+        idempotency_key: Option<&'a str>,
+        body: &'a types::CreateInstanceRequest,
+    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/instances", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        if let Some(value) = idempotency_key {
+            header_map.append("Idempotency-Key", value.to_string().try_into()?);
+        }
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_instances",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            402u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Preview an inference deployment
+
+Workload is derived from the repository. Set optional workload_kind to decision for an approved decision checkpoint; Qwen/Qwen3.5-9B remains chat when omitted.
+
+Sends a `POST` request to `/v1/instances/preview`
+
+*/
+    pub async fn post_instances_preview<'a>(
+        &'a self,
+        body: &'a types::PreviewInstanceRequest,
+    ) -> Result<
+        ResponseValue<types::PreviewInstanceResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/instances/preview", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_instances_preview",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get an inference instance
+
+Sends a `GET` request to `/v1/instances/{instanceID}`
+
+Arguments:
+- `instance_id`: Instance ID
+*/
+    pub async fn get_instance_by_id<'a>(
+        &'a self,
+        instance_id: &'a str,
+    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/instances/{}", self.baseurl, encode_path(& instance_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_instance_by_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete an inference instance
+
+Sends a `DELETE` request to `/v1/instances/{instanceID}`
+
+Arguments:
+- `instance_id`: Instance ID
+*/
+    pub async fn delete_instance<'a>(
+        &'a self,
+        instance_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/instances/{}", self.baseurl, encode_path(& instance_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_instance",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update an inference instance
+
+Sends a `PATCH` request to `/v1/instances/{instanceID}`
+
+Arguments:
+- `instance_id`: Instance ID
+- `body`
+*/
+    pub async fn patch_instance<'a>(
+        &'a self,
+        instance_id: &'a str,
+        body: &'a types::UpdateInstanceRequest,
+    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/instances/{}", self.baseurl, encode_path(& instance_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_instance",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Preview smart selection for an existing instance update
+
+Previews the compatibility and smart selection for an existing instance while applying smart-setting overrides from the request body. Lets the instance settings page fetch the same backend-filtered GPU list used at launch time instead of reimplementing compatibility filtering in the UI.
+
+Sends a `POST` request to `/v1/instances/{instanceID}/preview`
+
+Arguments:
+- `instance_id`: Instance ID
+- `body`
+*/
+    pub async fn post_instance_preview_update<'a>(
+        &'a self,
+        instance_id: &'a str,
+        body: &'a types::PreviewInstanceUpdateRequest,
+    ) -> Result<
+        ResponseValue<types::PreviewInstanceResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/instances/{}/preview", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_instance_preview_update",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List schedule rules for an instance
+
+Sends a `GET` request to `/v1/instances/{instanceID}/schedule-rules`
+
+Arguments:
+- `instance_id`: Instance ID
+*/
+    pub async fn get_instance_schedule_rules<'a>(
+        &'a self,
+        instance_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::ScheduleRuleListResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/instances/{}/schedule-rules", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_instance_schedule_rules",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a schedule rule for an instance
+
+Sends a `POST` request to `/v1/instances/{instanceID}/schedule-rules`
+
+Arguments:
+- `instance_id`: Instance ID
+- `body`
+*/
+    pub async fn post_instance_schedule_rule<'a>(
+        &'a self,
+        instance_id: &'a str,
+        body: &'a types::ScheduleRuleRequest,
+    ) -> Result<
+        ResponseValue<types::ScheduleRuleResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/instances/{}/schedule-rules", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_instance_schedule_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a schedule rule for an instance
+
+Sends a `DELETE` request to `/v1/instances/{instanceID}/schedule-rules/{ruleID}`
+
+Arguments:
+- `instance_id`: Instance ID
+- `rule_id`: Schedule rule ID
+*/
+    pub async fn delete_instance_schedule_rule<'a>(
+        &'a self,
+        instance_id: &'a str,
+        rule_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/instances/{}/schedule-rules/{}", self.baseurl, encode_path(&
+            instance_id.to_string()), encode_path(& rule_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_instance_schedule_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a schedule rule for an instance
+
+Sends a `PATCH` request to `/v1/instances/{instanceID}/schedule-rules/{ruleID}`
+
+Arguments:
+- `instance_id`: Instance ID
+- `rule_id`: Schedule rule ID
+- `body`
+*/
+    pub async fn patch_instance_schedule_rule<'a>(
+        &'a self,
+        instance_id: &'a str,
+        rule_id: &'a str,
+        body: &'a types::ScheduleRuleRequest,
+    ) -> Result<
+        ResponseValue<types::ScheduleRuleResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/instances/{}/schedule-rules/{}", self.baseurl, encode_path(&
+            instance_id.to_string()), encode_path(& rule_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_instance_schedule_rule",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Enable shared capacity for an instance
+
+Sends a `POST` request to `/v1/instances/{instanceID}/shared-capacity`
+
+Arguments:
+- `instance_id`: Instance ID
+- `idempotency_key`: Enable idempotency key
+- `body`
+*/
+    pub async fn generated_post_v1_instances_instanceid_shared_capacity_50f4ed109b<'a>(
+        &'a self,
+        instance_id: &'a str,
+        idempotency_key: &'a str,
+        body: &'a types::EnableSharedCapacityRequest,
+    ) -> Result<ResponseValue<types::SharedCapacityResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/instances/{}/shared-capacity", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        header_map.append("Idempotency-Key", idempotency_key.to_string().try_into()?);
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_post_v1_instances_instanceid_shared_capacity_50f4ed109b",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Start an inference instance
+
+Sends a `POST` request to `/v1/instances/{instanceID}/start`
+
+Arguments:
+- `instance_id`: Instance ID
+*/
+    pub async fn post_instance_start<'a>(
+        &'a self,
+        instance_id: &'a str,
+    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/instances/{}/start", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_instance_start",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Stop an inference instance
+
+Sends a `POST` request to `/v1/instances/{instanceID}/stop`
+
+Arguments:
+- `instance_id`: Instance ID
+*/
+    pub async fn post_instance_stop<'a>(
+        &'a self,
+        instance_id: &'a str,
+    ) -> Result<ResponseValue<types::InstanceResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/instances/{}/stop", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_instance_stop",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get an inference instance usage and cost breakdown
+
+Sends a `GET` request to `/v1/instances/{instanceID}/usage`
+
+Arguments:
+- `instance_id`: Instance ID
+- `range`: Time range (24h, 7d, 30d)
+*/
+    pub async fn get_instance_usage<'a>(
+        &'a self,
+        instance_id: &'a str,
+        range: Option<types::GetInstanceUsageRange>,
+    ) -> Result<
+        ResponseValue<types::InstanceUsageResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/instances/{}/usage", self.baseurl, encode_path(& instance_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("range", &range))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_instance_usage",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List pending invitations for the authenticated user
+
+Returns invitations pending acceptance that were sent to the authenticated user's email.
+
+Sends a `GET` request to `/v1/invitations`
+
+*/
+    pub async fn get_invitations<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::InvitationListResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/invitations", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_invitations",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Accept an invitation
+
+Accepts a pending invitation by token or invitation ID and attaches the authenticated user to the account.
+
+Sends a `POST` request to `/v1/invitations/accept`
+
+*/
+    pub async fn post_invitations_accept<'a>(
+        &'a self,
+        body: &'a types::AcceptInvitationRequest,
+    ) -> Result<
+        ResponseValue<types::AccountMembershipResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/invitations/accept", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_invitations_accept",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            410u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List available models
+
+OpenAI-compatible model list for the account's enabled serving endpoints. Includes effective context_length and capabilities when known.
+
+Sends a `GET` request to `/v1/models`
+
+*/
+    pub async fn get_v1_models<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/models", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_models",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List fixed models
+
+Returns the catalog of fixed (curated) models supported by the platform.
+
+Sends a `GET` request to `/v1/models/fixed`
+
+*/
+    pub async fn get_models_fixed<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::HuggingFaceModelsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/models/fixed", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_models_fixed",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List notifications
+
+Returns notifications for the authenticated account, newest first.
+
+Sends a `GET` request to `/v1/notifications`
+
+Arguments:
+- `include_read`: Include already-read notifications
+- `kind`: Filter by notification kind
+- `limit`: Maximum number of notifications to return (default 50, max 100)
+- `severity`: Filter by severity
+- `since`: Return notifications created after this RFC3339 timestamp
+*/
+    pub async fn get_notifications<'a>(
+        &'a self,
+        include_read: Option<bool>,
+        kind: Option<&'a str>,
+        limit: Option<i64>,
+        severity: Option<&'a str>,
+        since: Option<&'a str>,
+    ) -> Result<
+        ResponseValue<types::ListNotificationsResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/notifications", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("include_read", &include_read))
+            .query(&progenitor_client::QueryParam::new("kind", &kind))
+            .query(&progenitor_client::QueryParam::new("limit", &limit))
+            .query(&progenitor_client::QueryParam::new("severity", &severity))
+            .query(&progenitor_client::QueryParam::new("since", &since))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_notifications",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Dismiss notifications
+
+Dismisses the given notifications for the authenticated account.
+
+Sends a `POST` request to `/v1/notifications/dismiss`
+
+*/
+    pub async fn post_notifications_dismiss<'a>(
+        &'a self,
+        body: &'a types::DismissRequest,
+    ) -> Result<ResponseValue<types::DismissResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/notifications/dismiss", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_notifications_dismiss",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Mark all notifications as read
+
+Marks all notifications matching the optional filters as read.
+
+Sends a `POST` request to `/v1/notifications/read-all`
+
+*/
+    pub async fn post_notifications_mark_all_read<'a>(
+        &'a self,
+        body: &'a types::MarkAllReadRequest,
+    ) -> Result<ResponseValue<types::MarkAllReadResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/notifications/read-all", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_notifications_mark_all_read",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get unread notification count
+
+Returns the number of unread notifications for the authenticated account.
+
+Sends a `GET` request to `/v1/notifications/unread-count`
+
+*/
+    pub async fn get_notifications_unread_count<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::UnreadCountResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/notifications/unread-count", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_notifications_unread_count",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Mark a notification as read
+
+Marks a single notification as read for the authenticated account.
+
+Sends a `POST` request to `/v1/notifications/{notificationID}/read`
+
+Arguments:
+- `notification_id`: Notification ID
+*/
+    pub async fn post_notifications_mark_read<'a>(
+        &'a self,
+        notification_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/notifications/{}/read", self.baseurl, encode_path(& notification_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_notifications_mark_read",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List Prometheus targets
+
+Return running inference instances in Prometheus HTTP service-discovery format.
+
+Sends a `GET` request to `/v1/prometheus/targets`
+
+*/
+    pub async fn get_prometheus_targets<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<::std::vec::Vec<types::HttpTarget>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/prometheus/targets", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_prometheus_targets",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get vLLM Prometheus metrics
+
+Proxy an instance's native vLLM Prometheus metrics.
+
+Sends a `GET` request to `/v1/prometheus/vllm/metrics`
+
+Arguments:
+- `instance`: Inference instance ID
+*/
+    pub async fn get_prometheus_vllm_metrics<'a>(
+        &'a self,
+        instance: &'a str,
+    ) -> Result<ResponseValue<ByteStream>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/prometheus/vllm/metrics", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .query(&progenitor_client::QueryParam::new("instance", &instance))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_prometheus_vllm_metrics",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => Ok(ResponseValue::stream(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            502u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List public serving endpoints
+
+Returns all publicly available model-serving endpoints and their token or audio-duration prices. No authentication required.
+
+Sends a `GET` request to `/v1/public/endpoints`
+
+*/
+    pub async fn get_v1_public_endpoints<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::PublicEndpointsResponse>, Error<()>> {
+        let url = format!("{}/v1/public/endpoints", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_public_endpoints",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
@@ -16323,6 +24232,563 @@ Sends a `GET` request to `/v1/public/pricing`
         match response.status().as_u16() {
             200u16 => ResponseValue::from_response(response).await,
             502u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List public shared capacities
+
+Sends a `GET` request to `/v1/public/shared-capacities`
+
+*/
+    pub async fn generated_get_v1_public_shared_capacities_9a7cf50f08<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::SharedCapacityPublicListResponse>, Error<()>> {
+        let url = format!("{}/v1/public/shared-capacities", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_get_v1_public_shared_capacities_9a7cf50f08",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a public shared capacity
+
+Sends a `GET` request to `/v1/public/shared-capacities/{slug}`
+
+Arguments:
+- `slug`: Public shared capacity slug
+*/
+    pub async fn generated_get_v1_public_shared_capacities_slug_5dcada6e1c<'a>(
+        &'a self,
+        slug: &'a str,
+    ) -> Result<ResponseValue<types::SharedCapacityPublicResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/public/shared-capacities/{}", self.baseurl, encode_path(& slug
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_get_v1_public_shared_capacities_slug_5dcada6e1c",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Resolve a public shared capacity link
+
+Sends a `GET` request to `/v1/public/shared-capacity-links/{token}`
+
+Arguments:
+- `token`: Referral token
+*/
+    pub async fn generated_get_v1_public_shared_capacity_links_token_55987cbcdb<'a>(
+        &'a self,
+        token: &'a str,
+    ) -> Result<ResponseValue<types::SharedCapacityPublicResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/public/shared-capacity-links/{}", self.baseurl, encode_path(& token
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_get_v1_public_shared_capacity_links_token_55987cbcdb",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Public platform token usage
+
+Public aggregate token totals, daily counts and top_models as an ordered name-only list. No authentication required. totals covers all recorded usage; period_totals, days and top_models cover [from,to) in the IANA timezone (UTC by default). Dates default to the last 30 calendar days including today, with a maximum of 366 days. Token figures apply APIGW_PUBLIC_TOKEN_USAGE_MULTIPLIER (default 1); decimals round to the nearest token, halves up. The model list ranks up to ten approved public names by total recorded tokens, independent of the display multiplier; anonymous legacy events and private/custom names are excluded from the ranking. measured_since is the first recorded invocation, or null when empty. Today's count is partial; pre-instrumentation, unreported provider usage and non-token workloads are unavailable.
+
+Sends a `GET` request to `/v1/public/token-usage`
+
+Arguments:
+- `from`: Inclusive date YYYY-MM-DD; supply with to
+- `timezone`: IANA timezone; default UTC
+- `to`: Exclusive date YYYY-MM-DD; supply with from
+*/
+    pub async fn get_v1_public_token_usage<'a>(
+        &'a self,
+        from: Option<&'a str>,
+        timezone: Option<&'a str>,
+        to: Option<&'a str>,
+    ) -> Result<ResponseValue<types::GetV1PublicTokenUsageResponse>, Error<()>> {
+        let url = format!("{}/v1/public/token-usage", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("from", &from))
+            .query(&progenitor_client::QueryParam::new("timezone", &timezone))
+            .query(&progenitor_client::QueryParam::new("to", &to))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_public_token_usage",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            429u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            503u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Realtime WebSocket proxy
+
+Proxies a turn-based or native-duplex Omni session, or a realtime ASR transcription session, to the selected model. The legacy duplex=1 alias selects duplex mode. ASR transcription uses incremental PCM audio events and returns transcription.delta events. Accepts Bearer access tokens or API keys.
+
+Sends a `GET` request to `/v1/realtime`
+
+Arguments:
+- `autostart`: Auto-start the realtime session (1/true/on)
+- `duplex`: Legacy native-duplex alias (1/true/on); requires a duplex-capable model
+- `mode`: Realtime mode (turn, duplex, or transcription)
+- `model`: Model serving name
+- `session_id`: Resume a realtime session id
+*/
+    pub async fn get_v1_realtime<'a>(
+        &'a self,
+        autostart: Option<&'a str>,
+        duplex: Option<&'a str>,
+        mode: Option<&'a str>,
+        model: &'a str,
+        session_id: Option<&'a str>,
+    ) -> Result<ResponseValue<types::ErrorResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/realtime", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .query(&progenitor_client::QueryParam::new("autostart", &autostart))
+            .query(&progenitor_client::QueryParam::new("duplex", &duplex))
+            .query(&progenitor_client::QueryParam::new("mode", &mode))
+            .query(&progenitor_client::QueryParam::new("model", &model))
+            .query(&progenitor_client::QueryParam::new("session_id", &session_id))
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_realtime",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            101u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List replica sets
+
+Sends a `GET` request to `/v1/replica-sets`
+
+*/
+    pub async fn get_replica_sets<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::ReplicaSetListResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/replica-sets", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_replica_sets",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a replica set
+
+Sends a `GET` request to `/v1/replica-sets/{replicaSetID}`
+
+Arguments:
+- `replica_set_id`: Replica set ID
+*/
+    pub async fn get_replica_set<'a>(
+        &'a self,
+        replica_set_id: &'a str,
+    ) -> Result<ResponseValue<types::ReplicaSetResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/replica-sets/{}", self.baseurl, encode_path(& replica_set_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_replica_set",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a replica set
+
+Sends a `DELETE` request to `/v1/replica-sets/{replicaSetID}`
+
+Arguments:
+- `replica_set_id`: Replica set ID
+*/
+    pub async fn delete_replica_set<'a>(
+        &'a self,
+        replica_set_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/replica-sets/{}", self.baseurl, encode_path(& replica_set_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_replica_set",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a replica set
+
+Sends a `PATCH` request to `/v1/replica-sets/{replicaSetID}`
+
+Arguments:
+- `replica_set_id`: Replica set ID
+- `body`
+*/
+    pub async fn patch_replica_set<'a>(
+        &'a self,
+        replica_set_id: &'a str,
+        body: &'a types::UpdateReplicaSetRequest,
+    ) -> Result<ResponseValue<types::ReplicaSetResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/replica-sets/{}", self.baseurl, encode_path(& replica_set_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_replica_set",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Scale a replica set
+
+Sends a `POST` request to `/v1/replica-sets/{replicaSetID}/scale`
+
+Arguments:
+- `replica_set_id`: Replica set ID
+- `body`
+*/
+    pub async fn post_replica_set_scale<'a>(
+        &'a self,
+        replica_set_id: &'a str,
+        body: &'a types::ScaleReplicaSetRequest,
+    ) -> Result<ResponseValue<types::ReplicaSetResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/replica-sets/{}/scale", self.baseurl, encode_path(& replica_set_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_replica_set_scale",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             _ => Err(Error::UnexpectedResponse(response)),
@@ -16843,6 +25309,1047 @@ Arguments:
             _ => Err(Error::UnexpectedResponse(response)),
         }
     }
+    /**List serving endpoints
+
+Sends a `GET` request to `/v1/serving-endpoints`
+
+*/
+    pub async fn get_serving_endpoints<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<
+            ::std::collections::HashMap<
+                ::std::string::String,
+                ::std::vec::Vec<types::ServingEndpointResponse>,
+            >,
+        >,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/serving-endpoints", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_serving_endpoints",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a serving endpoint
+
+Sends a `POST` request to `/v1/serving-endpoints`
+
+*/
+    pub async fn post_serving_endpoint<'a>(
+        &'a self,
+        body: &'a types::CreateServingEndpointRequest,
+    ) -> Result<
+        ResponseValue<types::ServingEndpointResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/serving-endpoints", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_serving_endpoint",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List shared capacities for the current account
+
+Sends a `GET` request to `/v1/shared-capacities`
+
+*/
+    pub async fn generated_get_v1_shared_capacities_8414d9d6b6<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::SharedCapacityListResponse>, Error<()>> {
+        let url = format!("{}/v1/shared-capacities", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_get_v1_shared_capacities_8414d9d6b6",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Join a shared capacity
+
+Sends a `POST` request to `/v1/shared-capacities/join`
+
+Arguments:
+- `idempotency_key`: Join idempotency key
+- `body`
+*/
+    pub async fn generated_post_v1_shared_capacities_join_096157c32a<'a>(
+        &'a self,
+        idempotency_key: &'a str,
+        body: &'a types::JoinSharedCapacityRequest,
+    ) -> Result<ResponseValue<types::SharedCapacityMembershipResponse>, Error<()>> {
+        let url = format!("{}/v1/shared-capacities/join", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        header_map.append("Idempotency-Key", idempotency_key.to_string().try_into()?);
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_post_v1_shared_capacities_join_096157c32a",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get an account shared capacity
+
+Sends a `GET` request to `/v1/shared-capacities/{groupID}`
+
+Arguments:
+- `group_id`: Shared capacity group ID
+*/
+    pub async fn generated_get_v1_shared_capacities_groupid_0ddb6037ad<'a>(
+        &'a self,
+        group_id: &'a str,
+    ) -> Result<ResponseValue<types::SharedCapacityResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/shared-capacities/{}", self.baseurl, encode_path(& group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_get_v1_shared_capacities_groupid_0ddb6037ad",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Disable shared capacity
+
+Sends a `POST` request to `/v1/shared-capacities/{groupID}/disable`
+
+Arguments:
+- `group_id`: Shared capacity group ID
+*/
+    pub async fn generated_post_v1_shared_capacities_groupid_disable_4d7ff87724<'a>(
+        &'a self,
+        group_id: &'a str,
+    ) -> Result<ResponseValue<types::SharedCapacityResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/shared-capacities/{}/disable", self.baseurl, encode_path(& group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_post_v1_shared_capacities_groupid_disable_4d7ff87724",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Leave a shared capacity
+
+Sends a `POST` request to `/v1/shared-capacities/{groupID}/leave`
+
+Arguments:
+- `group_id`: Shared capacity group ID
+*/
+    pub async fn generated_post_v1_shared_capacities_groupid_leave_11a2e82477<'a>(
+        &'a self,
+        group_id: &'a str,
+    ) -> Result<ResponseValue<types::SharedCapacityMembershipResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/shared-capacities/{}/leave", self.baseurl, encode_path(& group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_post_v1_shared_capacities_groupid_leave_11a2e82477",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a shared capacity referral link
+
+Sends a `POST` request to `/v1/shared-capacities/{groupID}/links`
+
+Arguments:
+- `group_id`: Shared capacity group ID
+*/
+    pub async fn generated_post_v1_shared_capacities_groupid_links_e26feddd56<'a>(
+        &'a self,
+        group_id: &'a str,
+    ) -> Result<ResponseValue<types::SharedCapacityLinkResponse>, Error<()>> {
+        let url = format!(
+            "{}/v1/shared-capacities/{}/links", self.baseurl, encode_path(& group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "generated_post_v1_shared_capacities_groupid_links_e26feddd56",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Revoke a shared capacity referral link
+
+Sends a `POST` request to `/v1/shared-capacities/{groupID}/links/{linkID}/revoke`
+
+Arguments:
+- `group_id`: Shared capacity group ID
+- `link_id`: Referral link ID
+*/
+    pub async fn generated_post_v1_shared_capacities_groupid_links_linkid_revoke_d012ab81b1<
+        'a,
+    >(
+        &'a self,
+        group_id: &'a str,
+        link_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<()>> {
+        let url = format!(
+            "{}/v1/shared-capacities/{}/links/{}/revoke", self.baseurl, encode_path(&
+            group_id.to_string()), encode_path(& link_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self.client.post(url).headers(header_map).build()?;
+        let info = OperationInfo {
+            operation_id: "generated_post_v1_shared_capacities_groupid_links_linkid_revoke_d012ab81b1",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List smart balancers
+
+Sends a `GET` request to `/v1/smart-balancers`
+
+*/
+    pub async fn get_smart_balancers<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<
+            ::std::collections::HashMap<
+                ::std::string::String,
+                ::std::vec::Vec<types::SmartBalancerViewResponse>,
+            >,
+        >,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/smart-balancers", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_smart_balancers",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a smart balancer
+
+Sends a `POST` request to `/v1/smart-balancers`
+
+*/
+    pub async fn post_smart_balancer<'a>(
+        &'a self,
+        body: &'a types::CreateSmartBalancerRequest,
+    ) -> Result<
+        ResponseValue<types::SmartBalancerViewResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/smart-balancers", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_smart_balancer",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a smart balancer
+
+Sends a `DELETE` request to `/v1/smart-balancers/{smartBalancerID}`
+
+Arguments:
+- `smart_balancer_id`: Smart balancer ID
+*/
+    pub async fn delete_smart_balancer<'a>(
+        &'a self,
+        smart_balancer_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/smart-balancers/{}", self.baseurl, encode_path(& smart_balancer_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_smart_balancer",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a smart balancer
+
+Sends a `PATCH` request to `/v1/smart-balancers/{smartBalancerID}`
+
+Arguments:
+- `smart_balancer_id`: Smart balancer ID
+- `body`
+*/
+    pub async fn patch_smart_balancer<'a>(
+        &'a self,
+        smart_balancer_id: &'a str,
+        body: &'a types::UpdateSmartBalancerRequest,
+    ) -> Result<
+        ResponseValue<types::SmartBalancerViewResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/smart-balancers/{}", self.baseurl, encode_path(& smart_balancer_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_smart_balancer",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Answer typed questions about a text or JSON state
+
+Account-owned decision serving name or instance UUID, public:clef-flash, or subscription:cloudflare/clef-flash when configured. Up to 64 questions, choice 1..26 options, noul optional true/false descriptions, score 2..10 ordered levels. Request limit 32 MiB with 1 MiB of non-image metadata; Clef Flash requests are limited to 20 MB including the RunPod input envelope. Response limit 1 MiB, nesting 64. Optional images accepts up to four inline base64 PNG, JPEG or WebP data URLs, at most 5 MiB decoded and 16 million pixels per image. Images require Clef Flash or a compatible managed decision instance. Nested media and unknown fields are rejected. Question instructions and descriptions are strings or null. Optional global instructions are supported by native Qwen and DiffusionGemma; Clef and Nimble reject nonempty global instructions. Timeout two minutes after readiness.
+
+Sends a `POST` request to `/v1/systemone`
+
+*/
+    pub async fn post_v1_system_one<'a>(
+        &'a self,
+        body: &'a types::ExecutionSystemOneRequest,
+    ) -> Result<
+        ResponseValue<types::ExecutionSystemOneResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/systemone", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_system_one",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            413u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            415u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            504u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List target groups
+
+Sends a `GET` request to `/v1/target-groups`
+
+*/
+    pub async fn get_target_groups<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<
+            ::std::collections::HashMap<
+                ::std::string::String,
+                ::std::vec::Vec<types::TargetGroupResponse>,
+            >,
+        >,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/target-groups", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_target_groups",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create a target group
+
+Sends a `POST` request to `/v1/target-groups`
+
+*/
+    pub async fn post_target_group<'a>(
+        &'a self,
+        body: &'a types::CreateTargetGroupRequest,
+    ) -> Result<ResponseValue<types::TargetGroupResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/target-groups", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_target_group",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get a target group
+
+Sends a `GET` request to `/v1/target-groups/{targetGroupID}`
+
+Arguments:
+- `target_group_id`: Target group ID
+*/
+    pub async fn get_target_group<'a>(
+        &'a self,
+        target_group_id: &'a str,
+    ) -> Result<ResponseValue<types::TargetGroupResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/target-groups/{}", self.baseurl, encode_path(& target_group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_target_group",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Delete a target group
+
+Sends a `DELETE` request to `/v1/target-groups/{targetGroupID}`
+
+Arguments:
+- `target_group_id`: Target group ID
+*/
+    pub async fn delete_target_group<'a>(
+        &'a self,
+        target_group_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/target-groups/{}", self.baseurl, encode_path(& target_group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .delete(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "delete_target_group",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update a target group
+
+Sends a `PATCH` request to `/v1/target-groups/{targetGroupID}`
+
+Arguments:
+- `target_group_id`: Target group ID
+- `body`
+*/
+    pub async fn patch_target_group<'a>(
+        &'a self,
+        target_group_id: &'a str,
+        body: &'a types::UpdateTargetGroupRequest,
+    ) -> Result<ResponseValue<types::TargetGroupResponse>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/target-groups/{}", self.baseurl, encode_path(& target_group_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .patch(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "patch_target_group",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
     /**List template variants
 
 Lists pre-configured deployment template variants visible to the authenticated user.
@@ -17023,6 +26530,1061 @@ Arguments:
         match response.status().as_u16() {
             200u16 => ResponseValue::from_response(response).await,
             404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Forecast channel-major time series
+
+Account-owned serving name or instance UUID. Horizon 1..1024, 1..32 records, 1..32 channels, context 1..15360. Input/output budgets are one million numbers; request/response limits are 16/32 MiB. Quantiles default true; inference timeout is two minutes after readiness.
+
+Sends a `POST` request to `/v1/timeseries/forecasts`
+
+*/
+    pub async fn post_v1_timeseries_forecast<'a>(
+        &'a self,
+        body: &'a types::ExecutionForecastRequest,
+    ) -> Result<
+        ResponseValue<types::ExecutionForecastResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/timeseries/forecasts", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_timeseries_forecast",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            403u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            413u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            415u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            504u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List tool deployments
+
+List deployments owned by the authenticated account.
+
+Sends a `GET` request to `/v1/tool-deployments`
+
+*/
+    pub async fn get_v1_tool_deployments<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/tool-deployments", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_tool_deployments",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create tool deployment
+
+Create an account-bound Lambda tool deployment from a strict YAML manifest. An empty spec.server.image is valid only for a pending registration; the immutable staging artifact is established at finalization.
+
+Sends a `POST` request to `/v1/tool-deployments`
+
+*/
+    pub async fn post_v1_tool_deployments<'a>(
+        &'a self,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!("{}/v1/tool-deployments", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_tool_deployments",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get tool deployment
+
+Get an account-bound tool deployment without exposing runtime credentials or tenant internals.
+
+Sends a `GET` request to `/v1/tool-deployments/{deploymentID}`
+
+Arguments:
+- `deployment_id`: Deployment ID
+*/
+    pub async fn get_v1_tool_deployments_deployment_id<'a>(
+        &'a self,
+        deployment_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/tool-deployments/{}", self.baseurl, encode_path(& deployment_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_tool_deployments_deployment_id",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Finalize tool deployment
+
+Verify, discover, provision, and publish an immutable tool deployment.
+
+Sends a `POST` request to `/v1/tool-deployments/{deploymentID}/finalize`
+
+Arguments:
+- `deployment_id`: Deployment ID
+- `x_valendra_git_hub_oidc_token`: Short-lived GitHub Actions OIDC token. Never include this value in the request body or logs.
+- `body`
+*/
+    pub async fn post_v1_tool_deployments_deployment_id_finalize<'a>(
+        &'a self,
+        deployment_id: &'a str,
+        x_valendra_git_hub_oidc_token: &'a str,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/tool-deployments/{}/finalize", self.baseurl, encode_path(&
+            deployment_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        header_map
+            .append(
+                "X-Valendra-GitHub-OIDC-Token",
+                x_valendra_git_hub_oidc_token.to_string().try_into()?,
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_tool_deployments_deployment_id_finalize",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Revoke tool deployment
+
+Revoke a deployment before it can be resolved for invocation.
+
+Sends a `POST` request to `/v1/tool-deployments/{deploymentID}/revoke`
+
+Arguments:
+- `deployment_id`: Deployment ID
+*/
+    pub async fn post_v1_tool_deployments_deployment_id_revoke<'a>(
+        &'a self,
+        deployment_id: &'a str,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/tool-deployments/{}/revoke", self.baseurl, encode_path(& deployment_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_tool_deployments_deployment_id_revoke",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Rollback tool deployment
+
+Move the registry pointer to a previously verified immutable version.
+
+Sends a `POST` request to `/v1/tool-deployments/{deploymentID}/rollback`
+
+Arguments:
+- `deployment_id`: Deployment ID
+- `body`
+*/
+    pub async fn post_v1_tool_deployments_deployment_id_rollback<'a>(
+        &'a self,
+        deployment_id: &'a str,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/tool-deployments/{}/rollback", self.baseurl, encode_path(&
+            deployment_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_tool_deployments_deployment_id_rollback",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create upload session
+
+Create a short-lived artifact upload session after GitHub OIDC claim validation. The artifact digest may be omitted when it is not known until after the image push.
+
+Sends a `POST` request to `/v1/tool-deployments/{deploymentID}/upload-session`
+
+Arguments:
+- `deployment_id`: Deployment ID
+- `x_valendra_git_hub_oidc_token`: Short-lived GitHub Actions OIDC token. Never include this value in the request body or logs.
+- `body`
+*/
+    pub async fn post_v1_tool_deployments_deployment_id_upload_session<'a>(
+        &'a self,
+        deployment_id: &'a str,
+        x_valendra_git_hub_oidc_token: &'a str,
+        body: &'a ::serde_json::Value,
+    ) -> Result<ResponseValue<::serde_json::Value>, Error<()>> {
+        let url = format!(
+            "{}/v1/tool-deployments/{}/upload-session", self.baseurl, encode_path(&
+            deployment_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(2usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        header_map
+            .append(
+                "X-Valendra-GitHub-OIDC-Token",
+                x_valendra_git_hub_oidc_token.to_string().try_into()?,
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_v1_tool_deployments_deployment_id_upload_session",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            401u16 => Err(Error::ErrorResponse(ResponseValue::empty(response))),
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List tools
+
+Lists all available platform tools for the authenticated account.
+
+Sends a `GET` request to `/v1/tools`
+
+*/
+    pub async fn get_tools<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/tools", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_tools",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Try a tool
+
+Runs a single platform tool with the given configuration and returns the raw tool output.
+
+Sends a `POST` request to `/v1/tools/{toolType}/try`
+
+Arguments:
+- `tool_type`: Tool type
+- `body`
+*/
+    pub async fn try_tool<'a>(
+        &'a self,
+        tool_type: &'a str,
+        body: &'a ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+    ) -> Result<
+        ResponseValue<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/tools/{}/try", self.baseurl, encode_path(& tool_type.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "try_tool",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List API keys for the authenticated user
+
+Returns the API keys issued for the authenticated user identity.
+
+Sends a `GET` request to `/v1/users/me/api-keys`
+
+*/
+    pub async fn get_user_api_keys<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::ApiKeyListResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/users/me/api-keys", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_user_api_keys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Create an API key for the authenticated user
+
+Issues a new API key for the authenticated user identity and returns the plaintext key once.
+
+Sends a `POST` request to `/v1/users/me/api-keys`
+
+*/
+    pub async fn post_user_api_keys<'a>(
+        &'a self,
+    ) -> Result<ResponseValue<types::ApiKeyResponse>, Error<types::ErrorResponse>> {
+        let url = format!("{}/v1/users/me/api-keys", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_user_api_keys",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            201u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Revoke a user API key
+
+Revokes an API key issued for the authenticated user identity.
+
+Sends a `POST` request to `/v1/users/me/api-keys/{keyID}/revoke`
+
+Arguments:
+- `key_id`: API key ID
+*/
+    pub async fn post_user_api_keys_key_id_revoke<'a>(
+        &'a self,
+        key_id: &'a str,
+    ) -> Result<ResponseValue<()>, Error<types::ErrorResponse>> {
+        let url = format!(
+            "{}/v1/users/me/api-keys/{}/revoke", self.baseurl, encode_path(& key_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "post_user_api_keys_key_id_revoke",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            204u16 => Ok(ResponseValue::empty(response)),
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get incremental tutorial progress
+
+Returns the onboarding tutorial progress for the authenticated user in the active account. New users have found=false.
+
+Sends a `GET` request to `/v1/users/me/tutorial-progress`
+
+*/
+    pub async fn get_tutorial_progress<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::TutorialProgressResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/users/me/tutorial-progress", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_tutorial_progress",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Update incremental tutorial progress
+
+Persists onboarding tutorial progress for the authenticated user in the active account. Completed step ids are merged server-side so steps are never lost.
+
+Sends a `PUT` request to `/v1/users/me/tutorial-progress`
+
+*/
+    pub async fn put_tutorial_progress<'a>(
+        &'a self,
+        body: &'a types::UpdateTutorialProgressRequest,
+    ) -> Result<
+        ResponseValue<types::TutorialProgressResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/users/me/tutorial-progress", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .put(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .json(&body)
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "put_tutorial_progress",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            400u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**List recent account-owned video jobs
+
+Returns up to 100 unexpired jobs, newest first. Includes pending and terminal jobs so clients can recover work after navigation or closing the browser.
+
+Sends a `GET` request to `/v1/video-jobs`
+
+*/
+    pub async fn list_v1_video_jobs<'a>(
+        &'a self,
+    ) -> Result<
+        ResponseValue<types::VideoJobsListResponse>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!("{}/v1/video-jobs", self.baseurl,);
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "list_v1_video_jobs",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Read an account-owned video job
+
+Missing, foreign and expired jobs return 404.
+
+Sends a `GET` request to `/v1/video-jobs/{job_id}`
+
+Arguments:
+- `job_id`: Job UUID
+*/
+    pub async fn get_v1_video_job<'a>(
+        &'a self,
+        job_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::ServiceVideoJobResult>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/video-jobs/{}", self.baseurl, encode_path(& job_id.to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "get_v1_video_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Request explicit video job cancellation
+
+Cancellation is idempotent and account-scoped. A completed result is preserved if completion wins the cancellation race.
+
+Sends a `POST` request to `/v1/video-jobs/{job_id}/cancel`
+
+Arguments:
+- `job_id`: Job UUID
+*/
+    pub async fn cancel_v1_video_job<'a>(
+        &'a self,
+        job_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::ServiceVideoJobResult>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/video-jobs/{}/cancel", self.baseurl, encode_path(& job_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .post(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "cancel_v1_video_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            503u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            _ => Err(Error::UnexpectedResponse(response)),
+        }
+    }
+    /**Get direct URLs for a completed video job's MP4
+
+Returns short-lived inline and attachment URLs for direct object storage access, valid for at most 15 minutes and never beyond the seven-day job retention. The attachment URL signs Content-Disposition for generated.mp4. Pending, failed or cancelled jobs return 409; missing, foreign and expired jobs return 404.
+
+Sends a `GET` request to `/v1/video-jobs/{job_id}/content`
+
+Arguments:
+- `job_id`: Job UUID
+*/
+    pub async fn download_v1_video_job<'a>(
+        &'a self,
+        job_id: &'a str,
+    ) -> Result<
+        ResponseValue<types::ServiceVideoJobContentUrl>,
+        Error<types::ErrorResponse>,
+    > {
+        let url = format!(
+            "{}/v1/video-jobs/{}/content", self.baseurl, encode_path(& job_id
+            .to_string()),
+        );
+        let mut header_map = ::reqwest::header::HeaderMap::with_capacity(1usize);
+        header_map
+            .append(
+                ::reqwest::header::HeaderName::from_static("api-version"),
+                ::reqwest::header::HeaderValue::from_static(Self::api_version()),
+            );
+        #[allow(unused_mut)]
+        let mut request = self
+            .client
+            .get(url)
+            .header(
+                ::reqwest::header::ACCEPT,
+                ::reqwest::header::HeaderValue::from_static("application/json"),
+            )
+            .headers(header_map)
+            .build()?;
+        let info = OperationInfo {
+            operation_id: "download_v1_video_job",
+        };
+        match (crate::auth::inject)(&mut request).await {
+            Ok(_) => {}
+            Err(e) => return Err(Error::Custom(e.to_string())),
+        }
+        self.pre(&mut request, &info).await?;
+        let result = self.exec(request, &info).await;
+        self.post(&result, &info).await?;
+        let response = result?;
+        match response.status().as_u16() {
+            200u16 => ResponseValue::from_response(response).await,
+            401u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            404u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            409u16 => {
+                Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
+            }
+            500u16 => {
                 Err(Error::ErrorResponse(ResponseValue::from_response(response).await?))
             }
             503u16 => {
